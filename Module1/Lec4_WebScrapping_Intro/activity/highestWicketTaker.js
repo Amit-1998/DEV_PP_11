@@ -74,7 +74,8 @@ function getWicketTaker(data){
                }
                else{
                   let currWickets = myDocument(allTds[4]).text();
-                  if(currWickets > highestWicketTaken ){
+                  let currEconomy = myDocument(allTds[5]).text();
+                  if(currWickets > highestWicketTaken  || (currWickets == highestWicketTaken && currEconomy < economyOfhighestWicketTaker) ){
                      // update if current bowler have high Wickets!!
                      highestWicketTaken = currWickets;
                      highestWicketTakerName = myDocument(allTds[0]).find("a").text();
