@@ -1,7 +1,7 @@
 const request = require("request");
 const cheerio = require("cheerio");
 //const allMatchesLink = require("./homepage");
-const getMatchDetails = require("./foroneMatch");
+const getMatchDetails = require("./forOneMatch");
 
 function getAllMatches(allMatchesLink){
    request(allMatchesLink,function(err,res,data){

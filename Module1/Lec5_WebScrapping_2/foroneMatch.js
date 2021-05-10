@@ -1,4 +1,4 @@
-let matchLink = "https://www.espncricinfo.com/series/ipl-2020-21-1210595/delhi-capitals-vs-mumbai-indians-final-1237181/full-scorecard";
+//let matchLink = "https://www.espncricinfo.com/series/ipl-2020-21-1210595/delhi-capitals-vs-mumbai-indians-final-1237181/full-scorecard";
 const request = require("request");
 const cheerio = require("cheerio");
 const fs = require("fs");
@@ -51,6 +51,7 @@ function processData(html){
                 let strikeRate = myDocument(allTds[7]).text().trim();
                 //console.log(`Batsman = ${batsmanName} Runs = ${runs} Balls = ${balls} Fours = ${fours} Sixes = ${sixes} StrikeRate = ${strikeRate}`);
                 processDetails(teamName , batsmanName , runs , balls , fours , sixes , strikeRate);
+
             }
         }
       
