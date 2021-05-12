@@ -12,7 +12,7 @@ function getMatchDetails(matchLink){
 
 
 function processData(html){
-    let myDocument = cheerio.load(html);
+    let myDocument = cheerio.load(html+"");
     let bothInnings = myDocument(".card.content-block.match-scorecard-table .Collapsible");
     
     for(let i=0; i<bothInnings.length; i++){
@@ -50,14 +50,16 @@ function processData(html){
                 // sr allTds[7]
                 let strikeRate = myDocument(allTds[7]).text().trim();
                 //console.log(`Batsman = ${batsmanName} Runs = ${runs} Balls = ${balls} Fours = ${fours} Sixes = ${sixes} StrikeRate = ${strikeRate}`);
-                processDetails(teamName , batsmanName , runs , balls , fours , sixes , strikeRate);
-
+                //processDetails(teamName , batsmanName , runs , balls , fours , sixes , strikeRate);
+                // LeaderBoard
+                ProcessDetailsForLeaderBoard(teamName, batsmanName, runs, balls, fours, sixes, strikeRate);
             }
         }
       
     }
     console.log("##############################################");
 }
+
 
 function processDetails(teamName , batsmanName , runs , balls , fours , sixes , strikeRate){
     let isTeamFolder = checkTeamFolder(teamName);
@@ -119,6 +121,111 @@ function createBatsmanFile(teamName , batsmanName , runs , balls , fours , sixes
 function createTeamFolder(teamName){
     let teamFolderPath = `./IPL/${teamName}`;
     fs.mkdirSync(teamFolderPath);
+}
+
+
+//LeaderBoard
+//    [
+	
+// 	     {
+// 		      "KL Rahul (c)†": {
+//                                   "match": 11,
+//                                    "team": "Kings XI Punjab",
+//                                     "runs": 522,
+//                                     "balls": 392,
+//                                     "fours": 45,
+//                                     "sixes": 22,
+//                                     "strikeRate": 133.16326530612247
+// 		                       }
+// 	     },
+    
+//         {
+
+//         },
+    
+//    ]
+
+
+function ProcessDetailsForLeaderBoard(teamName, batsmanName, runs, balls, fours, sixes, strikeRate){
+    
+    let haYaNa = checkPlayerExists(batsmanName);
+    if(haYaNa){
+        updateBatsmanObj(teamName, batsmanName, runs, balls, fours, sixes, strikeRate);
+    }
+    else{
+       //means Batsman ka obj is not present in Leaderboard.json
+       createBatsmanObj(teamName, batsmanName, runs, balls, fours, sixes, strikeRate); 
+    } 
+}
+
+//yha se LeaderBoard ke functions ki body
+
+function checkPlayerExists(batsmanName){
+    let leaderBoardFilePath = './LeaderBoard.json';
+        
+    let leaderBoardKaArrayinjs = JSON.parse(fs.readFileSync(leaderBoardFilePath));
+    
+    let key = batsmanName;
+    if(leaderBoardKaArrayinjs.length==0)
+     { return false; }
+    for(let i=0; i<leaderBoardKaArrayinjs.length; i++){
+        let obj = leaderBoardKaArrayinjs[i]; //get first Object
+        if(obj.hasOwnProperty(batsmanName)){  //object.hasOwnProperty(propertyName) => returns a boolean value which indicates whether the object has the specified property.
+            return true;
+        }
+    }
+    return false;
+}
+
+function updateBatsmanObj(teamName, batsmanName, runs, balls, fours, sixes, strikeRate){
+    let leaderBoardFilePath = './LeaderBoard.json';
+    let leaderBoardKaArrayinjs = JSON.parse( fs.readFileSync(leaderBoardFilePath));
+    // [ {}, {"MSDhoni" : {} }, {}, {},.....{} ]
+    let i;
+    let ind;
+    for(i=0; i<leaderBoardKaArrayinjs.length; i++){
+        let obj = leaderBoardKaArrayinjs[i];
+        if(obj.hasOwnProperty(batsmanName)){
+            ind = i;
+            break;
+        }
+    }
+    
+    if(i!=leaderBoardKaArrayinjs.length){
+        let wantedBatsmanObj = leaderBoardKaArrayinjs[ind];
+        let detailsOfBatsman = wantedBatsmanObj[batsmanName];
+        detailsOfBatsman = {
+            "match" : detailsOfBatsman.match+1,
+            "teamName" : teamName,
+            "runs" : detailsOfBatsman.runs + runs,
+            "balls" : detailsOfBatsman.balls + balls,
+            "fours" : detailsOfBatsman.fours + fours,
+            "sixes" : detailsOfBatsman.sixes + sixes,
+            "strikeRate" : ((detailsOfBatsman.runs+runs)/(detailsOfBatsman.balls +balls))*100
+        }
+        //leaderBoardKaArrayinjs.push(wantedBatsmanObj);
+        fs.writeFileSync(leaderBoardFilePath,JSON.stringify(leaderBoardKaArrayinjs));
+    }
+
+}
+
+function createBatsmanObj(teamName, batsmanName, runs, balls, fours, sixes, strikeRate){
+    let leaderBoardFilePath = './LeaderBoard.json';
+    let leaderBoardKaArrayinjs = JSON.parse( fs.readFileSync(leaderBoardFilePath)); // will get empty array
+    
+    let batsmanObj = {
+        "match" : 1,
+        "teamName" : teamName,
+        "runs" : runs,
+        "balls" : balls,
+        "fours" : fours,
+        "sixes" : sixes,
+        "strikeRate" : strikeRate
+    }
+    leaderBoardKaArrayinjs.push( {[batsmanName] : batsmanObj} );
+    
+    fs.writeFileSync(leaderBoardFilePath,JSON.stringify(leaderBoardKaArrayinjs) );
+
 }
 
 

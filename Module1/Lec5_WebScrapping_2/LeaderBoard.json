@@ -1,0 +1,1586 @@
+[
+  {
+    "Prithvi Shaw": {
+      "match": 1,
+      "teamName": "Delhi Capitals",
+      "runs": "10",
+      "balls": "11",
+      "fours": "2",
+      "sixes": "0",
+      "strikeRate": "90.90"
+    }
+  },
+  {
+    "Shikhar Dhawan": {
+      "match": 1,
+      "teamName": "Delhi Capitals",
+      "runs": "0",
+      "balls": "2",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "0.00"
+    }
+  },
+  {
+    "Shreyas Iyer (c)": {
+      "match": 1,
+      "teamName": "Delhi Capitals",
+      "runs": "25",
+      "balls": "29",
+      "fours": "1",
+      "sixes": "1",
+      "strikeRate": "86.20"
+    }
+  },
+  {
+    "Rishabh Pant †": {
+      "match": 1,
+      "teamName": "Delhi Capitals",
+      "runs": "21",
+      "balls": "24",
+      "fours": "2",
+      "sixes": "0",
+      "strikeRate": "87.50"
+    }
+  },
+  {
+    "Marcus Stoinis": {
+      "match": 1,
+      "teamName": "Delhi Capitals",
+      "runs": "2",
+      "balls": "3",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "66.66"
+    }
+  },
+  {
+    "Shimron Hetmyer": {
+      "match": 1,
+      "teamName": "Delhi Capitals",
+      "runs": "11",
+      "balls": "13",
+      "fours": "1",
+      "sixes": "0",
+      "strikeRate": "84.61"
+    }
+  },
+  {
+    "Harshal Patel": {
+      "match": 1,
+      "teamName": "Delhi Capitals",
+      "runs": "5",
+      "balls": "9",
+      "fours": "1",
+      "sixes": "0",
+      "strikeRate": "55.55"
+    }
+  },
+  {
+    "Ravichandran Ashwin": {
+      "match": 1,
+      "teamName": "Delhi Capitals",
+      "runs": "12",
+      "balls": "9",
+      "fours": "0",
+      "sixes": "1",
+      "strikeRate": "133.33"
+    }
+  },
+  {
+    "Praveen Dubey": {
+      "match": 1,
+      "teamName": "Delhi Capitals",
+      "runs": "7",
+      "balls": "13",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "53.84"
+    }
+  },
+  {
+    "Kagiso Rabada": {
+      "match": 1,
+      "teamName": "Delhi Capitals",
+      "runs": "12",
+      "balls": "7",
+      "fours": "0",
+      "sixes": "1",
+      "strikeRate": "171.42"
+    }
+  },
+  {
+    "Ishan Kishan": {
+      "match": 1,
+      "teamName": "Mumbai Indians",
+      "runs": "72",
+      "balls": "47",
+      "fours": "8",
+      "sixes": "3",
+      "strikeRate": "153.19"
+    }
+  },
+  {
+    "Quinton de Kock †": {
+      "match": 1,
+      "teamName": "Mumbai Indians",
+      "runs": "26",
+      "balls": "28",
+      "fours": "2",
+      "sixes": "0",
+      "strikeRate": "92.85"
+    }
+  },
+  {
+    "Suryakumar Yadav": {
+      "match": 1,
+      "teamName": "Mumbai Indians",
+      "runs": "12",
+      "balls": "11",
+      "fours": "1",
+      "sixes": "0",
+      "strikeRate": "109.09"
+    }
+  },
+  {
+    "Rahul Tripathi": {
+      "match": 1,
+      "teamName": "Kolkata Knight Riders",
+      "runs": "7",
+      "balls": "9",
+      "fours": "1",
+      "sixes": "0",
+      "strikeRate": "77.77"
+    }
+  },
+  {
+    "Shubman Gill": {
+      "match": 1,
+      "teamName": "Kolkata Knight Riders",
+      "runs": "21",
+      "balls": "23",
+      "fours": "2",
+      "sixes": "0",
+      "strikeRate": "91.30"
+    }
+  },
+  {
+    "Nitish Rana": {
+      "match": 1,
+      "teamName": "Kolkata Knight Riders",
+      "runs": "5",
+      "balls": "6",
+      "fours": "1",
+      "sixes": "0",
+      "strikeRate": "83.33"
+    }
+  },
+  {
+    "Dinesh Karthik †": {
+      "match": 1,
+      "teamName": "Kolkata Knight Riders",
+      "runs": "4",
+      "balls": "8",
+      "fours": "1",
+      "sixes": "0",
+      "strikeRate": "50.00"
+    }
+  },
+  {
+    "Eoin Morgan (c)": {
+      "match": 1,
+      "teamName": "Kolkata Knight Riders",
+      "runs": "39",
+      "balls": "29",
+      "fours": "2",
+      "sixes": "2",
+      "strikeRate": "134.48"
+    }
+  },
+  {
+    "Andre Russell": {
+      "match": 1,
+      "teamName": "Kolkata Knight Riders",
+      "runs": "12",
+      "balls": "9",
+      "fours": "1",
+      "sixes": "1",
+      "strikeRate": "133.33"
+    }
+  },
+  {
+    "Pat Cummins": {
+      "match": 1,
+      "teamName": "Kolkata Knight Riders",
+      "runs": "53",
+      "balls": "36",
+      "fours": "5",
+      "sixes": "2",
+      "strikeRate": "147.22"
+    }
+  },
+  {
+    "Rohit Sharma (c)": {
+      "match": 1,
+      "teamName": "Mumbai Indians",
+      "runs": "35",
+      "balls": "36",
+      "fours": "5",
+      "sixes": "1",
+      "strikeRate": "97.22"
+    }
+  },
+  {
+    "Hardik Pandya": {
+      "match": 1,
+      "teamName": "Mumbai Indians",
+      "runs": "21",
+      "balls": "11",
+      "fours": "3",
+      "sixes": "1",
+      "strikeRate": "190.90"
+    }
+  },
+  {
+    "Ruturaj Gaikwad": {
+      "match": 1,
+      "teamName": "Chennai Super Kings",
+      "runs": "0",
+      "balls": "5",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "0.00"
+    }
+  },
+  {
+    "Faf du Plessis": {
+      "match": 1,
+      "teamName": "Chennai Super Kings",
+      "runs": "1",
+      "balls": "7",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "14.28"
+    }
+  },
+  {
+    "Ambati Rayudu": {
+      "match": 1,
+      "teamName": "Chennai Super Kings",
+      "runs": "2",
+      "balls": "3",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "66.66"
+    }
+  },
+  {
+    "Narayan Jagadeesan": {
+      "match": 1,
+      "teamName": "Chennai Super Kings",
+      "runs": "0",
+      "balls": "1",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "0.00"
+    }
+  },
+  {
+    "MS Dhoni (c)†": {
+      "match": 1,
+      "teamName": "Chennai Super Kings",
+      "runs": "16",
+      "balls": "16",
+      "fours": "2",
+      "sixes": "1",
+      "strikeRate": "100.00"
+    }
+  },
+  {
+    "Ravindra Jadeja": {
+      "match": 1,
+      "teamName": "Chennai Super Kings",
+      "runs": "7",
+      "balls": "6",
+      "fours": "1",
+      "sixes": "0",
+      "strikeRate": "116.66"
+    }
+  },
+  {
+    "Sam Curran": {
+      "match": 1,
+      "teamName": "Chennai Super Kings",
+      "runs": "52",
+      "balls": "47",
+      "fours": "4",
+      "sixes": "2",
+      "strikeRate": "110.63"
+    }
+  },
+  {
+    "Deepak Chahar": {
+      "match": 1,
+      "teamName": "Chennai Super Kings",
+      "runs": "0",
+      "balls": "5",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "0.00"
+    }
+  },
+  {
+    "Shardul Thakur": {
+      "match": 1,
+      "teamName": "Chennai Super Kings",
+      "runs": "11",
+      "balls": "20",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "55.00"
+    }
+  },
+  {
+    "Imran Tahir": {
+      "match": 1,
+      "teamName": "Chennai Super Kings",
+      "runs": "13",
+      "balls": "10",
+      "fours": "2",
+      "sixes": "0",
+      "strikeRate": "130.00"
+    }
+  },
+  {
+    "Sunil Narine": {
+      "match": 1,
+      "teamName": "Kolkata Knight Riders",
+      "runs": "0",
+      "balls": "2",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "0.00"
+    }
+  },
+  {
+    "Kamlesh Nagarkoti": {
+      "match": 1,
+      "teamName": "Kolkata Knight Riders",
+      "runs": "1",
+      "balls": "1",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "100.00"
+    }
+  },
+  {
+    "Robin Uthappa": {
+      "match": 1,
+      "teamName": "Rajasthan Royals",
+      "runs": "6",
+      "balls": "2",
+      "fours": "0",
+      "sixes": "1",
+      "strikeRate": "300.00"
+    }
+  },
+  {
+    "Ben Stokes": {
+      "match": 1,
+      "teamName": "Rajasthan Royals",
+      "runs": "18",
+      "balls": "11",
+      "fours": "2",
+      "sixes": "1",
+      "strikeRate": "163.63"
+    }
+  },
+  {
+    "Steven Smith (c)": {
+      "match": 1,
+      "teamName": "Rajasthan Royals",
+      "runs": "4",
+      "balls": "4",
+      "fours": "1",
+      "sixes": "0",
+      "strikeRate": "100.00"
+    }
+  },
+  {
+    "Sanju Samson †": {
+      "match": 1,
+      "teamName": "Rajasthan Royals",
+      "runs": "1",
+      "balls": "4",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "25.00"
+    }
+  },
+  {
+    "Jos Buttler": {
+      "match": 1,
+      "teamName": "Rajasthan Royals",
+      "runs": "35",
+      "balls": "22",
+      "fours": "4",
+      "sixes": "1",
+      "strikeRate": "159.09"
+    }
+  },
+  {
+    "Riyan Parag": {
+      "match": 1,
+      "teamName": "Rajasthan Royals",
+      "runs": "0",
+      "balls": "7",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "0.00"
+    }
+  },
+  {
+    "Rahul Tewatia": {
+      "match": 1,
+      "teamName": "Rajasthan Royals",
+      "runs": "31",
+      "balls": "27",
+      "fours": "2",
+      "sixes": "1",
+      "strikeRate": "114.81"
+    }
+  },
+  {
+    "Shreyas Gopal": {
+      "match": 1,
+      "teamName": "Rajasthan Royals",
+      "runs": "23",
+      "balls": "23",
+      "fours": "2",
+      "sixes": "0",
+      "strikeRate": "100.00"
+    }
+  },
+  {
+    "Jofra Archer": {
+      "match": 1,
+      "teamName": "Rajasthan Royals",
+      "runs": "6",
+      "balls": "9",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "66.66"
+    }
+  },
+  {
+    "Kartik Tyagi": {
+      "match": 1,
+      "teamName": "Rajasthan Royals",
+      "runs": "2",
+      "balls": "3",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "66.66"
+    }
+  },
+  {
+    "Varun Aaron": {
+      "match": 1,
+      "teamName": "Rajasthan Royals",
+      "runs": "0",
+      "balls": "8",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "0.00"
+    }
+  },
+  {
+    "Ajinkya Rahane": {
+      "match": 1,
+      "teamName": "Delhi Capitals",
+      "runs": "2",
+      "balls": "4",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "50.00"
+    }
+  },
+  {
+    "Axar Patel": {
+      "match": 1,
+      "teamName": "Delhi Capitals",
+      "runs": "9",
+      "balls": "9",
+      "fours": "1",
+      "sixes": "0",
+      "strikeRate": "100.00"
+    }
+  },
+  {
+    "Kieron Pollard": {
+      "match": 1,
+      "teamName": "Mumbai Indians",
+      "runs": "9",
+      "balls": "4",
+      "fours": "2",
+      "sixes": "0",
+      "strikeRate": "225.00"
+    }
+  },
+  {
+    "Krunal Pandya": {
+      "match": 1,
+      "teamName": "Mumbai Indians",
+      "runs": "1",
+      "balls": "1",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "100.00"
+    }
+  },
+  {
+    "Shane Watson": {
+      "match": 1,
+      "teamName": "Chennai Super Kings",
+      "runs": "8",
+      "balls": "3",
+      "fours": "2",
+      "sixes": "0",
+      "strikeRate": "266.66"
+    }
+  },
+  {
+    "Kedar Jadhav": {
+      "match": 1,
+      "teamName": "Chennai Super Kings",
+      "runs": "4",
+      "balls": "7",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "57.14"
+    }
+  },
+  {
+    "Alex Carey †": {
+      "match": 1,
+      "teamName": "Delhi Capitals",
+      "runs": "14",
+      "balls": "13",
+      "fours": "0",
+      "sixes": "1",
+      "strikeRate": "107.69"
+    }
+  },
+  {
+    "Jos Buttler †": {
+      "match": 1,
+      "teamName": "Rajasthan Royals",
+      "runs": "22",
+      "balls": "9",
+      "fours": "3",
+      "sixes": "1",
+      "strikeRate": "244.44"
+    }
+  },
+  {
+    "Sanju Samson": {
+      "match": 1,
+      "teamName": "Rajasthan Royals",
+      "runs": "25",
+      "balls": "18",
+      "fours": "0",
+      "sixes": "2",
+      "strikeRate": "138.88"
+    }
+  },
+  {
+    "Devdutt Padikkal": {
+      "match": 1,
+      "teamName": "Royal Challengers Bangalore",
+      "runs": "54",
+      "balls": "40",
+      "fours": "5",
+      "sixes": "2",
+      "strikeRate": "135.00"
+    }
+  },
+  {
+    "Aaron Finch": {
+      "match": 1,
+      "teamName": "Royal Challengers Bangalore",
+      "runs": "52",
+      "balls": "35",
+      "fours": "7",
+      "sixes": "1",
+      "strikeRate": "148.57"
+    }
+  },
+  {
+    "Virat Kohli (c)": {
+      "match": 1,
+      "teamName": "Royal Challengers Bangalore",
+      "runs": "3",
+      "balls": "11",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "27.27"
+    }
+  },
+  {
+    "AB de Villiers †": {
+      "match": 1,
+      "teamName": "Royal Challengers Bangalore",
+      "runs": "55",
+      "balls": "24",
+      "fours": "4",
+      "sixes": "4",
+      "strikeRate": "229.16"
+    }
+  },
+  {
+    "Shivam Dube": {
+      "match": 1,
+      "teamName": "Royal Challengers Bangalore",
+      "runs": "27",
+      "balls": "10",
+      "fours": "1",
+      "sixes": "3",
+      "strikeRate": "270.00"
+    }
+  },
+  {
+    "Moeen Ali": {
+      "match": 1,
+      "teamName": "Royal Challengers Bangalore",
+      "runs": "11",
+      "balls": "13",
+      "fours": "1",
+      "sixes": "0",
+      "strikeRate": "84.61"
+    }
+  },
+  {
+    "Washington Sundar": {
+      "match": 1,
+      "teamName": "Royal Challengers Bangalore",
+      "runs": "17",
+      "balls": "11",
+      "fours": "3",
+      "sixes": "0",
+      "strikeRate": "154.54"
+    }
+  },
+  {
+    "Isuru Udana": {
+      "match": 1,
+      "teamName": "Royal Challengers Bangalore",
+      "runs": "1",
+      "balls": "3",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "33.33"
+    }
+  },
+  {
+    "Navdeep Saini": {
+      "match": 1,
+      "teamName": "Royal Challengers Bangalore",
+      "runs": "12",
+      "balls": "12",
+      "fours": "1",
+      "sixes": "0",
+      "strikeRate": "100.00"
+    }
+  },
+  {
+    "Mohammed Siraj": {
+      "match": 1,
+      "teamName": "Royal Challengers Bangalore",
+      "runs": "5",
+      "balls": "4",
+      "fours": "1",
+      "sixes": "0",
+      "strikeRate": "125.00"
+    }
+  },
+  {
+    "Yuzvendra Chahal": {
+      "match": 1,
+      "teamName": "Royal Challengers Bangalore",
+      "runs": "0",
+      "balls": "0",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "0.00"
+    }
+  },
+  {
+    "Rinku Singh": {
+      "match": 1,
+      "teamName": "Kolkata Knight Riders",
+      "runs": "11",
+      "balls": "11",
+      "fours": "1",
+      "sixes": "0",
+      "strikeRate": "100.00"
+    }
+  },
+  {
+    "Nathan Coulter-Nile": {
+      "match": 1,
+      "teamName": "Mumbai Indians",
+      "runs": "24",
+      "balls": "12",
+      "fours": "4",
+      "sixes": "0",
+      "strikeRate": "200.00"
+    }
+  },
+  {
+    "KL Rahul (c)†": {
+      "match": 1,
+      "teamName": "Kings XI Punjab",
+      "runs": "77",
+      "balls": "51",
+      "fours": "7",
+      "sixes": "3",
+      "strikeRate": "150.98"
+    }
+  },
+  {
+    "Mayank Agarwal": {
+      "match": 1,
+      "teamName": "Kings XI Punjab",
+      "runs": "11",
+      "balls": "10",
+      "fours": "1",
+      "sixes": "0",
+      "strikeRate": "110.00"
+    }
+  },
+  {
+    "Chris Gayle": {
+      "match": 1,
+      "teamName": "Kings XI Punjab",
+      "runs": "24",
+      "balls": "21",
+      "fours": "1",
+      "sixes": "2",
+      "strikeRate": "114.28"
+    }
+  },
+  {
+    "Nicholas Pooran": {
+      "match": 1,
+      "teamName": "Kings XI Punjab",
+      "runs": "24",
+      "balls": "12",
+      "fours": "2",
+      "sixes": "2",
+      "strikeRate": "200.00"
+    }
+  },
+  {
+    "Glenn Maxwell": {
+      "match": 1,
+      "teamName": "Kings XI Punjab",
+      "runs": "0",
+      "balls": "2",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "0.00"
+    }
+  },
+  {
+    "Deepak Hooda": {
+      "match": 1,
+      "teamName": "Kings XI Punjab",
+      "runs": "23",
+      "balls": "16",
+      "fours": "1",
+      "sixes": "1",
+      "strikeRate": "143.75"
+    }
+  },
+  {
+    "Chris Jordan": {
+      "match": 1,
+      "teamName": "Kings XI Punjab",
+      "runs": "13",
+      "balls": "8",
+      "fours": "2",
+      "sixes": "0",
+      "strikeRate": "162.50"
+    }
+  },
+  {
+    "Saurabh Tiwary": {
+      "match": 1,
+      "teamName": "Mumbai Indians",
+      "runs": "1",
+      "balls": "3",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "33.33"
+    }
+  },
+  {
+    "James Pattinson": {
+      "match": 1,
+      "teamName": "Mumbai Indians",
+      "runs": "4",
+      "balls": "5",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "80.00"
+    }
+  },
+  {
+    "Dhawal Kulkarni": {
+      "match": 1,
+      "teamName": "Mumbai Indians",
+      "runs": "3",
+      "balls": "2",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "150.00"
+    }
+  },
+  {
+    "David Warner (c)": {
+      "match": 1,
+      "teamName": "Sunrisers Hyderabad",
+      "runs": "85",
+      "balls": "58",
+      "fours": "10",
+      "sixes": "1",
+      "strikeRate": "146.55"
+    }
+  },
+  {
+    "Wriddhiman Saha †": {
+      "match": 1,
+      "teamName": "Sunrisers Hyderabad",
+      "runs": "58",
+      "balls": "45",
+      "fours": "7",
+      "sixes": "1",
+      "strikeRate": "128.88"
+    }
+  },
+  {
+    "Eoin Morgan": {
+      "match": 1,
+      "teamName": "Kolkata Knight Riders",
+      "runs": "24",
+      "balls": "23",
+      "fours": "2",
+      "sixes": "1",
+      "strikeRate": "104.34"
+    }
+  },
+  {
+    "Dinesh Karthik (c)†": {
+      "match": 1,
+      "teamName": "Kolkata Knight Riders",
+      "runs": "58",
+      "balls": "29",
+      "fours": "8",
+      "sixes": "2",
+      "strikeRate": "200.00"
+    }
+  },
+  {
+    "KL Rahul (c)": {
+      "match": 1,
+      "teamName": "Kings XI Punjab",
+      "runs": "74",
+      "balls": "58",
+      "fours": "6",
+      "sixes": "0",
+      "strikeRate": "127.58"
+    }
+  },
+  {
+    "Prabhsimran Singh †": {
+      "match": 1,
+      "teamName": "Kings XI Punjab",
+      "runs": "4",
+      "balls": "7",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "57.14"
+    }
+  },
+  {
+    "Mandeep Singh": {
+      "match": 1,
+      "teamName": "Kings XI Punjab",
+      "runs": "0",
+      "balls": "1",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "0.00"
+    }
+  },
+  {
+    "Lockie Ferguson": {
+      "match": 1,
+      "teamName": "Kolkata Knight Riders",
+      "runs": "24",
+      "balls": "13",
+      "fours": "3",
+      "sixes": "1",
+      "strikeRate": "184.61"
+    }
+  },
+  {
+    "Varun Chakravarthy": {
+      "match": 1,
+      "teamName": "Kolkata Knight Riders",
+      "runs": "2",
+      "balls": "4",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "50.00"
+    }
+  },
+  {
+    "Prasidh Krishna": {
+      "match": 1,
+      "teamName": "Kolkata Knight Riders",
+      "runs": "0",
+      "balls": "1",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "0.00"
+    }
+  },
+  {
+    "Priyam Garg": {
+      "match": 1,
+      "teamName": "Sunrisers Hyderabad",
+      "runs": "17",
+      "balls": "12",
+      "fours": "0",
+      "sixes": "2",
+      "strikeRate": "141.66"
+    }
+  },
+  {
+    "Manish Pandey": {
+      "match": 1,
+      "teamName": "Sunrisers Hyderabad",
+      "runs": "21",
+      "balls": "14",
+      "fours": "3",
+      "sixes": "0",
+      "strikeRate": "150.00"
+    }
+  },
+  {
+    "Kane Williamson": {
+      "match": 1,
+      "teamName": "Sunrisers Hyderabad",
+      "runs": "67",
+      "balls": "45",
+      "fours": "5",
+      "sixes": "4",
+      "strikeRate": "148.88"
+    }
+  },
+  {
+    "Jason Holder": {
+      "match": 1,
+      "teamName": "Sunrisers Hyderabad",
+      "runs": "11",
+      "balls": "15",
+      "fours": "1",
+      "sixes": "0",
+      "strikeRate": "73.33"
+    }
+  },
+  {
+    "Abdul Samad": {
+      "match": 1,
+      "teamName": "Sunrisers Hyderabad",
+      "runs": "33",
+      "balls": "16",
+      "fours": "2",
+      "sixes": "2",
+      "strikeRate": "206.25"
+    }
+  },
+  {
+    "Rashid Khan": {
+      "match": 1,
+      "teamName": "Sunrisers Hyderabad",
+      "runs": "11",
+      "balls": "7",
+      "fours": "1",
+      "sixes": "1",
+      "strikeRate": "157.14"
+    }
+  },
+  {
+    "Shreevats Goswami †": {
+      "match": 1,
+      "teamName": "Sunrisers Hyderabad",
+      "runs": "0",
+      "balls": "1",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "0.00"
+    }
+  },
+  {
+    "Shahbaz Nadeem": {
+      "match": 1,
+      "teamName": "Sunrisers Hyderabad",
+      "runs": "2",
+      "balls": "3",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "66.66"
+    }
+  },
+  {
+    "Sandeep Sharma": {
+      "match": 1,
+      "teamName": "Sunrisers Hyderabad",
+      "runs": "2",
+      "balls": "4",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "50.00"
+    }
+  },
+  {
+    "Kieron Pollard (c)": {
+      "match": 1,
+      "teamName": "Mumbai Indians",
+      "runs": "6",
+      "balls": "4",
+      "fours": "0",
+      "sixes": "1",
+      "strikeRate": "150.00"
+    }
+  },
+  {
+    "Yashasvi Jaiswal": {
+      "match": 1,
+      "teamName": "Rajasthan Royals",
+      "runs": "0",
+      "balls": "2",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "0.00"
+    }
+  },
+  {
+    "Mahipal Lomror": {
+      "match": 1,
+      "teamName": "Rajasthan Royals",
+      "runs": "11",
+      "balls": "13",
+      "fours": "1",
+      "sixes": "0",
+      "strikeRate": "84.61"
+    }
+  },
+  {
+    "Tom Curran": {
+      "match": 1,
+      "teamName": "Rajasthan Royals",
+      "runs": "15",
+      "balls": "16",
+      "fours": "1",
+      "sixes": "0",
+      "strikeRate": "93.75"
+    }
+  },
+  {
+    "Ankit Rajpoot": {
+      "match": 1,
+      "teamName": "Rajasthan Royals",
+      "runs": "2",
+      "balls": "5",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "40.00"
+    }
+  },
+  {
+    "Jonny Bairstow †": {
+      "match": 1,
+      "teamName": "Sunrisers Hyderabad",
+      "runs": "16",
+      "balls": "19",
+      "fours": "0",
+      "sixes": "1",
+      "strikeRate": "84.21"
+    }
+  },
+  {
+    "Vijay Shankar": {
+      "match": 1,
+      "teamName": "Sunrisers Hyderabad",
+      "runs": "52",
+      "balls": "51",
+      "fours": "6",
+      "sixes": "0",
+      "strikeRate": "101.96"
+    }
+  },
+  {
+    "James Neesham": {
+      "match": 1,
+      "teamName": "Kings XI Punjab",
+      "runs": "2",
+      "balls": "3",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "66.66"
+    }
+  },
+  {
+    "Tushar Deshpande": {
+      "match": 1,
+      "teamName": "Delhi Capitals",
+      "runs": "1",
+      "balls": "3",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "33.33"
+    }
+  },
+  {
+    "Anrich Nortje": {
+      "match": 1,
+      "teamName": "Delhi Capitals",
+      "runs": "0",
+      "balls": "0",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "0.00"
+    }
+  },
+  {
+    "Karun Nair": {
+      "match": 1,
+      "teamName": "Kings XI Punjab",
+      "runs": "1",
+      "balls": "3",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "33.33"
+    }
+  },
+  {
+    "Sarfaraz Khan": {
+      "match": 1,
+      "teamName": "Kings XI Punjab",
+      "runs": "12",
+      "balls": "12",
+      "fours": "2",
+      "sixes": "0",
+      "strikeRate": "100.00"
+    }
+  },
+  {
+    "Krishnappa Gowtham": {
+      "match": 1,
+      "teamName": "Kings XI Punjab",
+      "runs": "20",
+      "balls": "14",
+      "fours": "1",
+      "sixes": "1",
+      "strikeRate": "142.85"
+    }
+  },
+  {
+    "Mohammed Shami": {
+      "match": 1,
+      "teamName": "Kings XI Punjab",
+      "runs": "0",
+      "balls": "0",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "0.00"
+    }
+  },
+  {
+    "Gurkeerat Singh Mann": {
+      "match": 1,
+      "teamName": "Royal Challengers Bangalore",
+      "runs": "19",
+      "balls": "17",
+      "fours": "1",
+      "sixes": "0",
+      "strikeRate": "111.76"
+    }
+  },
+  {
+    "Josh Philippe": {
+      "match": 1,
+      "teamName": "Royal Challengers Bangalore",
+      "runs": "33",
+      "balls": "24",
+      "fours": "4",
+      "sixes": "1",
+      "strikeRate": "137.50"
+    }
+  },
+  {
+    "Chris Morris": {
+      "match": 1,
+      "teamName": "Royal Challengers Bangalore",
+      "runs": "4",
+      "balls": "2",
+      "fours": "1",
+      "sixes": "0",
+      "strikeRate": "200.00"
+    }
+  },
+  {
+    "Dwayne Bravo": {
+      "match": 1,
+      "teamName": "Chennai Super Kings",
+      "runs": "0",
+      "balls": "1",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "0.00"
+    }
+  },
+  {
+    "T Natarajan": {
+      "match": 1,
+      "teamName": "Sunrisers Hyderabad",
+      "runs": "0",
+      "balls": "1",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "0.00"
+    }
+  },
+  {
+    "Shahbaz Ahmed": {
+      "match": 1,
+      "teamName": "Royal Challengers Bangalore",
+      "runs": "1",
+      "balls": "1",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "100.00"
+    }
+  },
+  {
+    "Tom Banton": {
+      "match": 1,
+      "teamName": "Kolkata Knight Riders",
+      "runs": "10",
+      "balls": "8",
+      "fours": "1",
+      "sixes": "1",
+      "strikeRate": "125.00"
+    }
+  },
+  {
+    "Kuldeep Yadav": {
+      "match": 1,
+      "teamName": "Kolkata Knight Riders",
+      "runs": "12",
+      "balls": "19",
+      "fours": "1",
+      "sixes": "0",
+      "strikeRate": "63.15"
+    }
+  },
+  {
+    "Nicholas Pooran †": {
+      "match": 1,
+      "teamName": "Kings XI Punjab",
+      "runs": "33",
+      "balls": "17",
+      "fours": "1",
+      "sixes": "3",
+      "strikeRate": "194.11"
+    }
+  },
+  {
+    "Josh Philippe †": {
+      "match": 1,
+      "teamName": "Royal Challengers Bangalore",
+      "runs": "0",
+      "balls": "3",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "0.00"
+    }
+  },
+  {
+    "AB de Villiers": {
+      "match": 1,
+      "teamName": "Royal Challengers Bangalore",
+      "runs": "28",
+      "balls": "18",
+      "fours": "4",
+      "sixes": "1",
+      "strikeRate": "155.55"
+    }
+  },
+  {
+    "Umesh Yadav": {
+      "match": 1,
+      "teamName": "Royal Challengers Bangalore",
+      "runs": "0",
+      "balls": "2",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "0.00"
+    }
+  },
+  {
+    "Dale Steyn": {
+      "match": 1,
+      "teamName": "Royal Challengers Bangalore",
+      "runs": "1",
+      "balls": "2",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "50.00"
+    }
+  },
+  {
+    "Shivam Mavi": {
+      "match": 1,
+      "teamName": "Kolkata Knight Riders",
+      "runs": "1",
+      "balls": "3",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "33.33"
+    }
+  },
+  {
+    "Murugan Ashwin": {
+      "match": 1,
+      "teamName": "Kings XI Punjab",
+      "runs": "4",
+      "balls": "4",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "100.00"
+    }
+  },
+  {
+    "Ravi Bishnoi": {
+      "match": 1,
+      "teamName": "Kings XI Punjab",
+      "runs": "0",
+      "balls": "0",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "0.00"
+    }
+  },
+  {
+    "Khaleel Ahmed": {
+      "match": 1,
+      "teamName": "Sunrisers Hyderabad",
+      "runs": "0",
+      "balls": "2",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "0.00"
+    }
+  },
+  {
+    "Daniel Sams": {
+      "match": 1,
+      "teamName": "Delhi Capitals",
+      "runs": "0",
+      "balls": "2",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "0.00"
+    }
+  },
+  {
+    "Jaydev Unadkat": {
+      "match": 1,
+      "teamName": "Rajasthan Royals",
+      "runs": "9",
+      "balls": "13",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "69.23"
+    }
+  },
+  {
+    "David Miller": {
+      "match": 1,
+      "teamName": "Rajasthan Royals",
+      "runs": "0",
+      "balls": "0",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "0.00"
+    }
+  },
+  {
+    "Murali Vijay": {
+      "match": 1,
+      "teamName": "Chennai Super Kings",
+      "runs": "21",
+      "balls": "21",
+      "fours": "3",
+      "sixes": "0",
+      "strikeRate": "100.00"
+    }
+  },
+  {
+    "Abhishek Sharma": {
+      "match": 1,
+      "teamName": "Sunrisers Hyderabad",
+      "runs": "7",
+      "balls": "4",
+      "fours": "1",
+      "sixes": "0",
+      "strikeRate": "175.00"
+    }
+  },
+  {
+    "Bhuvneshwar Kumar": {
+      "match": 1,
+      "teamName": "Sunrisers Hyderabad",
+      "runs": "0",
+      "balls": "2",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "0.00"
+    }
+  },
+  {
+    "Mitchell Marsh": {
+      "match": 1,
+      "teamName": "Sunrisers Hyderabad",
+      "runs": "0",
+      "balls": "1",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "0.00"
+    }
+  },
+  {
+    "Andrew Tye": {
+      "match": 1,
+      "teamName": "Rajasthan Royals",
+      "runs": "6",
+      "balls": "6",
+      "fours": "0",
+      "sixes": "1",
+      "strikeRate": "100.00"
+    }
+  },
+  {
+    "Jonny Bairstow": {
+      "match": 1,
+      "teamName": "Sunrisers Hyderabad",
+      "runs": "5",
+      "balls": "10",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "50.00"
+    }
+  },
+  {
+    "Mohammad Nabi": {
+      "match": 1,
+      "teamName": "Sunrisers Hyderabad",
+      "runs": "11",
+      "balls": "8",
+      "fours": "2",
+      "sixes": "0",
+      "strikeRate": "137.50"
+    }
+  },
+  {
+    "Nikhil Naik": {
+      "match": 1,
+      "teamName": "Kolkata Knight Riders",
+      "runs": "1",
+      "balls": "3",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "33.33"
+    }
+  },
+  {
+    "Rahul Chahar": {
+      "match": 1,
+      "teamName": "Mumbai Indians",
+      "runs": "2",
+      "balls": "4",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "50.00"
+    }
+  },
+  {
+    "Trent Boult": {
+      "match": 1,
+      "teamName": "Mumbai Indians",
+      "runs": "0",
+      "balls": "1",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "0.00"
+    }
+  },
+  {
+    "Jasprit Bumrah": {
+      "match": 1,
+      "teamName": "Mumbai Indians",
+      "runs": "5",
+      "balls": "3",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "166.66"
+    }
+  },
+  {
+    "Mujeeb Ur Rahman": {
+      "match": 1,
+      "teamName": "Kings XI Punjab",
+      "runs": "1",
+      "balls": "3",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "33.33"
+    }
+  },
+  {
+    "Sheldon Cottrell": {
+      "match": 1,
+      "teamName": "Kings XI Punjab",
+      "runs": "0",
+      "balls": "2",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "0.00"
+    }
+  },
+  {
+    "Arshdeep Singh": {
+      "match": 1,
+      "teamName": "Kings XI Punjab",
+      "runs": "0",
+      "balls": "3",
+      "fours": "0",
+      "sixes": "0",
+      "strikeRate": "0.00"
+    }
+  }
+]
