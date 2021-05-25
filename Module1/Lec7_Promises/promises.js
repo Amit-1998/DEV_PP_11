@@ -26,3 +26,6 @@ pendingPromise.catch( function(error){ // failure callback
     console.log(error);
 });
 
+// Note : Always remember then() and catch() ke andar vaala callback function is a Sync Function
+// But then() and catch() khud async functions hai
+
