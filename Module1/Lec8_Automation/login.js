@@ -4,8 +4,17 @@ const puppeteer = require("puppeteer");
 
 // by default headless = true (headless mode is ON => means Browzer open hota hua nhi dikhega)
 
+// puppeteer.launch( {} ) tooks an object
 // returns : Promise which resolves to browser instance.
-let browserOpenPromise = puppeteer.launch({ headless: false }); // browser kholne ka promise dega (pending) 
+
+//defaultViewPort => (800 x 600), We want to remove this ViewPort for that we set it to null
+//Now I want to maximize the window Size to be FullScreen Size i.e to pass args: ['--start-maximized'] in .launch()
+
+let browserOpenPromise = puppeteer.launch({ 
+    headless: false,
+    defaultViewport: null, 
+    args: ["--start-maximized"] // to maximize the window size to be FullScreen
+}); // browser kholne ka promise dega (pending) 
 // So we need to make headless to false So that we can see the browser to be opened
 console.log(browserOpenPromise);
 

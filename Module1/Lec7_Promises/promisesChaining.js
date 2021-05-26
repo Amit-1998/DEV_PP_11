@@ -14,7 +14,7 @@
 // then and catch also returns a pending promise also known as thenKaPromise
 
 const fs = require("fs");
-let f1KaPromise = fs.promises.readFile("./f1.txt");
+let f1KaPromise = fs.promises.readFile("./f1.txt");  // f1KaPromise is a pending Promise
 
 /*
 let thanKaPromise = f1KaPromise.then(function(data){
@@ -35,3 +35,8 @@ f1KaPromise.then(function(data){
     
     console.log("I ran after first scb");
  })// This will print in Serial Order
+
+//   output
+//  Hi I am f1
+// Promise { <Buffer 48 69 20 49 20 61 6d 20 66 31> }
+// I ran after first scb
