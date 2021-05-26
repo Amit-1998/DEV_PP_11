@@ -61,15 +61,16 @@ browserOpenPromise.then( function(browser){
 // aur usme se href attr nikalo
 .then(function(){
     // sabse pehle to wait for getting selector for class attached to <a> tag
-    return tab.waitForSelector(".js-track-click .challenge-list-item",{visible: true});
+    return tab.waitForSelector(".js-track-click.challenge-list-item",{visible: true});
 })
 .then(function(){
     // to get all <a> tags vaale kaam ke liye, we require document.querySelectorAll() ke jaisa same kaam karne vaala puppeteer mein function chahiye
     // and the same function is tab.$$() takes selector in it.
-    return tab.$$(".js-track-click .challenge-list-item"); // provide array of all <a> tags element
+    return tab.$$(".js-track-click.challenge-list-item"); // provide array of all <a> tags element
 })
 .then(function(allQuesArray){ // is function mein we got all <a> tags OR sabhi questions
       // [<a /> , <a /> , <a /> , <a />] but in form of objects
+      let allPendingPromises = [];
       for(let i=0; i<allQuesArray.length; i++){
           let oneAtag = allQuesArray[i];
           // ab yha par mein DOM ka .getAttribute() vaala function puppeteer se mangunga
@@ -77,7 +78,24 @@ browserOpenPromise.then( function(browser){
           let pendingPromise = tab.evaluate(function(element){ // evaluate(), passing function ko DOM par ja kar chala deta hai 
                 return element.getAttribute("href"); // ab hum is element par DOM vaala .getAttribute() function lga sakte hai 
           }, oneAtag); // to ye jo oneAtag element hai ye passing function mein as a element pass ho jata hai
+
+          //but ye hame seedha href's ans nhi dega infact saare Pending Promises dega
+          // So ham chahte hai ki jitne bhi href's aaye hai Pending Promises ki form vo saare allPendingPromise mein push hote jaaye
+          allPendingPromises.push(pendingPromise);
+          // [ Promise<Pending> , Promise<Pending> , Promise<Pending> , Promise<Pending> ];
+          // evaluate() function mein jo return hoga vo yha <Pending> ki state mein change hoga
+          
       }
+      console.log(allPendingPromises);
+      // [ Promise<Pending> , Promise<Pending> , Promise<Pending> , Promise<Pending> ];
+      // ab in Promises ka data kaise layein, whenever we have chunks of promises then how we can extract their data's
+      let allPromisesCombined = Promise.all(allPendingPromises); // isse saare Pending promises isme aa jayeinge
+      // Promise.all() ne hame Single Pending Promise diya ,jiski state tab change hogi jab Promise.all() mein padhe sabhi PP's mein data aa chuka hoga
+      // sabka data matlab sabhi links
+      return allPromisesCombined;
+})
+.then(function(allQuesLinks){
+    console.log(allQuesLinks);
 })
 
 .catch(function(error){ // this is complete chain ka fcb // main chain ka .catch()
