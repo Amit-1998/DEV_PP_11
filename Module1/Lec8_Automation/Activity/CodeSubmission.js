@@ -86,7 +86,7 @@ browserOpenPromise.then( function(browser){
           // evaluate() function mein jo return hoga vo yha <Pending> ki state mein change hoga
           
       }
-      console.log(allPendingPromises);
+      //console.log(allPendingPromises);
       // [ Promise<Pending> , Promise<Pending> , Promise<Pending> , Promise<Pending> ];
       // ab in Promises ka data kaise layein, whenever we have chunks of promises then how we can extract their data's
       let allPromisesCombined = Promise.all(allPendingPromises); // isse saare Pending promises isme aa jayeinge
@@ -95,7 +95,12 @@ browserOpenPromise.then( function(browser){
       return allPromisesCombined;
 })
 .then(function(allQuesLinks){
-    console.log(allQuesLinks);
+    //console.log(allQuesLinks);
+    let OneQuesSolvePromise = solveQuestion(allQuesLinks[0]);
+    return OneQuesSolvePromise;
+})
+.then(function(){ // scb ki body
+    
 })
 
 .catch(function(error){ // this is complete chain ka fcb // main chain ka .catch()
@@ -103,9 +108,19 @@ browserOpenPromise.then( function(browser){
 })  // catch() hamesha last me hi attach hota hai if any above then() fails in b/w directly comes in this catch()
 
 
-
-
-
+function solveQuestion(quesLink){ // do for One question
+    // we want sabhi questions ke liye we don't need multiple tabs, sabhi quest's ek hi "tab" par solve ho
+    return new Promise(function(scb, fcb){
+            let gotoPromise = tab.goto("https://www.hackerrank.com"+quesLink);
+            gotoPromise.then(function(){
+                // pehle ques khul gya, to waitAndClick() ko karo call => first wait for selector & then click
+                return waitAndClick('div[data-attr2="Editorial"]');
+            })
+            .then(function(){
+                console.log("Reached at editorial");
+            })
+    });
+}
 
 
 function waitAndClick(selector){
