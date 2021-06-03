@@ -7,8 +7,8 @@ let challenges = require('./challengesFile'); //import
     let browser = await puppeteer.launch({  // gives browser Instance
         headless: false,
         defaultViewport: null,
-        args: ["--start-maximized"],
-        slowMo : 200 //milliseconds // itne millisec's ke liye chise slow ho jayengi
+        args: ["--start-maximized"]
+        //slowMo : 200 //milliseconds // itne millisec's ke liye chise slow ho jayengi
       });
     let pages = await browser.pages();
     let tab = pages[0];
