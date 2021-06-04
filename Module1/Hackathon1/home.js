@@ -1,5 +1,7 @@
 const puppeteer = require("puppeteer");
 const fs = require("fs");
+let json2xls = require('json2xls');
+//const xlsx = require("xlsx")//npm install xlsx
 
 let addresses = [];
 //let contacts = [];
@@ -209,31 +211,50 @@ async function hospitalBeds(tab){
          let contPersonMob = itsTds[i][11];
          let LiasonOffNum = itsTds[i][12];
 
-         HospitalBedDetails.push({
-              "Hospital ID": hospitalId,
-              "Hospital Name": hospitalName,
-              "Total Free Bed": totFreeeBeds,
-              "Total Free Critical Bed (without Ventilator)": totFCBWOV,
-              "Total Free Critical Bed (with Ventilator)": totFCBWV,
-              "Total Free Non-Critical Bed": totFNCB,
-              "Available Free Critical Bed (without Ventilator)": AFCBWOV,
-              "Available Free Critical Bed (with Ventilator)": AFCBWV,
-              "Available Free Non-Critical Bed": AFNCB,
-              "Hospital Phone No." : hospPhoneNo,
-              "Contact Person Name": contPerName,
-              "Contact Person Mobile": contPersonMob,
-              "Liason Officer Number": LiasonOffNum
-         });
+        //  HospitalBedDetails.push({
+        //       "Hospital ID": hospitalId,
+        //       "Hospital Name": hospitalName,
+        //       "Total Free Bed": totFreeeBeds,
+        //       "Total Free Critical Bed (without Ventilator)": totFCBWOV,
+        //       "Total Free Critical Bed (with Ventilator)": totFCBWV,
+        //       "Total Free Non-Critical Bed": totFNCB,
+        //       "Available Free Critical Bed (without Ventilator)": AFCBWOV,
+        //       "Available Free Critical Bed (with Ventilator)": AFCBWV,
+        //       "Available Free Non-Critical Bed": AFNCB,
+        //       "Hospital Phone No." : hospPhoneNo,
+        //       "Contact Person Name": contPerName,
+        //       "Contact Person Mobile": contPersonMob,
+        //       "Liason Officer Number": LiasonOffNum
+        //  });
+
+        let obj = {
+            "Hospital ID": hospitalId,
+            "Hospital Name": hospitalName,
+            "Total Free Bed": totFreeeBeds,
+            "Total Free Critical Bed (without Ventilator)": totFCBWOV,
+            "Total Free Critical Bed (with Ventilator)": totFCBWV,
+            "Total Free Non-Critical Bed": totFNCB,
+            "Available Free Critical Bed (without Ventilator)": AFCBWOV,
+            "Available Free Critical Bed (with Ventilator)": AFCBWV,
+            "Available Free Non-Critical Bed": AFNCB,
+            "Hospital Phone No." : hospPhoneNo,
+            "Contact Person Name": contPerName,
+            "Contact Person Mobile": contPersonMob,
+            "Liason Officer Number": LiasonOffNum
+        } 
+        HospitalBedDetails.push(obj);
+
+         
 
          if(i==allRows.length-1){
              fs.writeFileSync("HospitalBedDetails.json",JSON.stringify(HospitalBedDetails));   
          }
-
+         
     }
-
-
+     let xls = json2xls(HospitalBedDetails);
+     fs.writeFileSync("HospBedsdata.xlsx",xls,"binary");
+     
 }
-
 
 
 // async function covidResources(tab,boxName,i){

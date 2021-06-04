@@ -1,1 +1,102 @@
-[{"VaccineCentre":"Surya Kiran Hospital","Info":"Roshan Mandi, Masudabad, Najafgarh, New Delhi, Delhi 110043","Requirements":"Limited to certain patients"},{"VaccineCentre":"Rosewood Hospital","Info":"Plot No.5, JL BLOCK, Roshan Garden, Masudabad, Najafgarh, New Delhi, 110043","Requirements":"Limited to certain patients"},{"VaccineCentre":"Indus Valley Hospitals General Hospital Eye centre and Maternity centre CGHS","Info":"232 Tehsil road near tuda mandi, Najafgarh, Delhi, 110043","Requirements":"Limited to certain patients"},{"VaccineCentre":"Kalyani Hospital","Info":"RZ-30A, Rati, Naya Bazar, Mansa Ram Park, Najafgarh, Delhi, 110043","Requirements":"Limited to certain patients"},{"VaccineCentre":"Swasthik Hospital - Best Hospital in Najafgarh,Delhi","Info":"A/9, Raghuveer Enclave, Najafgarh, Near Nangloi Bus Stand, New Delhi, Delhi 110043","Requirements":"Limited to certain patients"},{"VaccineCentre":"Vikas Hospital Private Limited","Info":"1629–H, Thana Road, Najafgarh, New Delhi, Delhi 110043","Requirements":"Limited to certain patients"},{"VaccineCentre":"Orthoplus Hospital","Info":"RZ B28, Near DTC Bus Terminal Main Gopal Nagar, Gopal Nagar Extension, Najafgarh, Delhi, 110043","Requirements":"Limited to certain patients"},{"VaccineCentre":"BH SALVAS HOSPITAL","Info":"CHANDAN PALACE, Jharoda Rd, Najafgarh, Delhi, 110043","Requirements":"Limited to certain patients"},{"VaccineCentre":"MCD Polyclinic","Info":"Pocket 1, Sector 14 Dwarka, Dwarka, Delhi, 110075","Requirements":"Limited to certain patients"},{"VaccineCentre":"TARAK HOSPITAL INDIA PRIVATE LIMITED","Info":"Dwarka More, Jai Bharat Enclave, C-7, Najafgarh Rd, Block C, Dwarka, Delhi, 110059","Requirements":"COVID-19 hospital"},{"VaccineCentre":"Samar Hospital, 50 Bedded Multispeciality Centre","Info":"Opp. St. Thomas School, Goyla Vihar, Sector 19, Dwarka, New Delhi, Delhi 110071","Requirements":"Limited to certain patients"},{"VaccineCentre":"Kalra Hospital Dwarka","Info":"Near Dwaraka Mod Metro Station, Mohan Garden,Main Najafgargh Road, Metro Pillar 761, A-5, Bhagwati Garden, Rama Park Road, Rama Park, Nawada, Delhi, 110059","Requirements":"COVID-19 hospital"},{"VaccineCentre":"Stars Dental Clinic NABH Accredited {on CGHS panel}","Info":"Metro Pillar Number 752, DK Rd, B,53, Mohan Garden Extension, Opp, Uttam Nagar, Delhi, 110059","Requirements":"Limited to certain patients"},{"VaccineCentre":"Delhi Government Dispensary Tilangpur Kotla","Info":"Kotla Vihar Phase 2, Tilangpur Kotla, Delhi, 110041","Requirements":"COVID-19 hospital"},{"VaccineCentre":"COVID-19 Vaccine Location-Workplace Nsut","Info":"Dwarka Sector-3, Dwarka, Delhi, 110059","Requirements":"Limited to certain patients"},{"VaccineCentre":"Venkateshwar Hospital","Info":"Sector 12 Rd, Sector 18, Sector 18A Dwarka, Dwarka, New Delhi, Delhi 110075","Requirements":"Limited to certain patients"},{"VaccineCentre":"BENSUPS Hospital @mybensups","Info":"Dwarka Sub-City, Sector 12 Dwarka, BENSUPS Avenue, New Delhi, Delhi 110075","Requirements":"Limited to certain patients"},{"VaccineCentre":"Rathi hospital","Info":"3, Nangloi - Najafgarh Rd, near kali mata mandir, Pratap Vihar, Ranhola, New Delhi, Delhi 110041","Requirements":"Limited to certain patients"},{"VaccineCentre":"Medeor Hospital, Dwarka","Info":"Near Ashirwad Chowk, Phase 1, HAF-B, Sector 12 Dwarka, New Delhi, Delhi 110075","Requirements":"COVID-19 hospital"},{"VaccineCentre":"Jeevan Jyoti Hospital","Info":"Main, B-28, Matiala Rd, Kiran Garden, Uttam Nagar, New Delhi, Delhi 110059","Requirements":"Limited to certain patients"}]
+[
+  {
+    "VaccineCentre": "Surya Kiran Hospital",
+    "Info": "Roshan Mandi, Masudabad, Najafgarh, New Delhi, Delhi 110043",
+    "Requirements": "Limited to certain patients"
+  },
+  {
+    "VaccineCentre": "Indus Valley Hospitals General Hospital Eye centre and Maternity centre CGHS",
+    "Info": "232 Tehsil road near tuda mandi, Najafgarh, Delhi, 110043",
+    "Requirements": "Limited to certain patients"
+  },
+  {
+    "VaccineCentre": "Rosewood Hospital",
+    "Info": "Plot No.5, JL BLOCK, Roshan Garden, Masudabad, Najafgarh, New Delhi, 110043",
+    "Requirements": "Limited to certain patients"
+  },
+  {
+    "VaccineCentre": "Kalyani Hospital",
+    "Info": "RZ-30A, Rati, Naya Bazar, Mansa Ram Park, Najafgarh, Delhi, 110043",
+    "Requirements": "Limited to certain patients"
+  },
+  {
+    "VaccineCentre": "Swasthik Hospital - Best Hospital in Najafgarh,Delhi",
+    "Info": "A/9, Raghuveer Enclave, Najafgarh, Near Nangloi Bus Stand, New Delhi, Delhi 110043",
+    "Requirements": "Limited to certain patients"
+  },
+  {
+    "VaccineCentre": "TARAK HOSPITAL INDIA PRIVATE LIMITED",
+    "Info": "Dwarka More, Jai Bharat Enclave, C-7, Najafgarh Rd, Block C, Dwarka, Delhi, 110059",
+    "Requirements": "COVID-19 hospital"
+  },
+  {
+    "VaccineCentre": "Vikas Hospital Private Limited",
+    "Info": "1629–H, Thana Road, Najafgarh, New Delhi, Delhi 110043",
+    "Requirements": "Limited to certain patients"
+  },
+  {
+    "VaccineCentre": "Orthoplus Hospital",
+    "Info": "RZ B28, Near DTC Bus Terminal Main Gopal Nagar, Gopal Nagar Extension, Najafgarh, Delhi, 110043",
+    "Requirements": "Limited to certain patients"
+  },
+  {
+    "VaccineCentre": "MCD Polyclinic",
+    "Info": "Pocket 1, Sector 14 Dwarka, Dwarka, Delhi, 110075",
+    "Requirements": "Limited to certain patients"
+  },
+  {
+    "VaccineCentre": "Delhi Government Dispensary Tilangpur Kotla",
+    "Info": "Kotla Vihar Phase 2, Tilangpur Kotla, Delhi, 110041",
+    "Requirements": "Limited to certain patients"
+  },
+  {
+    "VaccineCentre": "Rathi hospital",
+    "Info": "3, Nangloi - Najafgarh Rd, near kali mata mandir, Pratap Vihar, Ranhola, New Delhi, Delhi 110041",
+    "Requirements": "Limited to certain patients"
+  },
+  {
+    "VaccineCentre": "Kalra Hospital Dwarka",
+    "Info": "Near Dwaraka Mod Metro Station, Mohan Garden,Main Najafgargh Road, Metro Pillar 761, A-5, Bhagwati Garden, Rama Park Road, Rama Park, Nawada, Delhi, 110059",
+    "Requirements": "COVID-19 hospital"
+  },
+  {
+    "VaccineCentre": "Stars Dental Clinic NABH Accredited {on CGHS panel}",
+    "Info": "Metro Pillar Number 752, DK Rd, B,53, Mohan Garden Extension, Opp, Uttam Nagar, Delhi, 110059",
+    "Requirements": "Limited to certain patients"
+  },
+  {
+    "VaccineCentre": "COVID-19 Vaccine Location-Workplace Nsut",
+    "Info": "Dwarka Sector-3, Dwarka, Delhi, 110059",
+    "Requirements": "COVID-19 hospital"
+  },
+  {
+    "VaccineCentre": "BH SALVAS HOSPITAL",
+    "Info": "CHANDAN PALACE, Jharoda Rd, Najafgarh, Delhi, 110043",
+    "Requirements": "Limited to certain patients"
+  },
+  {
+    "VaccineCentre": "Jeevan Jyoti Hospital",
+    "Info": "Main, B-28, Matiala Rd, Kiran Garden, Uttam Nagar, New Delhi, Delhi 110059",
+    "Requirements": "Limited to certain patients"
+  },
+  {
+    "VaccineCentre": "Medeor Hospital, Dwarka",
+    "Info": "Near Ashirwad Chowk, Phase 1, HAF-B, Sector 12 Dwarka, New Delhi, Delhi 110075",
+    "Requirements": "Limited to certain patients"
+  },
+  {
+    "VaccineCentre": "PGH Hospitals Pvt Ltd",
+    "Info": "Plot No. 89A,Vikasnagar Extn Phase-2, Shukkar Bazar Rd, Block B, Uttam Nagar, New Delhi, Delhi 110059",
+    "Requirements": "Limited to certain patients"
+  },
+  {
+    "VaccineCentre": "Dgd Bakkarwala",
+    "Info": "JJ Colony, Bakkarwala, Delhi, 110041",
+    "Requirements": "Limited to certain patients"
+  },
+  {
+    "VaccineCentre": "Mahindru Hospital",
+    "Info": "E1, Kiran Garden Main Najafgarh Road Opposite, Metro Pillar Number 712, Uttam Nagar, New Delhi, Delhi 110059",
+    "Requirements": "Limited to certain patients"
+  }
+]
