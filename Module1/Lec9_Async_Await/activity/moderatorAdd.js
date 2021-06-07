@@ -25,7 +25,9 @@ async function login(){
     let manageChallengeLi = bothLis[1];
     await manageChallengeLi.click();
 
-    //get List of all questions
+    //Activity -3 (code starts here)
+
+    // get Links of all questions
     await addModerators(browser, tab);
 };
 login();
@@ -33,7 +35,45 @@ login();
 async function addModerators(browser,tab){
     await tab.waitForSelector(".backbone.block-center",{visible: true});
     let allAtags = await tab.$$(".backbone.block-center");
+
+    let allQuestLinks = [];
     for(let i=0; i<allAtags.length; i++){
-        tab.evaluate();
+        let qlink = await tab.evaluate(function(elem){ return elem.getAttribute("href"); },allAtags[i]);
+        qlink = "https://www.hackerrank.com"+qlink;
+        allQuestLinks.push(qlink);
     }
+    
+    for(let i=0; i<allQuestLinks.length; i++){
+        let qLink = allQuestLinks[i];
+        let newTab = await browser.newPage();
+        await addModeratorToASinglePage(newTab,qLink);
+    }
+
+    // next button active hai to click on next
+    // addModerators(browser , tab);
+
+    let allLis = await tab.$$(".pagination li");
+    let nxtBtnLi = allLis[allLis.length-2];
+    // classList is a key which provides us what all class has been applied to given element
+    let isDisabled = await tab.evaluate(function(elem){ return elem.classList.contains('disabled'); },nxtBtnLi);
+    if(isDisabled){
+        return; 
+    }
+    // isDisabled => false
+    await nxtBtnLi.click();
+    await tab.waitForTimeout(5000);
+    await addModerators(browser , tab);
+}
+
+async function addModeratorToASinglePage(newTab,qLink){
+    await newTab.goto(qLink);
+    await newTab.waitForTimeout(2000);
+    await newTab.click('li[data-tab="moderators"]');
+    await newTab.waitForSelector("#moderator",{visible: true,timeout:2000});
+    await newTab.type("#moderator","tima_321"); 
+    await newTab.waitForTimeout(2000);
+    await newTab.click(".btn.moderator-save");
+    await newTab.click(".save-challenge.btn.btn-green");
+    await newTab.waitForTimeout(2000);
+    await newTab.close();
 }
