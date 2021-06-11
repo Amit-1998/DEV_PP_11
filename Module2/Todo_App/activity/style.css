@@ -1,29 +1,34 @@
 * {
+    /*Universal Selector => applied to all elements*/
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
+    /*sabhi elements ki koi bhi margin , padding nhi hogi aate hi*/
 }
 
 body {
-    background-color: #9b59b6;
+    background-color: aqua;
 }
 
 .todo-input-container {
     height: 100px;
-    /* background-color: black; */
+    /* background: black; */
     padding: 20px;
 }
 
 .todo-input {
     height: 70%;
+    /* apne parent yaani div ki height ki 70% height ye input lelega*/
     width: 80%;
+    /* apne parent yaani div ki width ki 80% width ye input lelega*/
     padding: 10px;
     outline: none;
-    border: 0px;
+    border: none;
     border-radius: 20px;
-    font-size: 20px;
+    font-size: 25px;
     display: block;
     margin: auto;
+    /*apne parent yaani div ke centre mein hai ye*/
     margin-bottom: 20px;
 }
 
@@ -35,9 +40,9 @@ body {
     font-weight: bold;
     border-radius: 10px;
     border: 5px solid white;
+    background-color: #8e44ad;
     color: white;
     font-size: 20px;
-    background-color: #8e44ad;
 }
 
 .todos-list-container {
@@ -45,23 +50,28 @@ body {
 }
 
 .todo-item {
+    /**/
     width: 60%;
+    /*first width ko 50% karo than only margin auto can be happened*/
     margin: auto;
+    background-color: khaki;
     margin-top: 40px;
-    background-color: #8e44ad;
-    border-radius: 15px;
+    border-radius: 22px;
     padding: 10px;
     text-align: center;
+    /*agar text ko center mein lana ho tab*/
 }
 
 .todo {
-    color: white;
+    /*p tag*/
+    color: firebrick;
+    /* p tag ke text ka color*/
     font-size: 20px;
-    margin: auto;
 }
 
 .delete-todo {
-    background-color: #e74c3c;
+    /*for delete button*/
+    background: lightseagreen;
     color: white;
     width: 70px;
     height: 25px;
