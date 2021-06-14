@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    .div1 {
+        background-color: aqua;
+        height: 50px;
+        width: 200px;
+        /* chahe mein isko width dedu par fir bhi ye div full width highlight karega in brown color, kuki ye div display:block hota hai*/
+        display: block;
+        /* agar mein display: block na bhi du tab bhi ye full width lega becz divs are already display: block*/
+        margin: 10px;
+    }
+    
+    .span1 {
+        /*spans are by-default display: inline*/
+        background-color: burlywood;
+        display: inline;
+        /* vaise na bhi likhte tab bhi they are by-dafault display-inline*/
+        height: 200px;
+        width: 200px;
+        /* jo display: inline hote hai unko alag se height ,width de bhi di tab bhi vo nhi lenge*/
+    }
+    
+    .span2 {
+        background-color: crimson;
+    }
+    
+    img {
+        /*img elements are by default display: inline-block */
+        display: inline-block;
+        /*img ko display: inline block bnane se ye inline to hoga hi saath mein iski height & width bhi ham set kar sakte hai*/
+        height: 200px;
+        width: 200px;
+    }
+    
+    .div2 {
+        display: none;
+    }
+</style>
+
+<body>
+    <!-- display: block  -->
+    <div class="div1">Hi this is Div1</div>
+
+    <!-- display: inline -->
+    <span class="span1">This is span 1</span>
+    <span class="span2">This is span 2</span>
+
+    <!-- display: inline block -->
+    <img src="https://images.pexels.com/photos/8003701/pexels-photo-8003701.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">
+    <span class=span2>This is next span</span>
+
+    <!-- display: none -->
+    <div class="div2">Hi this is div2</div>
+</body>
+
+</html>

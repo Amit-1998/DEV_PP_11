@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    .flexbox {
+        display: flex;
+        background-color: cyan;
+         justify-content: center; 
+        /* justify-content: space-evenly; */
+        /* justify-content: space-around; */
+        /* justify-content: space-between */
+        /* align-items: center; */
+        height: 600px;
+        /* flex-wrap: wrap; */
+        /* flex-direction: column; */
+    }
+    
+    .flexbox-item {
+        border: 1px solid;
+        width: 200px;
+        background-color: cornflowerblue;
+    }
+    
+    .fbi1 { 
+        min-height: 100px; /* agar isko 600 se jyada de denge to flexbox se bhar chala jayega */ 
+        
+        /* height: 100px; */
+        align-self: center;
+    }
+    
+    .fbi2 {
+        min-height: 200px;
+        /* height: 200px; */
+        align-self: flex-start;
+    }
+    
+    .fbi3 {
+        min-height: 150px;
+        /* height: 150px; */
+        align-self: flex-end;
+    }
+</style>
+
+<body>
+    <div class="flexbox">
+        <div class="flexbox-item fbi1">flexbox item 1</div>
+        <div class="flexbox-item fbi2">flexbox item 2</div>
+        <div class="flexbox-item fbi3">flexbox item 3</div>
+    </div>
+</body>
+
+</html>
