@@ -1,44 +1,77 @@
-*{
+* {
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
 }
 
-.header{
-
+.header {
+    height: 80px;
+    background-color: #ff5e57;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
-.tickets-filter{
-
+.tickets-filter {
+    height: 60%;
+    width: 30%;
+    background-color: #b2bec3;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
-.filter{
-
+.filter {
+    height: 40%;
+    width: 8%;
+    border-radius: 5px;
+    opacity: 0.7;
+    /* transition: transform 0.5s; */
+    /* animation effect: jab bhi filter class mein scale (transform) hone mein 0.5sec lega */
 }
 
-.red{
 
+/* jab filter class par mouse jayega yani filter class par hover hoga */
+
+.filter:hover {
+    /* pseudoclass */
+    opacity: 1;
+    /* transform: scale(1.2); */
+    /* filter ka size pehle vaale size ka 1.2 ho jayega (bad jayega) */
 }
 
-.blue{
-
+.red {
+    background-color: red;
 }
 
-.green{
-
+.blue {
+    background-color: #1e90ff;
 }
 
-.yellow{
-
+.green {
+    background-color: green;
 }
 
-.black{
-
+.yellow {
+    background-color: yellow;
 }
 
-.tickets-actions{
-
+.black {
+    background-color: black;
 }
+
+.ticket-actions {
+    height: 60%;
+    width: 8%;
+    display: flex;
+    /*     justify-content: space-evenly;
+    align-items: center; */
+    /* agar ham open maodal's ko height full & width 50% dedete hai to yha tickets-filter par justify-content & align-items ka koi matlab nhi reh gya*/
+    background-color: #b2bec3;
+    border-radius: 10px;
+}
+
 
 /* 
 .open-modal{
@@ -49,11 +82,27 @@
 
 } */
 
+
 /* open-modal and close-modal par same styling hogi to ham aise likh saktye hai */
-.tickets-actions div{
-    
+
+.ticket-actions div {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
 }
 
-.tickets-container{
+.ticket-actions div:hover {
+    background: #747d8c;
+}
 
+.ticket-actions i {
+    font-size: 20px;
+    color: darkslategray;
+}
+
+.tickets-container {
+    height: calc( 100vh - 80px);
 }
