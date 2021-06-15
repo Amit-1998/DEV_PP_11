@@ -1,0 +1,59 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+.header{
+
+}
+
+.tickets-filter{
+
+}
+
+.filter{
+
+}
+
+.red{
+
+}
+
+.blue{
+
+}
+
+.green{
+
+}
+
+.yellow{
+
+}
+
+.black{
+
+}
+
+.tickets-actions{
+
+}
+
+/* 
+.open-modal{
+
+}
+
+.close-modal{
+
+} */
+
+/* open-modal and close-modal par same styling hogi to ham aise likh saktye hai */
+.tickets-actions div{
+    
+}
+
+.tickets-container{
+
+}
