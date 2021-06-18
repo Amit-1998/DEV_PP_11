@@ -3,7 +3,6 @@
     margin: 0px;
     padding: 0px;
     /* google fonts ki css*/
-    font-family: 'Dancing Script', cursive;
     font-family: 'Stint Ultra Condensed', cursive;
 }
 
@@ -108,6 +107,13 @@
 
 .tickets-container {
     height: calc( 100vh - 80px);
+    padding: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    grid-gap: 30px;
+    /* align-items: center; */
 }
 
 .ticket-modal {
@@ -125,8 +131,9 @@
     width: 70%;
     background: #b2bec3;
     outline: none;
-    padding: 10px;
+    padding: 15px;
     font-size: 25px;
+    overflow: auto;
 }
 
 .ticket-filters {
@@ -152,4 +159,47 @@
 .selected-filter {
     border: 3px solid white;
     opacity: 1;
+}
+
+.ticket {
+    /* background: bisque; */
+    height: 150px;
+    width: 250px;
+    border: 1px solid brown;
+}
+
+.ticket-header {
+    height: 10%;
+    /* initially header par koi styling nhi honi chahiye */
+    /* background: darkgoldenrod; */
+    /* border-bottom: 2px solid lightslategrey; */
+}
+
+.ticket-content {
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.ticket-info {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    /* height: 20%; */
+}
+
+.ticket-info div{}
+
+.ticket-value {
+    /* background: chartreuse; */
+    width: 100%;
+    height: 80%;
+    /* text-align: center; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    word-break: break-all;
 }
