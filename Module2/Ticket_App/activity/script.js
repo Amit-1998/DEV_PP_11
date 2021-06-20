@@ -1,5 +1,5 @@
 let allFilters = document.querySelectorAll(".filter");
-let ticketsContainer = document.querySelector(".tickets-container");
+// let ticketsContainer = document.querySelector(".tickets-container");
 
 let openModal = document.querySelector(".open-modal");
 let closeModal = document.querySelector(".close-modal");
@@ -75,12 +75,15 @@ function closeTicketModal(e) {
 function handleKeyPress(e) {
     if(e.key == "Enter" && isTextTyped && e.target.textContent){
         let filterSelected = document.querySelector(".selected-filter").classList[1];
+        let ticketId = uuid();
         let ticketInfoObject = {
             ticketFilter: filterSelected,
-            ticketValue: e.target.textContent
+            ticketValue: e.target.textContent,
+            ticketId : ticketId
         };
         appendTicket(ticketInfoObject); 
         closeModal.click();
+        saveTickeToDB(ticketInfoObject); /* written in db.js file*/ 
     }
     if (!isTextTyped) {
         isTextTyped = true;
@@ -89,23 +92,23 @@ function handleKeyPress(e) {
     
 }
 
-function appendTicket(ticketInfoObject){
-    let {ticketFilter, ticketValue} = ticketInfoObject;
-    let ticketDiv = document.createElement("div");
-    ticketDiv.classList.add("ticket");
-    ticketDiv.innerHTML = `<div class="ticket-header ${ticketFilter}"></div>
-    <div class="ticket-content">
-        <div class="ticket-info">
-            <div class="ticket-id">#e2nf5</div>
-            <div class="ticket-delete">
-                <i class="fas fa-trash"></i>
-            </div>
-        </div>
-        <div class="ticket-value">${ticketValue}</div>
-    </div>`;
+// function appendTicket(ticketInfoObject){
+//     let {ticketFilter, ticketValue} = ticketInfoObject;
+//     let ticketDiv = document.createElement("div");
+//     ticketDiv.classList.add("ticket");
+//     ticketDiv.innerHTML = `<div class="ticket-header ${ticketFilter}"></div>
+//     <div class="ticket-content">
+//         <div class="ticket-info">
+//             <div class="ticket-id">#e2nf5</div>
+//             <div class="ticket-delete">
+//                 <i class="fas fa-trash"></i>
+//             </div>
+//         </div>
+//         <div class="ticket-value">${ticketValue}</div>
+//     </div>`;
 
-    ticketsContainer.append(ticketDiv);
-}
+//     ticketsContainer.append(ticketDiv);
+// }
 
 // Static UI of ticket
 // <div class="ticket">
