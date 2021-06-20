@@ -16,8 +16,22 @@ closeModal.addEventListener("click", closeTicketModal);
 
 
 function selectFilter(e) {
-
-
+    if(e.target.classList.contains("active-filter")){
+         //ticket append are on basis of some filter
+         e.target.classList.remove("active-filter");
+         //append all tickets
+         ticketsContainer.innerHTML = "";
+         loadTickets();
+    }
+    else{
+        if(document.querySelector(".active-filter")){
+            document.querySelector(".active-filter").classList.remove("active-filter");
+        }
+        e.target.classList.add("active-filter");
+        ticketsContainer.innerHTML = ""; // UI se ticket hatado
+        let filterClicked = e.target.classList[1];
+        loadSelectedTickets(filterClicked);
+    }
 
     // let selectedFilter = e.target.classList[1];
     // if (ticketsContainer.classList.length > 1) {

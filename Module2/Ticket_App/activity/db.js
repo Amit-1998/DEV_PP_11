@@ -13,6 +13,20 @@ function loadTickets(){
 }
 loadTickets(); // aate hi sabse pehle loadTickets() ko call lag jayein
 
+function loadSelectedTickets(filter){
+    let allTickets = myDB.getItem("allTickets");
+    if(allTickets){
+        allTickets = JSON.parse(allTickets);
+        for(let i=0; i<allTickets.length; i++){
+            let ticketInfoObject = allTickets[i];
+            if(ticketInfoObject.ticketFilter == filter){
+                appendTicket(ticketInfoObject);
+            }
+            
+        }
+    }
+}
+
 function saveTickeToDB(ticketInfoObject){
      let allTickets = myDB.getItem("allTickets");
      if(allTickets){
