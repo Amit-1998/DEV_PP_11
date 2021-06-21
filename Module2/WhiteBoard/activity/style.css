@@ -1,0 +1,20 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.tools-container {
+    height: 100px;
+    background: aqua;
+}
+
+.drawing-container {
+    
+}
+
+#canvas{
+    background-color: burlywood;
+    /* width: 100%; can't take it as it blurs the drawing*/
+}
