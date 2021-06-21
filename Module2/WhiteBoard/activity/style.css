@@ -8,13 +8,35 @@
 .tools-container {
     height: 100px;
     background: aqua;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.drawing-container {
-    
+.tools-content {
+    height: 70%;
+    width: 70%;
+    /* border: 1px solid; */
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background: bisque;
+    border-radius: 16px;
 }
 
-#canvas{
+.tool {
+    height: 55%;
+    width: 10%;
+}
+
+.tool img {
+    height: 100%;
+    width: 100%;
+}
+
+.drawing-container {}
+
+#canvas {
     background-color: burlywood;
     /* width: 100%; can't take it as it blurs the drawing*/
 }
