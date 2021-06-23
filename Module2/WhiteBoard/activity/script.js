@@ -6,6 +6,7 @@ canvas.height = window.innerHeight - 100;
 window.addEventListener("resize", function(){
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight - 100;
+    
 });
 
 // canvas drawing gets erased on window resize ???
@@ -19,10 +20,14 @@ let ctx = canvas.getContext("2d");
 // ctx.fillRect(10,10,150,100);
 
 let linesDB = [];
+let redoLinesDB = [];
 let isPenDown = false;
 let line = [];
 
 canvas.addEventListener("mousedown", function(e){
+    if(redoLinesDB.length>0){
+        redoLinesDB = [];
+    }
     console.log("Inside mouse down");
     isPenDown = true;
     //  let {clientX,clientY} = e;

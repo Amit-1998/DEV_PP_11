@@ -7,7 +7,7 @@
 
 .tools-container {
     height: 100px;
-    background: aqua;
+    /* background: aqua; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,6 +37,46 @@
 .drawing-container {}
 
 #canvas {
-    background-color: burlywood;
     /* width: 100%; can't take it as it blurs the drawing*/
+}
+
+.sticky {
+    position: absolute;
+    top: 200px;
+    left: 300px;
+    height: 200px;
+    width: 300px;
+    /* background: lightblue; */
+}
+
+.sticky-header {
+    height: 13%;
+    background: lightsalmon;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.sticky-header div {
+    height: 70%;
+    margin-right: 10px;
+    width: 7%;
+    border-radius: 50px;
+}
+
+.minimize {
+    background: chartreuse;
+}
+
+.close {
+    background: steelblue;
+}
+
+.sticky-content {
+    height: 87%;
+    /* border: 1px solid; */
+    border-bottom-right-radius: 20px;
+    background: lightgrey;
+    outline: none;
+    padding: 10px;
 }
