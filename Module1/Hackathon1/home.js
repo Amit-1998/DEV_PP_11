@@ -247,12 +247,12 @@ async function hospitalBeds(tab){
          
 
          if(i==allRows.length-1){
-             fs.writeFileSync("HospitalBedDetails.json",JSON.stringify(HospitalBedDetails));   
+            fs.writeFileSync("HospBeddetails.json",JSON.stringify(HospitalBedDetails));        
+            let xls = json2xls(HospitalBedDetails);
+            fs.writeFileSync("HospBedsdata.xlsx",xls,"binary");
          }
          
     }
-     let xls = json2xls(HospitalBedDetails);
-     fs.writeFileSync("HospBedsdata.xlsx",xls,"binary");
      
 }
 
