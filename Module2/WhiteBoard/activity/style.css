@@ -5,9 +5,9 @@
     /* overflow: hidden; */
 }
 
-/* .body{
+body{
     overflow: hidden;
-} */
+} 
 
 .tools-container {
     height: 100px;
