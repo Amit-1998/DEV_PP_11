@@ -1,4 +1,8 @@
 let videoElement = document.querySelector("video");
+let recordButton = document.querySelector("#record");
+let recordingState = false;
+
+
 
 // let constraint = { video: true };
 
@@ -36,7 +40,21 @@ let mediaRecorder;
       
     }
 
-    
+    recordButton.addEventListener("click", function(){
+         if(recordingState){
+               // already recording is going on
+               // stop the recording
+              mediaRecorder.stop();
+              recordButton.innerHTML = "Record Video";
+              recordingState = false;
+         }
+         else{
+             // start the recording
+            mediaRecorder.start();
+            recordButton.innerHTML = "Recording..";
+            recordingState = true;
+         }
+    });
 
 })();
-  
+
