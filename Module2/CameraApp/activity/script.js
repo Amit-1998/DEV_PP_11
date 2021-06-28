@@ -1,7 +1,7 @@
 let videoElement = document.querySelector("video");
 let recordButton = document.querySelector("#record");
 let recordingState = false;
-
+let capturePhoto = document.querySelector("#capture");
 
 
 // let constraint = { video: true };
@@ -32,8 +32,17 @@ let mediaRecorder;
       console.log(e); // want this data to be download as a video
       
       let videoObject = new Blob( [e.data] , {type:"video/mp4"});  // create new blob( file object) in which we change e.data ka type to "video/mp4"
-      console.log(videoObject);
-    }
+      // console.log(videoObject);
+      // videoObject/imageObject => URL
+      // aTag
+      
+      let videoURL = URL.createObjectURL(videoObject);
+      let aTag = document.createElement("a");   
+      aTag.download = `Video${Date.now()}.mp4`;
+      aTag.href = videoURL;
+      aTag.click();
+      
+   }
 
     mediaRecorder.onstop = function(){
       console.log("Inside on stop");
@@ -55,6 +64,28 @@ let mediaRecorder;
             recordingState = true;
          }
     });
+
+    capturePhoto.addEventListener("click", function(){
+         // canvas
+         let canvas = document.createElement("canvas");
+         // canvas.width = videoElement.width;
+         // canvas.height = videoElement.height;
+  
+         canvas.width = 640; // video width
+         canvas.height = 480; // video height given manually default dimensions of coming video Element
+ 
+         let ctx = canvas.getContext("2d");
+         ctx.drawImage(videoElement,0,0); // canvas se offset dx,dy
+
+         // download canvas as an Image
+         let aTag = document.createElement("a");   
+         aTag.download = `Image${Date.now()}.jpg`;
+         aTag.href = canvas.toDataURL("image/jpg");
+         aTag.click();
+
+         
+    });
+
 
 })();
 
