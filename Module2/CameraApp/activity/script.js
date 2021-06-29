@@ -86,6 +86,13 @@ let mediaRecorder;
          canvas.height = 480; // video height given manually default dimensions of coming video Element
  
          let ctx = canvas.getContext("2d");
+         // capture photo with ZoomIn 
+         if(currentZoom !=1){
+             ctx.translate(canvas.width/2, canvas.height/2);
+             ctx.scale(currentZoom,currentZoom);
+             ctx.translate(-canvas.width/2,-canvas.height/2);
+         }
+
          ctx.drawImage(videoElement,0,0); // canvas se offset dx,dy
 
          // photo bhi filter ke saath save honi chahiye
