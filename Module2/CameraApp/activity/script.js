@@ -4,7 +4,12 @@ let recordingState = false;
 let capturePhoto = document.querySelector(".inner-capture");
 let filters = document.querySelectorAll(".filter");
 let filterSelected = "none";
-
+let zoomIn = document.querySelector(".zoomIn");
+let zoomOut = document.querySelector(".zoomOut");
+ 
+let minZoom = 1;
+let maxZoom = 3.1;
+let currentZoom = 1;
 
 // let constraint = { video: true };
 
@@ -83,6 +88,13 @@ let mediaRecorder;
          let ctx = canvas.getContext("2d");
          ctx.drawImage(videoElement,0,0); // canvas se offset dx,dy
 
+         // photo bhi filter ke saath save honi chahiye
+         if(filterSelected!="none"){
+             ctx.fillStyle = filterSelected;
+             ctx.fillRect(0 , 0, canvas.width , canvas.height);
+         } 
+
+
          // download canvas as an Image
          let aTag = document.createElement("a");   
          aTag.download = `Image${Date.now()}.jpg`;
@@ -126,4 +138,20 @@ for(let i=0; i<filters.length; i++){
         filterSelected = currentFilterSelected;
     });
 }
+
+zoomIn.addEventListener("click", function(){
+       if(currentZoom + 0.1 > maxZoom){
+           return;
+       }
+       currentZoom = currentZoom + 0.1;
+       videoElement.style.transform = `scale(${currentZoom})`;
+});
+
+zoomOut.addEventListener("click", function(){
+    if(currentZoom - 0.1 < minZoom){
+        return;
+    }
+    currentZoom = currentZoom - 0.1;
+    videoElement.style.transform = `scale(${currentZoom})`;
+});
 
