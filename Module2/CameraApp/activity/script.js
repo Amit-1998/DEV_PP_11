@@ -1,7 +1,9 @@
 let videoElement = document.querySelector("video");
-let recordButton = document.querySelector("#record");
+let recordButton = document.querySelector(".inner-record");
 let recordingState = false;
-let capturePhoto = document.querySelector("#capture");
+let capturePhoto = document.querySelector(".inner-capture");
+let filters = document.querySelectorAll(".filter");
+let filterSelected = "none";
 
 
 // let constraint = { video: true };
@@ -54,18 +56,22 @@ let mediaRecorder;
                // already recording is going on
                // stop the recording
               mediaRecorder.stop();
-              recordButton.innerHTML = "Record Video";
               recordingState = false;
+              recordButton.classList.remove("animate-record");
          }
          else{
              // start the recording
             mediaRecorder.start();
-            recordButton.innerHTML = "Recording..";
             recordingState = true;
+            recordButton.classList.add("animate-record");
          }
     });
 
     capturePhoto.addEventListener("click", function(){
+         
+         capturePhoto.classList.add("animate-capture");
+         setTimeout( function(){ capturePhoto.classList.remove("animate-capture"); },1000); // 1000ms is 1s i.e after 1s it removes class name "animate-capture"
+
          // canvas
          let canvas = document.createElement("canvas");
          // canvas.width = videoElement.width;
@@ -83,9 +89,41 @@ let mediaRecorder;
          aTag.href = canvas.toDataURL("image/jpg");
          aTag.click();
 
-         
     });
 
 
 })();
+
+for(let i=0; i<filters.length; i++){
+    filters[i].addEventListener("click", function(e){
+        // console.log(e.target.style.backgroundColor);
+
+        let currentFilterSelected = e.target.style.backgroundColor;
+        if(currentFilterSelected == ""){
+             if(document.querySelector(".filter-div")){
+                 document.querySelector(".filter-div").remove();
+                 filterSelected = "none";
+                 return;
+             }
+        }
+
+        console.log(currentFilterSelected);
+        if(filterSelected == currentFilterSelected){
+            return;
+        }
+
+        let filterDiv = document.createElement("div");
+        filterDiv.classList.add("filter-div");
+        filterDiv.style.backgroundColor = currentFilterSelected;
+        
+        if(filterSelected == "none"){
+            document.body.append(filterDiv);
+        }
+        else{
+             document.querySelector(".filter-div").remove();
+             document.body.append(filterDiv);
+        }
+        filterSelected = currentFilterSelected;
+    });
+}
 
