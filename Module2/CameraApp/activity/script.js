@@ -43,12 +43,16 @@ let mediaRecorder;
       // videoObject/imageObject => URL
       // aTag
       
-      let videoURL = URL.createObjectURL(videoObject);
-      let aTag = document.createElement("a");   
-      aTag.download = `Video${Date.now()}.mp4`;
-      aTag.href = videoURL;
-      aTag.click();
-      
+       //   let videoURL = URL.createObjectURL(videoObject);
+       //   let aTag = document.createElement("a");   
+       //   aTag.download = `Video${Date.now()}.mp4`;
+       //   aTag.href = videoURL;
+       //   aTag.click();
+        
+       // add video object to db
+       addMedia(videoObject, "video");
+
+
    }
 
     mediaRecorder.onstop = function(){
@@ -56,60 +60,9 @@ let mediaRecorder;
       
     }
 
-    recordButton.addEventListener("click", function(){
-         if(recordingState){
-               // already recording is going on
-               // stop the recording
-              mediaRecorder.stop();
-              recordingState = false;
-              recordButton.classList.remove("animate-record");
-         }
-         else{
-             // start the recording
-            mediaRecorder.start();
-            recordingState = true;
-            recordButton.classList.add("animate-record");
-         }
-    });
+    recordButton.addEventListener("click", recordMedia);
 
-    capturePhoto.addEventListener("click", function(){
-         
-         capturePhoto.classList.add("animate-capture");
-         setTimeout( function(){ capturePhoto.classList.remove("animate-capture"); },1000); // 1000ms is 1s i.e after 1s it removes class name "animate-capture"
-
-         // canvas
-         let canvas = document.createElement("canvas");
-         // canvas.width = videoElement.width;
-         // canvas.height = videoElement.height;
-  
-         canvas.width = 640; // video width
-         canvas.height = 480; // video height given manually default dimensions of coming video Element
- 
-         let ctx = canvas.getContext("2d");
-         // capture photo with ZoomIn 
-         if(currentZoom !=1){
-             ctx.translate(canvas.width/2, canvas.height/2);
-             ctx.scale(currentZoom,currentZoom);
-             ctx.translate(-canvas.width/2,-canvas.height/2);
-         }
-
-         ctx.drawImage(videoElement,0,0); // canvas se offset dx,dy
-
-         // photo bhi filter ke saath save honi chahiye
-         if(filterSelected!="none"){
-             ctx.fillStyle = filterSelected;
-             ctx.fillRect(0 , 0, canvas.width , canvas.height);
-         } 
-
-
-         // download canvas as an Image
-         let aTag = document.createElement("a");   
-         aTag.download = `Image${Date.now()}.jpg`;
-         aTag.href = canvas.toDataURL("image/jpg");
-         aTag.click();
-
-    });
-
+    capturePhoto.addEventListener("click", photoCapture);
 
 })();
 
@@ -162,3 +115,77 @@ zoomOut.addEventListener("click", function(){
     videoElement.style.transform = `scale(${currentZoom})`;
 });
 
+
+function photoCapture(){
+         
+         capturePhoto.classList.add("animate-capture");
+         setTimeout( function(){ capturePhoto.classList.remove("animate-capture"); },1000); // 1000ms is 1s i.e after 1s it removes class name "animate-capture"
+
+         // canvas
+         let canvas = document.createElement("canvas");
+         // canvas.width = videoElement.width;
+         // canvas.height = videoElement.height;
+  
+         canvas.width = 640; // video width
+         canvas.height = 480; // video height given manually default dimensions of coming video Element
+ 
+         let ctx = canvas.getContext("2d");
+         // capture photo with ZoomIn 
+         if(currentZoom !=1){
+             ctx.translate(canvas.width/2, canvas.height/2);
+             ctx.scale(currentZoom,currentZoom);
+             ctx.translate(-canvas.width/2,-canvas.height/2);
+         }
+
+         ctx.drawImage(videoElement,0,0); // canvas se offset dx,dy
+
+         // photo bhi filter ke saath save honi chahiye
+         if(filterSelected!="none"){
+             ctx.fillStyle = filterSelected;
+             ctx.fillRect(0 , 0, canvas.width , canvas.height);
+         } 
+
+
+         // download canvas as an Image
+        //  let aTag = document.createElement("a");   
+        //  aTag.download = `Image${Date.now()}.jpg`;
+        //  aTag.href = canvas.toDataURL("image/jpg");
+        //  aTag.click();
+
+        // save image to DB
+        let canvasURL = canvas.toDataURL("image/jpg");
+        addMedia(canvasURL, "photo"); // here we pass "photo" as type
+        
+
+}
+
+function recordMedia(){
+    if(recordingState){
+          // already recording is going on
+          // stop the recording
+         mediaRecorder.stop();
+         recordingState = false;
+         recordButton.classList.remove("animate-record");
+    }
+    else{
+        // start the recording
+       mediaRecorder.start();
+       recordingState = true;
+       recordButton.classList.add("animate-record");
+    }
+}
+
+function addMedia(mediaURL, mediaType){
+    // db mein media add hojaega
+    let txnObject = db.transaction("MediaTable", "readwrite"); // start transaction on mediaTable //create a transaction on a database
+    // "Gallery" is a DB name and "readwrite" is kind of access
+    let mediaTable = txnObject.objectStore("MediaTable");   // this will get access to mediaTable           
+    mediaTable.add( {mid: Date.now(), type: mediaType, url: mediaURL} ); // it will add this object in mediaTable or mediaStore
+
+    // txn fail bhi ho sakti hai, when? => when we pass duplicate mid
+    txnObject.onerror = function(e){
+         console.log("txn failed");
+         console.log(e);
+    }
+
+}

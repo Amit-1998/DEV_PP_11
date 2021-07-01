@@ -16,8 +16,11 @@
     <div>MediaId <input id="mid" type="text"></div>
     <div>MediaType <input id="mediaType" type="text"></div>
     <button id="addmedia">Add Media</button>
-    <button id="showmedia">Show Media</button>
 
+    <div>
+         <button id="showmedia">Show Media</button>
+    </div>
+    
     <script>
          let dbName = document.getElementById("dbname");
          let dbversion = document.getElementById("dbversion");
@@ -76,7 +79,7 @@
 
                dbOpenRequest.onupgradeneeded = function(e){
                     alert("Inside on upgrade needed !!");
-                    // console.log(e);
+                    console.log(e);
                     db = e.target.result;
                     db.createObjectStore("MediaTable", {keyPath: "mid"});
                }
