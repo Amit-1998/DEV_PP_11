@@ -6,7 +6,12 @@ let filters = document.querySelectorAll(".filter");
 let filterSelected = "none";
 let zoomIn = document.querySelector(".zoomIn");
 let zoomOut = document.querySelector(".zoomOut");
- 
+let galleryBtn = document.querySelector(".gallery-btn"); 
+
+galleryBtn.addEventListener("click", function(){
+    window.location.assign("gallery.html"); // gallery.html par hmari location kar dega from current position ( usi same tab ko relocate) not on new tab
+});
+
 let minZoom = 1;
 let maxZoom = 3.1;
 let currentZoom = 1;
