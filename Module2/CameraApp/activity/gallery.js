@@ -50,6 +50,14 @@ function appendPhoto(mediaObj){
            <div class="delete-media">Delete</div>
      </div>`;
 
+    mediaDiv.querySelector(".download-media").addEventListener("click", function(){
+        downloadMedia(mediaObj,mediaDiv);
+    });
+    
+    mediaDiv.querySelector(".delete-media").addEventListener("click", function(){
+        deleteMedia(mediaObj,mediaDiv);
+    });
+
     // mediaDiv.querySelector("img").src = mediaObj.url;
     
     document.querySelector(".gallery").append(mediaDiv);
@@ -60,7 +68,7 @@ function appendVideo(mediaObj){
     let mediaDiv = document.createElement("div");
     mediaDiv.classList.add("media-div");
 
-    mediaDiv.innerHTML = `<video class= "media-video" controls></video>
+    mediaDiv.innerHTML = `<video class= "media-video" controls autoplay loop></video>
     <div class="media-buttons">
           <div class="download-media">Download</div>
           <div class="delete-media">Delete</div>
@@ -68,12 +76,41 @@ function appendVideo(mediaObj){
 
     mediaDiv.querySelector("video").src = URL.createObjectURL(mediaObj.url);
    // mediaDiv.querySelector("img").src = mediaObj.url;
+
+   mediaDiv.querySelector(".download-media").addEventListener("click", function(){
+       downloadMedia(mediaObj);
+   });
+
+   mediaDiv.querySelector(".delete-media").addEventListener("click", function(){
+      deleteMedia(mediaObj,mediaDiv);
+   });
    
    document.querySelector(".gallery").append(mediaDiv);
 
 }
 
+function downloadMedia(mediaObject){
+    let aTag = document.createElement("a");
+    if(mediaObject.type == "photo"){
+         aTag.download = `${mediaObject.mid}.jpg`;
+         aTag.href = mediaObject.url;
+    }
+    else{
+        aTag.download = `${mediaObject.mid}.mp4`;
+        aTag.href = URL.createObjectURL(mediaObject.url);
+    }
+   aTag.click();
+}
 
+function deleteMedia(mediaObject, mediaDiv){
+     let mid = mediaObject.mid;
+     let txnObject = db.transaction("MediaTable", "readwrite");
+     let mediaTable = txnObject.objectStore("MediaTable");
+     mediaTable.delete(mid);
+
+     mediaDiv.remove();
+
+}
 
 
 
