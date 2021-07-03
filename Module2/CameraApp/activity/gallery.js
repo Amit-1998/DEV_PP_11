@@ -108,7 +108,7 @@ function deleteMedia(mediaObject, mediaDiv){
      let mediaTable = txnObject.objectStore("MediaTable");
      mediaTable.delete(mid);
 
-     mediaDiv.remove();
+     mediaDiv.remove();  // UI se remove
 
 }
 
