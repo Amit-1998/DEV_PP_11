@@ -3,6 +3,13 @@ let topRow = document.querySelector(".top-row");
 let leftCol = document.querySelector(".left-col");
 // in teeno ki top and left set karenge
 
+let address = document.querySelector("#address");
+let formulaInput = document.querySelector("#formula");
+
+let allCells = document.querySelectorAll(".cell");
+let lastSelectedCell;
+
+
 cellsContainer.addEventListener("scroll", function(e){
      // console.log(e);
      // console.log(e.target.scrollTop, e.target.scrollLeft);
@@ -16,17 +23,73 @@ cellsContainer.addEventListener("scroll", function(e){
 
 });
 
-let allCells = document.querySelectorAll(".cell");
+formulaInput.addEventListener("blur", function(e){
+     let formula = e.target.value;
+     if(formula){
+         let calculatedValue = solveFormula(formula);
+         // UI update
+         lastSelectedCell.textContent = calculatedValue;
+         // DB update
+         let cellObject = getCellObjectFromElement(lastSelectedCell);
+         cellObject.value = calculatedValue;
+         cellObject.formula = formula;
+     }
+});
 
 for(let i=0; i<allCells.length; i++){
+
+    allCells[i].addEventListener("click", function(e){
+          let cellObject = getCellObjectFromElement(e.target);
+          address.value = cellObject.name;
+          formulaInput.value = cellObject.formula;
+    });
+
     allCells[i].addEventListener("blur", function(e){
+        lastSelectedCell = e.target;
         // logic to save this value in db
-        let rowId = e.target.getAttribute("rowId");
-        let colId = e.target.getAttribute("colid");
         let cellValueFromUI = e.target.textContent;
-        // cellobject ki value update !!
-        let cellObject = db[rowId][colId];
-        cellObject.value = cellValueFromUI;
         
+        if(cellValueFromUI){
+            // cellobject ki value update !!     
+            let cellObject = getCellObjectFromElement(e.target);
+            cellObject.value = cellValueFromUI;
+        }
     });
 }
+
+function solveFormula(formula){
+      // tip : implement infix evaluation
+      // ( A1 + A2) => ( 10 + 20 )
+      let formulaComps = formula.split(" ");
+      // ["(" , "A1" , "+" , "A2" , ")"]
+
+      // find valid component
+      for(let i=0; i<formulaComps.length; i++){
+          let fComp = formulaComps[i];
+          if( (fComp[0] >= "A" && fComp[0] <= "Z") || (fComp[0] >= "a" && fComp[0] <= "z")){
+               // A1 || A2
+               // fComp = A1
+               let cellObject = getCellObjectFromName(fComp);
+               let value = cellObject.value;
+               formula = formula.replace(fComp, value); // A1 ki jagah 10 ko replace kar dega
+          }
+      }
+      // is point par we have ( 10 + 20 ) => we can apply infix evaluation
+
+      let calculatedValue = eval(formula); // apne aap solve kar dega (10 + 20) ko
+      return calculatedValue;
+}
+
+function getCellObjectFromElement(element){
+     let rowId = element.getAttribute("rowid");
+     let colId = element.getAttribute("colid");
+     return db[rowId][colId];
+}
+
+function getCellObjectFromName(name){
+     // A100
+     let colId = name.charCodeAt(0) - 65; // gives ASCii at index 0
+     let rowId = Number(name.substring(1)) - 1;
+     return db[rowId][colId];
+}
+
