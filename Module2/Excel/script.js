@@ -26,11 +26,12 @@ cellsContainer.addEventListener("scroll", function(e){
 formulaInput.addEventListener("blur", function(e){
      let formula = e.target.value;
      if(formula){
-         let calculatedValue = solveFormula(formula);
+        let cellObject = getCellObjectFromElement(lastSelectedCell);
+        let calculatedValue = solveFormula(formula, cellObject);
          // UI update
          lastSelectedCell.textContent = calculatedValue;
          // DB update
-         let cellObject = getCellObjectFromElement(lastSelectedCell);
+         
          cellObject.value = calculatedValue;
          cellObject.formula = formula;
      }
@@ -53,11 +54,14 @@ for(let i=0; i<allCells.length; i++){
             // cellobject ki value update !!     
             let cellObject = getCellObjectFromElement(e.target);
             cellObject.value = cellValueFromUI;
+
+            // update childrens of the current updated cell
+            updateChildrens(cellObject.childrens);
         }
     });
 }
 
-function solveFormula(formula){
+function solveFormula(formula, selfCellObject){
       // tip : implement infix evaluation
       // ( A1 + A2) => ( 10 + 20 )
       let formulaComps = formula.split(" ");
@@ -69,8 +73,14 @@ function solveFormula(formula){
           if( (fComp[0] >= "A" && fComp[0] <= "Z") || (fComp[0] >= "a" && fComp[0] <= "z")){
                // A1 || A2
                // fComp = A1
-               let cellObject = getCellObjectFromName(fComp);
-               let value = cellObject.value;
+               let parentcellObject = getCellObjectFromName(fComp);
+               let value = parentcellObject.value;
+
+               if(selfCellObject){
+                   // add yourself as a child of parentcellObject
+                   parentcellObject.childrens.push(selfCellObject.name);
+               }
+               
                formula = formula.replace(fComp, value); // A1 ki jagah 10 ko replace kar dega
           }
       }
@@ -93,3 +103,20 @@ function getCellObjectFromName(name){
      return db[rowId][colId];
 }
 
+function updateChildrens(childrens){
+     for(let i=0; i<childrens.length; i++){
+         let child = childrens[i];
+         // B1
+         let childCellObject = getCellObjectFromName(child);
+         let updatedValueOfChild = solveFormula(childCellObject.formula);
+         // db update
+         childCellObject.value = updatedValueOfChild;
+         // UI update
+         let colId = child.charCodeAt(0) - 65; // gives ASCii at index 0
+         let rowId = Number(child.substring(1)) - 1;
+         document.querySelector(`div[rowid= "${rowId}"][colid= "${colId}"]`).textContent = updatedValueOfChild;
+
+         //recursive call
+         updateChildrens(childCellObject.childrens);
+     }
+}

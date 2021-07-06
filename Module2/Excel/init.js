@@ -40,7 +40,8 @@ function initDB(){
             let cellObject = {
                 name: cellName,
                 value: "",
-                formula: ""
+                formula: "",
+                childrens: []
             }
             row.push(cellObject);
         }
