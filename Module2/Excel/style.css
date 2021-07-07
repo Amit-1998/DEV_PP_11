@@ -2,6 +2,11 @@
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
+    font-family: 'Abel', sans-serif;
+}
+
+body{
+    font-size: 0.8rem;
 }
 
 .menu-options {
@@ -78,10 +83,40 @@
     min-width: 70px;
     min-height: 25px;
     outline: none;
-    max-width: 70px; /*for not shift cell boundary */
+    max-width: 70px;
+    /*for not shift cell boundary */
 }
 
 .sheets {
     background: greenyellow;
     height: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.add-sheet {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.sheets-list {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    border-left: 1px solid;
+}
+
+.sheet {
+    /* border: 1px solid; */
+    height: 100%;
+    width: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid;
+    cursor: pointer;
+}
+
+.active-sheet {
+    background: white;
 }
