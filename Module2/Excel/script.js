@@ -31,9 +31,11 @@ formulaInput.addEventListener("blur", function(e){
          // UI update
          lastSelectedCell.textContent = calculatedValue;
          // DB update
-         
          cellObject.value = calculatedValue;
          cellObject.formula = formula;
+
+         // childrens update
+         updateChildrens(cellObject.childrens);
      }
 });
 
@@ -51,14 +53,39 @@ for(let i=0; i<allCells.length; i++){
         let cellValueFromUI = e.target.textContent;
         
         if(cellValueFromUI){
-            // cellobject ki value update !!     
             let cellObject = getCellObjectFromElement(e.target);
+            
+            // check if the given cell has a formula on it
+            if(cellObject.formula && cellValueFromUI != cellObject.value){
+                 deleteFormula(cellObject);
+                 formulaInput.value = "";
+            }
+
+            // cellobject ki value update !!     
             cellObject.value = cellValueFromUI;
 
             // update childrens of the current updated cell
             updateChildrens(cellObject.childrens);
         }
     });
+}
+
+function deleteFormula(cellObject){
+    cellObject.formula = "";
+    for(let i=0; i<cellObject.parents.length; i++){
+        let parentName = cellObject.parents[i];
+        // let say A1
+        let parentcellObject = getCellObjectFromName(parentName);
+        // parentcellObject.childrens
+        let updatedChildrens = parentcellObject.childrens.filter( function(childName){
+             if(childName == cellObject.name){
+                 return false;
+             }
+             return true;
+        });
+        parentcellObject.childrens = updateChildrens;
+    }
+    cellObject.parents = [];
 }
 
 function solveFormula(formula, selfCellObject){
@@ -79,6 +106,8 @@ function solveFormula(formula, selfCellObject){
                if(selfCellObject){
                    // add yourself as a child of parentcellObject
                    parentcellObject.childrens.push(selfCellObject.name);
+                   // update your parents
+                   selfCellObject.parents.push(parentcellObject.name);
                }
                
                formula = formula.replace(fComp, value); // A1 ki jagah 10 ko replace kar dega
