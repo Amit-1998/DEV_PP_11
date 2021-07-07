@@ -27,6 +27,9 @@ formulaInput.addEventListener("blur", function(e){
      let formula = e.target.value;
      if(formula){
         let cellObject = getCellObjectFromElement(lastSelectedCell);
+        if(cellObject.formula != formula){
+            deleteFormula(cellObject);
+        }
         let calculatedValue = solveFormula(formula, cellObject);
          // UI update
          lastSelectedCell.textContent = calculatedValue;
@@ -83,7 +86,7 @@ function deleteFormula(cellObject){
              }
              return true;
         });
-        parentcellObject.childrens = updateChildrens;
+        parentcellObject.childrens = updatedChildrens;
     }
     cellObject.parents = [];
 }
