@@ -24,6 +24,13 @@ function addSheet(){
     sheetDiv.addEventListener("click", function(){
          switchSheet(sheetDiv);
     });
+
+    initDB();
+    // init UI(); ???
+    initCells();
+    attachEventListners();
+    lastSelectedCell = undefined;
+
 }
 
 function switchSheet(currentSheet){
@@ -32,4 +39,30 @@ function switchSheet(currentSheet){
      }
      document.querySelector(".active-sheet").classList.remove("active-sheet");
      currentSheet.classList.add("active-sheet");
+
+     // ??? switch db
+     // set DB
+     let sid = currentSheet.getAttribute("sid");
+     db = sheetsDB[sid];
+    
+     // set UI ??
+    let lastCellIndex = 0;
+    for(let i=0; i<db.length; i++){
+        let dbRow = db[i];
+        for(let j=0; j<dbRow.length; j++){
+            allCells[lastCellIndex].textContent = dbRow[j].value;
+            lastCellIndex++;
+        }
+    } 
+
 }
+
+function attachEventListners(){
+    topLeftCell = document.querySelector(".top-left-cell");
+    topRow = document.querySelector(".top-row");
+    leftCol = document.querySelector(".left-col");
+    allCells = document.querySelectorAll(".cell");
+    
+    attachClickAndBlurEventOnCell();
+}
+

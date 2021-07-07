@@ -9,7 +9,6 @@ let formulaInput = document.querySelector("#formula");
 let allCells = document.querySelectorAll(".cell");
 let lastSelectedCell;
 
-
 cellsContainer.addEventListener("scroll", function(e){
      // console.log(e);
      // console.log(e.target.scrollTop, e.target.scrollLeft);
@@ -42,36 +41,40 @@ formulaInput.addEventListener("blur", function(e){
      }
 });
 
-for(let i=0; i<allCells.length; i++){
-
-    allCells[i].addEventListener("click", function(e){
-          let cellObject = getCellObjectFromElement(e.target);
-          address.value = cellObject.name;
-          formulaInput.value = cellObject.formula;
-    });
-
-    allCells[i].addEventListener("blur", function(e){
-        lastSelectedCell = e.target;
-        // logic to save this value in db
-        let cellValueFromUI = e.target.textContent;
-        
-        if(cellValueFromUI){
-            let cellObject = getCellObjectFromElement(e.target);
+function attachClickAndBlurEventOnCell(){
+    for(let i=0; i<allCells.length; i++){
+    
+        allCells[i].addEventListener("click", function(e){
+              let cellObject = getCellObjectFromElement(e.target);
+              address.value = cellObject.name;
+              formulaInput.value = cellObject.formula;
+        });
+    
+        allCells[i].addEventListener("blur", function(e){
+            lastSelectedCell = e.target;
+            // logic to save this value in db
+            let cellValueFromUI = e.target.textContent;
             
-            // check if the given cell has a formula on it
-            if(cellObject.formula && cellValueFromUI != cellObject.value){
-                 deleteFormula(cellObject);
-                 formulaInput.value = "";
+            if(cellValueFromUI){
+                let cellObject = getCellObjectFromElement(e.target);
+                
+                // check if the given cell has a formula on it
+                if(cellObject.formula && cellValueFromUI != cellObject.value){
+                     deleteFormula(cellObject);
+                     formulaInput.value = "";
+                }
+    
+                // cellobject ki value update !!     
+                cellObject.value = cellValueFromUI;
+    
+                // update childrens of the current updated cell
+                updateChildrens(cellObject.childrens);
             }
-
-            // cellobject ki value update !!     
-            cellObject.value = cellValueFromUI;
-
-            // update childrens of the current updated cell
-            updateChildrens(cellObject.childrens);
-        }
-    });
+        });
+    }
 }
+attachClickAndBlurEventOnCell();
+
 
 function deleteFormula(cellObject){
     cellObject.formula = "";
