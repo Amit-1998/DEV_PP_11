@@ -8,7 +8,7 @@ function initCells(){
 
     cellsContent += `<div class="top-row">`;
     for(let j=0; j<26; j++){
-        cellsContent += `<div class="top-row-cell">${String.fromCharCode(65+j)}</div>`
+        cellsContent += `<div class="top-row-cell">${String.fromCharCode(65+j)}</div>`;
     }
     cellsContent += `</div>`;
 
@@ -22,7 +22,7 @@ function initCells(){
     for(let i=0; i<100; i++){
         cellsContent += `<div class="row">`
         for(let j=0; j<26; j++){
-            cellsContent += `<div class="cell" contenteditable = "true" rowid = "${i}" colid = "${j}"></div>`
+            cellsContent += `<div class="cell" contenteditable = "true" rowid = "${i}" colid = "${j}"></div>`;
         }
         cellsContent += "</div>"
     }

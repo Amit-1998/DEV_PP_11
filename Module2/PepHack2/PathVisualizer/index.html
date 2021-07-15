@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Path Visualizer</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+     
+     <div class="InputArea">
+         <div class="algoName">
+             <p>Search visualizer</p>
+             <p>Dijkstra Algorithm</p>
+         </div>
+         <div class="algo-inputs">
+             <div class="take-inputs">
+                 <div class="wt"> 
+                     Set Weight :
+                     <input type="number" name="" id=""> 
+                 </div>
+                 <div class="st-pt">Start Point : 
+                    <input type="number" id="rowNo" min="0" max="19">
+                    <input type="number" id="colNo" min="0" max="19">
+                 </div>
+                 <div class="end-pt">
+                    End Point : 
+                    <input type="number" id="rowNo" min="0" max="19">
+                    <input type="number" id="colNo" min="0" max="19">
+                 </div> 
+                 
+             </div>
+             <div class="AlgoButton">
+                 <Button id="start-Algo">Start Dijkstra Algorithm</Button>
+             </div>
+         </div>
+
+     </div>
+
+     <div class="OutputArea">
+     </div>
+
+
+     <script src="./script.js"></script>
+</body>
+</html>
