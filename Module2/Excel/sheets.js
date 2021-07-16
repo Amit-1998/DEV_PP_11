@@ -31,7 +31,7 @@ function addSheet(){
     initDB();
     // init UI(); ???
 
-    // initCells();
+    // initCells(); // sirf visited cells ko khaali kardege for optimization
     // attachEventListners();
     lastSelectedCell = undefined;
 
@@ -52,9 +52,9 @@ function switchSheet(currentSheet){
      db = sheetsDB[sid].db;
      visitedCells = sheetsDB[sid].visitedCells;
     
-     // set UI ??
+     // set UI ??  sheet ka data bhi map hona chahiye
     // let lastCellIndex = 0;
-    // for(let i=0; i<db.length; i++){
+    // for(let i=0; i<db.length; i++){  // 2600 ka loop
     //     let dbRow = db[i];
     //     for(let j=0; j<dbRow.length; j++){
     //         allCells[lastCellIndex].textContent = dbRow[j].value;
@@ -65,7 +65,7 @@ function switchSheet(currentSheet){
     // set UI- optimized
     for(let i=0; i<visitedCells.length; i++){
         let {rowId, colId} = visitedCells[i];
-        let idx = Number(rowId) * 100 + Number(colId);
+        let idx = Number(rowId) * 26 + Number(colId);
         allCells[idx].textContent = db[rowId][colId].value;
     }
 
@@ -83,7 +83,7 @@ function attachEventListners(){
 function cleanUI(){
     for(let i=0; i<visitedCells.length; i++){
         let {rowId, colId} = visitedCells[i];
-        let idx = Number(rowId) * 100 + Number(colId);
+        let idx = Number(rowId) * 26 + Number(colId);
         allCells[idx].innerHTML = "";
     }
 }

@@ -1,18 +1,14 @@
-let outputContainer = document.querySelector(".OutputArea");
+let matrix = document.querySelector(".matrix");
+let cells = document.querySelectorAll(".cell");
 
-let tableDiv = `<div class="matrix">`;
+let start_x = document.querySelector("#st-rowNo");
+let start_y = document.querySelector("#st-colNo");
 
-for(let i=0; i<20; i++){
-   tableDiv += `<div class="row">`;
-     for(let j=0; j<20; j++){
-        tableDiv += `<div class="cell" contenteditable="true" rowid = "${i}" colid="${j}">Cell</div>`;             
-     }
-   tableDiv += `</div>`;
+let end_x = document.querySelector("#en-rowNo");
+let end_y = document.querySelector("#en-colNo");
+
+for(let i=0; i<cells.length; i++){
+    cells[i].addEventListener("click", function(e){
+        console.log(e);
+    });
 }
-tableDiv += `</div>`;
-
-outputContainer.innerHTML = tableDiv;
-
-
-
-
