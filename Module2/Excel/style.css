@@ -51,7 +51,9 @@ body {
 
 .menu-options-4>div {}
 
-.active-menu {}
+.active-menu {
+    background-color: lightgray;
+}
 
 .formula-tab {
     height: 30px;
