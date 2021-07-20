@@ -77,7 +77,7 @@ input {}
     position: absolute;
     top: 21px;
     left: 121px;
-    background-color: tomato;
+    background-color: white;
 }
 
 .row {
@@ -97,4 +97,8 @@ input {}
 
 .end{
    background-color: red;
+}
+
+.obstacle{
+    background-color: burlywood;
 }

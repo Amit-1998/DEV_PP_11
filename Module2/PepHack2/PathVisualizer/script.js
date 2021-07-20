@@ -64,6 +64,39 @@ end_y.addEventListener("blur", function(e){
 
 });
 
+for(let idx=0; idx<allCells.length; idx++){
+
+    allCells[idx].addEventListener("click", function(e){
+        console.log(e);
+        if(allCells[idx].classList.contains("obstacle")){
+            allCells[idx].classList.remove("obstacle");
+        }
+        else{
+            if(allCells[idx].classList.contains("start") || allCells[idx].classList.contains("end")){
+                return;
+            }
+            allCells[idx].classList.add("obstacle");
+            // db update for adding obstacle
+            // db
+            // let rowth = idx/20;
+            let rowth = e.target.attributes.rowid.nodeValue;
+            console.log(rowth);
+
+            // let colth = idx%20;
+            let colth = e.target.attributes.colid.nodeValue;
+            console.log(colth);
+
+
+            // console.log(db[rowth][colth]);
+            db[rowth][colth].rowNo = rowth;
+            db[rowth][colth].colNo = colth;
+            db[rowth][colth].weight = -1;
+            db[rowth][colth].visited = true;
+        }
+        
+    });
+}
+
 algoButton.addEventListener("click", function(e){
     //  console.log(e);
     algoButton.style.background = "lightgreen";
