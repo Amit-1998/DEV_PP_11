@@ -1,9 +1,10 @@
 let outputContainer = document.querySelector(".OutputArea");
+let db = [];
 
 function makeMatrix() {
 
    let tableDiv = `<div class="matrix">`;
-   for (let i = 0; i < 20; i++) {
+   for (let i = 0; i < 20; i++) {  // 400 cells
       tableDiv += `<div class="row">`;
       for (let j = 0; j < 20; j++) {
          tableDiv += `<div class="cell" contenteditable="true" rowid = "${i}" colid="${j}">(${i},${j})</div>`;
@@ -13,9 +14,27 @@ function makeMatrix() {
    tableDiv += `</div>`;
    outputContainer.innerHTML = tableDiv;
 }
+
+function initDB(){
+   
+   for(let i=0; i<20; i++){
+      let row = [];
+      for(let j=0; j<20; j++){
+          let cellObject = {
+             rowNo : i,
+             colNo : j,
+             weight : "",
+             visited : false
+          }
+         row.push(cellObject);
+      }
+      db.push(row);
+   }   
+   // console.log(db);
+}
+
 makeMatrix();
-
-
+initDB();
 
 
 

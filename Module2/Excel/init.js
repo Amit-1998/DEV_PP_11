@@ -1,7 +1,7 @@
 let cellsContainer = document.querySelector(".cells");
 let sheetsDB = [];
-let db; // points to current DB
-let visitedCells; // points to current visited cells
+let db; // points to current DB // for the purpose of SheetsDB
+let visitedCells; // points to current visited cells  // for the purpose of SheetsDB
 
 function initCells(){
     let cellsContent = `<div class="top-left-cell"></div>`;
