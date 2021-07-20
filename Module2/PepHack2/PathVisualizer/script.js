@@ -14,6 +14,9 @@ let yOfstartPoint;
 let xOfendPoint;
 let yOfendPoint;
 
+let srcCellKaDiv;
+let destCellKaDiv;
+
 start_x.addEventListener("blur", function(e){
     xOfstartPoint = e.target.value;
     console.log(xOfstartPoint);
@@ -24,11 +27,18 @@ start_y.addEventListener("blur", function(e){
     console.log(yOfstartPoint);
     
     let idx = Number(xOfstartPoint) * 20 + Number(yOfstartPoint);
-    let cellKaDiv = allCells[idx];
-    console.log(cellKaDiv);  
-    cellKaDiv.classList.add("start");
-    cellKaDiv.innerHTML = `<i class="fas fa-running"></i>`;
-
+    srcCellKaDiv = allCells[idx];
+    // console.log(srcCellKaDiv);
+    let lastSelectedStartingPoint = document.querySelector(".start");
+    if(lastSelectedStartingPoint){
+        lastSelectedStartingPoint.classList.remove("start");
+        lastSelectedStartingPoint.innerHTML = "";
+    }
+    
+    srcCellKaDiv.classList.add("start");
+    srcCellKaDiv.innerHTML = `<i class="fas fa-running"></i>`;
+    
+    
 });
 
 end_x.addEventListener("blur", function(e){
@@ -41,15 +51,22 @@ end_y.addEventListener("blur", function(e){
     console.log(yOfendPoint);
     
     let idx = Number(xOfendPoint) * 20 + Number(yOfendPoint);
-    let cellKaDiv = allCells[idx];
-    console.log(cellKaDiv);  
-    cellKaDiv.classList.add("end");
-    cellKaDiv.innerHTML = `<i class="far fa-stop-circle"></i>`;
+    destCellKaDiv = allCells[idx];
+    // console.log(destCellKaDiv);
+    let lastSelectedEndPoint = document.querySelector(".end");
+    if(lastSelectedEndPoint){
+        lastSelectedEndPoint.classList.remove("end");
+        lastSelectedEndPoint.innerHTML = "";
+    }
     
+    destCellKaDiv.classList.add("end");
+    destCellKaDiv.innerHTML = `<i class="far fa-stop-circle"></i>`;
+
 });
 
 algoButton.addEventListener("click", function(e){
     //  console.log(e);
+    algoButton.style.background = "lightgreen";
       BFS();
 });
 
