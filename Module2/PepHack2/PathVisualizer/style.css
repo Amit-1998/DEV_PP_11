@@ -66,7 +66,7 @@ input {}
 #start-Algo {}
 
 .OutputArea {
-    background: aquamarine;
+    background: lightpink;
     height: calc(100vh - 100px);
     width: 100vw;
     position: relative;
@@ -101,4 +101,8 @@ input {}
 
 .obstacle{
     background-color: burlywood;
+}
+
+.move-added{
+    background-color: skyblue;
 }

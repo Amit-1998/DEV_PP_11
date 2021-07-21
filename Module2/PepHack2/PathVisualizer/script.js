@@ -100,6 +100,6 @@ for(let idx=0; idx<allCells.length; idx++){
 algoButton.addEventListener("click", function(e){
     //  console.log(e);
     algoButton.style.background = "lightgreen";
-      BFS();
+      BFS(srcCellKaDiv,destCellKaDiv,db);
 });
 
