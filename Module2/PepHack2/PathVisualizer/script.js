@@ -1,5 +1,5 @@
 let matrix = document.querySelector(".matrix");
-let allCells = document.querySelectorAll(".cell"); // 400 cells
+// let allCells = document.querySelectorAll(".cell"); // 400 cells/
 
 let start_x = document.querySelector("#st-rowNo");
 let start_y = document.querySelector("#st-colNo");
@@ -68,8 +68,16 @@ for(let idx=0; idx<allCells.length; idx++){
 
     allCells[idx].addEventListener("click", function(e){
         console.log(e);
+        // let rowth = idx/20;
+        let rowth = e.target.attributes.rowid.nodeValue;
+        // let colth = idx%20;
+        let colth = e.target.attributes.colid.nodeValue;
+        
+
         if(allCells[idx].classList.contains("obstacle")){
             allCells[idx].classList.remove("obstacle");
+            db[rowth][colth].weight = "";
+            db[rowth][colth].visited = false;
         }
         else{
             if(allCells[idx].classList.contains("start") || allCells[idx].classList.contains("end")){
@@ -78,15 +86,7 @@ for(let idx=0; idx<allCells.length; idx++){
             allCells[idx].classList.add("obstacle");
             // db update for adding obstacle
             // db
-            // let rowth = idx/20;
-            let rowth = e.target.attributes.rowid.nodeValue;
-            console.log(rowth);
-
-            // let colth = idx%20;
-            let colth = e.target.attributes.colid.nodeValue;
-            console.log(colth);
-
-
+            
             // console.log(db[rowth][colth]);
             db[rowth][colth].rowNo = rowth;
             db[rowth][colth].colNo = colth;
@@ -100,6 +100,6 @@ for(let idx=0; idx<allCells.length; idx++){
 algoButton.addEventListener("click", function(e){
     //  console.log(e);
     algoButton.style.background = "lightgreen";
-      BFS(srcCellKaDiv,destCellKaDiv,db);
+    BFS(srcCellKaDiv,destCellKaDiv,db);
 });
 

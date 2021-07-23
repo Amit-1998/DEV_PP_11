@@ -20,11 +20,15 @@ function initDB(){
    for(let i=0; i<20; i++){
       let row = [];
       for(let j=0; j<20; j++){
+          let idx = i*20 + j;
+          let usCellKadiv = allCells[idx];
+
           let cellObject = {
              rowNo : i,
              colNo : j,
              weight : "",
-             visited : false
+             visited : false,
+             srcTohere : [usCellKadiv]
           }
          row.push(cellObject);
       }
@@ -34,6 +38,7 @@ function initDB(){
 }
 
 makeMatrix();
+let allCells = document.querySelectorAll(".cell"); // 400 cells
 initDB();
 
 
