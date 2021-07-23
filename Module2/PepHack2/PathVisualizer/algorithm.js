@@ -72,10 +72,10 @@ function BFS(srcCellKaDiv,destCellKaDiv,db){
 
                    if(isValidCell(nextMoveKaDiv,RfornextCell,CfornextCell)){
                        db[RfornextCell][CfornextCell].visited = true;
-                    //    spsf.push(nextMoveKaDiv);
-                       db[RfornextCell][CfornextCell].srcTohere.push(spsf);
-                       let upshift = db[RfornextCell][CfornextCell].srcTohere.shift();
-                       db[RfornextCell][CfornextCell].srcTohere.push(upshift);
+                       spsf.push(nextMoveKaDiv);
+                    //    db[RfornextCell][CfornextCell].srcTohere.push(spsf);
+                    //    let upshift = db[RfornextCell][CfornextCell].srcTohere.shift();
+                    //    db[RfornextCell][CfornextCell].srcTohere.push(upshift);
 
                        let nextMoveNode = {
                           row : RfornextCell,
@@ -86,8 +86,8 @@ function BFS(srcCellKaDiv,destCellKaDiv,db){
                        }
                        
                     //    db[RfornextCell][CfornextCell].srcTohere = [];
-                    // db[Number(remNode.row)][Number(remNode.col)].srcTohere.pop();
-                    // db[RfornextCell][CfornextCell].srcTohere = nextMoveNode.shortestPathSoFarDivs;
+                    db[RfornextCell][CfornextCell].srcTohere = nextMoveNode.shortestPathSoFarDivs;
+                    db[Number(remNode.row)][Number(remNode.col)].srcTohere.pop();
                        
                        if(!nextMoveKaDiv.classList.contains("end"))
                          { nextMoveKaDiv.classList.add("move-added"); } 
