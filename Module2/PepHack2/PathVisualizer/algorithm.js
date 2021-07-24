@@ -67,11 +67,12 @@ function BFS(srcCellKaDiv,destCellKaDiv,db){
 
                    let idxInallCells = RfornextCell * 20 + CfornextCell;
                    let nextMoveKaDiv = allCells[idxInallCells];
-                   let spsf = db[Number(remNode.row)][Number(remNode.col)].srcTohere;
+                   let spsf = db[Number(remNode.row)][Number(remNode.col)].srcTohere.slice(0);
                 //    let spsf = remNode.shortestPathSoFarDivs;
 
                    if(isValidCell(nextMoveKaDiv,RfornextCell,CfornextCell)){
                        db[RfornextCell][CfornextCell].visited = true;
+                       console.log(nextMoveKaDiv);
                        spsf.push(nextMoveKaDiv);
                     //    db[RfornextCell][CfornextCell].srcTohere.push(spsf);
                     //    let upshift = db[RfornextCell][CfornextCell].srcTohere.shift();
@@ -82,20 +83,20 @@ function BFS(srcCellKaDiv,destCellKaDiv,db){
                           col : CfornextCell,
                           dist : 0,
                           stepCount : 0,
-                          shortestPathSoFarDivs : db[RfornextCell][CfornextCell].srcTohere
+                          shortestPathSoFarDivs : spsf
                        }
                        
                     //    db[RfornextCell][CfornextCell].srcTohere = [];
                     db[RfornextCell][CfornextCell].srcTohere = nextMoveNode.shortestPathSoFarDivs;
-                    db[Number(remNode.row)][Number(remNode.col)].srcTohere.pop();
+                  //   db[Number(remNode.row)][Number(remNode.col)].srcTohere.pop();
                        
                        if(!nextMoveKaDiv.classList.contains("end"))
                          { nextMoveKaDiv.classList.add("move-added"); } 
                       
                        q.enqueue(nextMoveNode);
                    }
-                   else
-                      console.log("not valid cell");
+                  //  else
+                  //     console.log("not valid cell");
                }
            }
        }
