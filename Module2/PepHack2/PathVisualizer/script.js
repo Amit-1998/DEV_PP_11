@@ -60,8 +60,8 @@ end_y.addEventListener("blur", function(e){
     }
     
     destCellKaDiv.classList.add("end");
-    destCellKaDiv.innerHTML = `<i class="far fa-stop-circle"></i>`;
-
+    destCellKaDiv.innerHTML = `<i class="fa fa-map-marker" aria-hidden="true"></i>`;
+    // <i class="far fa-stop-circle"></i>
 });
 
 for(let idx=0; idx<allCells.length; idx++){
