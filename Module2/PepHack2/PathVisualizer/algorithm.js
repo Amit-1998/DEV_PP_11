@@ -31,7 +31,7 @@ function BFS(srcCellKaDiv,destCellKaDiv,db){
     q.enqueue(srcNode);
     // console.log(q);
     while(!q.isEmpty()){
-       let remNode = q.dequeue();
+        let remNode = q.dequeue();
        // work on removed Node
        let idxInallCellForRemNode = Number(remNode.row) * 20 + Number(remNode.col);
        let removedNodeKaDiv = allCells[idxInallCellForRemNode];
