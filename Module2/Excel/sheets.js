@@ -82,6 +82,9 @@ function switchSheet(currentSheet) {
         if(italic){
             allCells[idx].style.fontStyle = "italic";
         }
+
+        let textAlign = cellObject.textAlign;
+        allCells[idx].style.textAlign = textAlign;
     }
 
 }
