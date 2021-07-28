@@ -12,6 +12,10 @@ chatInput.addEventListener("keypress", function(e){
          chatDiv.innerText = username+ " : " +chatInput.value;
 
          chatWindow.append(chatDiv); //append mein ham String bhi pass kar sakte hai
+         
+         // emit chat message and your name
+         socket.emit("chat", {username, chat: chatInput.value});
          chatInput.value = "";
      }
+
 });

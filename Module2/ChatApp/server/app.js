@@ -35,7 +35,12 @@ io.on("connection", function(socket){ // jab bhi socket connect hoga to ye funct
          // broadcast a message to all other clients except sender
          socket.broadcast.emit("join", username); // socket's special function => apne vaale socket ko chod kar sabhi sockets par message bhejega
     })
+    
+    socket.on("chat", function(chatObj){
+        socket.broadcast.emit("chatLeft", chatObj);
+    })
 
+    // tab close se apna aap isko call lag jayegi,diconnect ke liye koi emit nhi hota
     socket.on("disconnect", function(){
          let leftUser;
          let remainingUsers = userList.filter(function(userObj){
