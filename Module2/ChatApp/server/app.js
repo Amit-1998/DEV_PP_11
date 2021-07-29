@@ -31,10 +31,14 @@ io.on("connection", function(socket){ // jab bhi socket connect hoga to ye funct
          let userObject = { id : socket.id , username : username };
          userList.push(userObject);
          console.log(userList);
-
+         
+         // for self
+         socket.emit("online-list", userList);
+        
          // broadcast a message to all other clients except sender
-         socket.broadcast.emit("join", username); // socket's special function => apne vaale socket ko chod kar sabhi sockets par message bhejega
-    })
+         socket.broadcast.emit("join", userObject); // socket's special function => apne vaale socket ko chod kar sabhi sockets par message bhejega
+         
+     })
     
     socket.on("chat", function(chatObj){
         socket.broadcast.emit("chatLeft", chatObj);
@@ -42,16 +46,16 @@ io.on("connection", function(socket){ // jab bhi socket connect hoga to ye funct
 
     // tab close se apna aap isko call lag jayegi,diconnect ke liye koi emit nhi hota
     socket.on("disconnect", function(){
-         let leftUser;
+         let leftUserObj;
          let remainingUsers = userList.filter(function(userObj){
               if(userObj.id == socket.id){
-                   leftUser = userObj.username;
+                   leftUserObj = userObj;
                    return false;
               }
               return true;
          })
          userList = remainingUsers;
-         socket.broadcast.emit("userDisconnected", leftUser);
+         socket.broadcast.emit("leave", leftUserObj);
     })
 })
 

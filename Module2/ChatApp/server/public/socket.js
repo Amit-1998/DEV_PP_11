@@ -1,22 +1,27 @@
+let onlineList = document.querySelector(".online-list");
 // it will send a message to server
 // this is event based means is event par ye message send kara hai
 socket.emit("userconnected", username); // we provide "userconnected" as a event name
 
-socket.on("userDisconnected", function(username){
+socket.on("leave", function(dataObj){
     let leaveDiv = document.createElement("div");
     leaveDiv.classList.add("chat");
     leaveDiv.classList.add("leave");
-    leaveDiv.textContent = `${username} left chat`;
+    leaveDiv.textContent = `${dataObj.username} left chat`;
     chatWindow.append(leaveDiv);
+
+    deleteFromOnlineList(dataObj.id);
 })
 
 // Listner of event "join"
-socket.on("join", function(username){
+socket.on("join", function(dataObj){
      let joinDiv = document.createElement("div");
      joinDiv.classList.add("chat");
      joinDiv.classList.add("join");
-     joinDiv.textContent = `${username} joined chat`;
+     joinDiv.textContent = `${dataObj.username} joined chat`;
      chatWindow.append(joinDiv);
+
+     addInOnlineList(dataObj);
 })
 
 socket.on("chatLeft", function(chatObj){
@@ -26,3 +31,38 @@ socket.on("chatLeft", function(chatObj){
     chatDiv.textContent = chatObj.username+ " : " +chatObj.chat;
     chatWindow.append(chatDiv);
 })
+
+socket.on("online-list", function(userList){
+    // console.log(userList);
+    for(let i=0; i<userList.length; i++){
+          if(userList[i].id != socket.id){
+              let userDiv = document.createElement("div");
+              userDiv.classList.add("user");
+              userDiv.setAttribute("id", userList[i].id);
+
+              userDiv.innerHTML = `<div class="user-image">
+              <img src="default.jpg" alt="">       
+              </div>
+              <div class="user-name">${userList[i].username}</div>`;
+
+              onlineList.append(userDiv);
+          }
+    }
+})
+
+function deleteFromOnlineList(id){
+    document.querySelector(`#${id}`).remove();
+}
+
+function addInOnlineList(userObj){
+    let userDiv = document.createElement("div");
+    userDiv.classList.add("user");
+    userDiv.setAttribute("id", userObj.id);
+
+    userDiv.innerHTML = `<div class="user-image">
+    <img src="default.jpg" alt="">       
+    </div>
+    <div class="user-name">${userObj.username}</div>`;
+
+    onlineList.append(userDiv);
+}
