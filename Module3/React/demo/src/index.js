@@ -6,7 +6,9 @@ import ReactDOM from 'react-dom'; //shadow DOM vaala logic i.e render logic //un
 // App is component we have imported
 // import App from './App'; // ye App ek component hai jo by default hame mila hua hai jo ki yha import kar rkha hai 
 
-import MyComp from "./MyComp"; // exactly same name MyComp 
+// import MyComp from "./MyComp"; // exactly same name MyComp 
+
+import MyComp from "./classBasedComponent/MyComp";
 
 ReactDOM.render(
                 //   <App />, // ek Component
