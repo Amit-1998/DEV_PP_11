@@ -12,8 +12,14 @@ import MyComp from "./classBasedComponent/MyComp";
 
 ReactDOM.render(
                 //   <App />, // ek Component
-                  <MyComp/>, // basically <MyComp/> ek component usage hai joki ek sort of Object hai MyComp.js class ka// class based vaala component
-                  document.getElementById('root') // aur ek jagah jha us component ko dikhana hai
+                //   <MyComp/>, // basically <MyComp/> ek component usage hai joki ek sort of Object hai MyComp.js class ka// class based vaala component
+                   <div>
+                        <MyComp/>  
+                        <MyComp/>
+                        <MyComp/>
+                        <MyComp/>
+                   </div>, // ek component(parent) jiske chaar child
+                   document.getElementById('root') // aur ek jagah jha us component ko dikhana hai
                     // yha par document us index.html(inside public folder) file ko indicate karta hai
                     // ye index.html file se id="root" vaale div ko laata hai aur usme App vaale component ko daal deta hai
                 );
