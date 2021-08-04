@@ -5,6 +5,10 @@ import React from "react";
 
 class MyComp extends React.Component{ // extends means inherit
     
+    state = { // written in form of an object
+        someNumber: 2
+    } // ab is data ko mein apni UI mein use kar sakta hu
+
     // let render = ()=>{} 
     // render name ka function React.Component name ki class ke paas pehle se hota hai
     render = () => {
@@ -13,7 +17,9 @@ class MyComp extends React.Component{ // extends means inherit
              // is return mein hmari UI aati hai
              <div> 
                   <h1>Hello This is Class-Based Component </h1>
+                  <h2> { this.state.someNumber } </h2> 
              </div>
+             // here this refers to our current component
         );
     }
 }
