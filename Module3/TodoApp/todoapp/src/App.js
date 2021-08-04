@@ -3,18 +3,32 @@ import React from "react";
 class App extends React.Component{
   
     state = {
-        tasks: ["make coffee", "make notes", "go for a jog","new task"]
+        tasks: ["make coffee", "make notes", "go for a jog","new task"],
+        currInput: "abc"
     }
 
      render = () => {
          return (
-            <ul>
-                {
-                    this.state.tasks.map((el) => {
-                        return <li>{el}</li>;
-                    })
-                }
-            </ul>
+            <div>
+                
+                <input 
+                    type="text" 
+                    onChange={(e) => {
+                         this.setState( {currInput: e.currentTarget.value} );  
+                    }} 
+                  value={this.state.currInput}  // initial value
+                />
+
+                <ul>
+                    {
+                        this.state.tasks.map((el) => {
+                               return <li>{el}</li>;
+                            })
+                    }
+                 </ul>     
+            </div>
+
+            
          );    
      }
   
