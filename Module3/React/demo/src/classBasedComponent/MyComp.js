@@ -17,9 +17,12 @@ class MyComp extends React.Component{ // extends means inherit
              // is return mein hmari UI aati hai
              <div> 
                   <h1>Hello This is Class-Based Component </h1>
-                  <h2> { this.state.someNumber } </h2> 
+                  <h2> { this.state.someNumber } </h2>
+
+                  <button onClick={ () => { console.log("the button was clicked"); } }>This is button </button>
              </div>
              // here this refers to our current component
+             // button ke onclick par { js  ka code } js Ka code mein arrow function ko chala dena
         );
     }
 }
