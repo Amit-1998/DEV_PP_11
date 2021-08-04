@@ -15,8 +15,17 @@ ReactDOM.render(
                 //   <MyComp/>, // basically <MyComp/> ek component usage hai joki ek sort of Object hai MyComp.js class ka// class based vaala component
                    <div>
                         <MyComp/>  
+                        <hr/>
+
                         <MyComp/>
+                        <hr/>
+
                         <MyComp/>
+                        <hr/>
+
+                        <MyComp/>
+                        <hr/>
+                        
                         <MyComp/>
                    </div>, // ek component(parent) jiske chaar child
                    document.getElementById('root') // aur ek jagah jha us component ko dikhana hai

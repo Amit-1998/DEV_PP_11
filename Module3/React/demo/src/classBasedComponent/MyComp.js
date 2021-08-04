@@ -25,6 +25,10 @@ class MyComp extends React.Component{ // extends means inherit
                   </button>
 
                   <h1>{this.state.someNumber}</h1>
+                  
+                  <button onClick={ () => { this.setState( {someNumber: this.state.someNumber - 1 } ); } }>
+                      Decreament
+                  </button>
 
              </div>
              // here this refers to our current component
