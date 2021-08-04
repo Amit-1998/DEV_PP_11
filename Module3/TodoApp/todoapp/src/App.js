@@ -1,4 +1,5 @@
 import React from "react";
+import "./App.css"
 
 class App extends React.Component{
   
@@ -11,7 +12,7 @@ class App extends React.Component{
          return (
             <div>
                 
-                <input 
+                <input className="input-box"
                     type="text" 
                     onChange={(e) => {
                          this.setState( {currInput: e.currentTarget.value} );  
