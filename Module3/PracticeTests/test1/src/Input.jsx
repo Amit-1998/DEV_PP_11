@@ -9,9 +9,8 @@ let Input = (props) => {
         }
         }
     return (
-        <div className="InputKeypad">
+        <div className="ip-btn">
 
-            <button onClick={(e)=>{clkFun(e)}}>0</button>
             <button onClick={(e)=>{clkFun(e)}}>1</button>
             <button onClick={(e)=>{clkFun(e)}}>2</button>
             <button onClick={(e)=>{clkFun(e)}}>3</button>
@@ -21,6 +20,7 @@ let Input = (props) => {
             <button onClick={(e)=>{clkFun(e)}}>7</button>
             <button onClick={(e)=>{clkFun(e)}}>8</button>
             <button onClick={(e)=>{clkFun(e)}}>9</button>
+            <button onClick={(e)=>{clkFun(e)}}>0</button>
         </div>
     )
 
