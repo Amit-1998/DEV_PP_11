@@ -6,9 +6,9 @@ let List = (props)=>{
          
         <ul>
            {
-                props.tasks.map((el) => {
+                props.tasks.map((el,index) => {
                        return ( 
-                           <li>
+                           <li key= {index}>
                              {el}{" "} 
                               {
                                   <button onClick={() => {

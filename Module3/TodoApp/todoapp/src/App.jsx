@@ -11,11 +11,13 @@ class App extends React.Component {
         currInput: ""
     }
 
+    // this.props => classBased comp props aise milte hai
+
     deleteTask = (singleTask)=>{
         let currTaskArr = this.state.tasks; 
 
         let filteredArr = currTaskArr.filter((element) => {
-                      return element != singleTask
+                      return element !== singleTask
                       });
         this.setState({ tasks: filteredArr });
 

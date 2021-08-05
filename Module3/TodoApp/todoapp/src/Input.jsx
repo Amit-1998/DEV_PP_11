@@ -7,7 +7,7 @@ let Input = (props)=>{
                         props.handleCurrInput(e.currentTarget.value); // App.js ke handleCurrInp funct ka address aa jata hai props ke paas
                     }}
                     onKeyDown={(e) => {
-                        if ((e.key == "Enter")) {
+                        if ((e.key === "Enter")) {
                             props.handleTasks();
                         }
                     }
