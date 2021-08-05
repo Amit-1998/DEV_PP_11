@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css"
 
 import List from "./List";
+import Input from "./Input";
 
 class App extends React.Component {
 
@@ -20,27 +21,22 @@ class App extends React.Component {
 
     }
 
+    handleCurrInput = (value)=>{ // onChange(e) vaale ka
+        this.setState({ currInput: value });
+    }
+
+    handleTasks = ()=>{ // onKeyDown() vaale ka
+        this.setState({
+            tasks: [...this.state.tasks, this.state.currInput],
+            currInput: ""
+        });
+    }
+
     render = () => {
         return (
             <div>
 
-                <input className="input-box"
-                    type="text"
-                    onChange={(e) => {
-                        this.setState({ currInput: e.currentTarget.value });
-                    }}
-                    onKeyDown={(e) => {
-                        if ((e.key == "Enter")) {
-                            this.setState({
-                                tasks: [...this.state.tasks, this.state.currInput],
-                                currInput: ""
-                            });
-                        }
-                    }
-
-                    }
-                    value={this.state.currInput}  // initial value
-                />
+                <Input handleCurrInput= {this.handleCurrInput} handleTasks={this.handleTasks} currInput= {this.state.currInput} />
 
                 <List tasks = {this.state.tasks} deleteTask = {this.deleteTask} />
             </div>
