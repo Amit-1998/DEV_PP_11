@@ -10,6 +10,16 @@ class App extends React.Component {
         currInput: ""
     }
 
+    deleteTask = (singleTask)=>{
+        let currTaskArr = this.state.tasks; 
+
+        let filteredArr = currTaskArr.filter((element) => {
+                      return element != singleTask
+                      });
+        this.setState({ tasks: filteredArr });
+
+    }
+
     render = () => {
         return (
             <div>
@@ -32,7 +42,7 @@ class App extends React.Component {
                     value={this.state.currInput}  // initial value
                 />
 
-                <List tasks = {this.state.tasks}/>
+                <List tasks = {this.state.tasks} deleteTask = {this.deleteTask} />
             </div>
 
              // uper we used <List /> as an Object

@@ -8,19 +8,21 @@ let List = (props)=>{
                 props.tasks.map((el) => {
                        return ( 
                            <li>
-                             {el} 
+                             {el}{" "} 
                               {
-                                  /* <button onClick={() => {
+                                  <button onClick={() => {
 
-                                  let currTaskArr = this.state.tasks; // ye jo state hai ye App.js mein bni state ko refer kar rha hai
+                                    //    let currTaskArr = this.state.tasks; // ye jo state hai ye App.js mein bni state ko refer kar rha hai
 
-                                  let filteredArr = currTaskArr.filter((element) => {
-                                                return element != el
-                                                });
-                                  this.setState({ tasks: filteredArr });
+                                    //    let filteredArr = currTaskArr.filter((element) => {
+                                    //                      return element != el
+                                    //                      });
+                                    //    this.setState({ tasks: filteredArr });
+                                    props.deleteTask(el);
 
-                                  }}>Delete</button>*/
-                                }
+
+                                  }}>Delete</button>
+                              }
                            </li> 
                        );
                 })
