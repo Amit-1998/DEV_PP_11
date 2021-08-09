@@ -60,7 +60,7 @@ body{
     font-weight: 400;
 }
 
-.KeyPad{
+.keyPad{
     height: calc(600px - 276px);
     width: 100%;
     display: flex;
@@ -68,7 +68,7 @@ body{
     flex-wrap: wrap;
 }
 
-.KeyPad button{
+.keyPad button{
     height: 50px;
     width: 50px;
     background: black;
