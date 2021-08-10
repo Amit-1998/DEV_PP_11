@@ -1,39 +1,34 @@
 import React from "react";
+import Child from "./Child";
 
-class App extends React.Component{
-    
-    constructor(props){ // constructor mein props milte hi hai syntax hai aisa halaki props mein undefine aayega, Although App khud ek Parent Comp hai 
-       
-        super(props); // super ye Uper React.Component vaali class hogi
-        console.log("constructor was called");
-        this.state = {  // this means ye jo App comp hai ismein state bna do, pehle ham state ko bhar bnate they,ab bhar nhi bnayenge constructor creation phase mein call hota hai to creation phase mein hi bna denge 
-            on: false
-        }; 
-    }
- 
-    componentDidMount(){
-       console.log("component did mount was called");
-    }
+class App extends React.Component {
 
-    componentDidUpdate(){
-        console.log("component did update was called");
-    }
+  state = {
+    child: true,
+  }
 
-    render = ()=>{
-        console.log("render was called");
-        return (
-             <div>
-                  <button onClick={ ()=>{
-                      if(this.state.on){
-                          this.setState( {on: false} );
-                      }
-                      else{
-                         this.setState( {on: true} );
-                      }
-                  } }>Click</button> 
-             </div>
-        );
-    }
+  render = () => {
+    return (
+      <div>
+        <button onClick={() => {
+          if (this.state.child) {
+            this.setState({ child: false });
+          }
+          else {
+            this.setState({ child: true });
+          }
+        }}>
+        Child toggle
+        </button>
+        
+        { // conditional rendering 
+          this.state.child ? <Child /> : ""
+        } 
+
+      </div>
+    );
+  }
+
 }
 
 export default App;
