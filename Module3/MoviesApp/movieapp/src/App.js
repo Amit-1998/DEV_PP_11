@@ -8,7 +8,7 @@ class App extends React.Component {
       // fetch() => which takes the link of file/API jha se data mangvaana hai
       // fetch() is a async function
       let f = async () => {
-          let result = fetch("./data.json");
+          let result = await fetch("./data.json");
           console.log(result); // result contains bhot saari chise,one of them is json data call by.json() which fetch function provides us
 
           let json = await result.json();
