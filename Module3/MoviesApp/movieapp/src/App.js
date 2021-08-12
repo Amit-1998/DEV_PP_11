@@ -1,6 +1,9 @@
 import React from "react";
 import Filter from "./Filter";
 import Navbar from "./Navbar";
+import Pagination from "./Pagination";
+import Search from "./Search";
+import Table from "./Table";
 
 class App extends React.Component {
 
@@ -42,8 +45,13 @@ class App extends React.Component {
         <Navbar />
         
         <div className="row">
-          <Filter genreData={this.state.genre}/>
-
+              <Filter genreData={this.state.genre}/>
+              
+              <div class="col-9 p-5">
+                   <Search />
+                   <Table moviesData={this.state.movies}/>
+                   
+              </div>
         </div>
       </div>
     );
