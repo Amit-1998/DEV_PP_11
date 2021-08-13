@@ -4,7 +4,7 @@
     
 //     constructor(props){ // constructor mein props milte hi hai syntax hai aisa halaki props mein undefine aayega, Although App khud ek Parent Comp hai 
        
-//         super(props); // super ye Uper React.Component vaali class hogi
+//         super(props); //jab ham class comp ka constructor bnate hai to React.Comp(Actual Parent) ka bhi constructor call karna padta hai. super ye Uper React.Component vaali class ka constructor call karta hai
 //         console.log("constructor was called");
 //         this.state = {  // this means ye jo App comp hai ismein state bna do, pehle ham state ko bhar bnate they,ab bhar nhi bnayenge constructor creation phase mein call hota hai to creation phase mein hi bna denge 
 //             on: false

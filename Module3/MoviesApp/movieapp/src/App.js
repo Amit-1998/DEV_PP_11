@@ -9,7 +9,12 @@ class App extends React.Component {
 
   state = {
     movies: [],
-    genre: []
+    genre: [],
+    selectedFilter: "All Genre"
+  }
+
+  setFilter = (filter)=>{
+      this.setState( {selectedFilter: filter} );
   }
 
   componentDidMount() { // data ek baar hi laana hai to hum data compDidMount() mein likhenge
@@ -45,11 +50,11 @@ class App extends React.Component {
         <Navbar />
         
         <div className="row">
-              <Filter genreData={this.state.genre}/>
+              <Filter handleFilter={this.setFilter} selectedFilter={this.state.selectedFilter} genreData={this.state.genre}/>
               
               <div class="col-9 p-5">
                    <Search />
-                   <Table moviesData={this.state.movies}/>
+                   <Table selectedFilter={this.state.selectedFilter} moviesData={this.state.movies}/>
                    
               </div>
         </div>

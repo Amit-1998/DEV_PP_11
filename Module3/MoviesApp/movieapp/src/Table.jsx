@@ -1,8 +1,20 @@
 import Pagination from "./Pagination";
 let Table = (props) => {
     
-    console.log("Table props");
-    console.log(props.moviesData);
+    // console.log("Table props");
+    // console.log(props.moviesData);
+
+    let allMovies = props.moviesData;
+    let currFilter = props.selectedFilter;
+    
+    let filteredMoviesArr = allMovies.filter((el)=>{
+         if(currFilter == "All Genre"){
+             return el;
+         }
+         else if(el.genre.name == currFilter){
+             return el;
+         }
+    });
 
     return (
         <>
@@ -22,7 +34,7 @@ let Table = (props) => {
                         </thead>
                         <tbody>
                             {
-                                props.moviesData.map((el)=>{
+                                filteredMoviesArr.map((el)=>{
                                      return (
                                          <tr key={el._id}>
                                               <td>{el.title}</td>
