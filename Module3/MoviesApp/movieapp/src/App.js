@@ -6,7 +6,6 @@ import Search from "./Search";
 import Table from "./Table";
 
 class App extends React.Component {
-
   state = {
     movies: [],
     genre: [],
@@ -17,7 +16,31 @@ class App extends React.Component {
       this.setState( {selectedFilter: filter} );
   }
 
-  componentDidMount() { // data ek baar hi laana hai to hum data compDidMount() mein likhenge
+   toggleLike = (id)=> {
+       let index = this.state.movies.findIndex((el)=>{
+            // for each el in arr
+            return el._id == id;
+       });
+       // make copy of moviesarr
+       let currMoviesArr = this.state.movies.map((el) => el);
+       if(currMoviesArr[index].liked){
+           currMoviesArr[index].liked = false;
+       }
+       else{
+          currMoviesArr[index].liked = true;
+       }
+       this.setState({movies: currMoviesArr});
+   }
+
+   deleteMovie = (id)=>{
+       let filteredArr = this.state.movies.filter((el)=>{
+            return el._id != id;
+       });
+
+       this.setState({movies: filteredArr});
+   }
+
+   componentDidMount() { // data ek baar hi laana hai to hum data compDidMount() mein likhenge
           // I will get data here
           // we are in context of FrontEnd side => all Browsers exposed some functionalities like fetch()
           // fetch() => which takes the link of file/API jha se data mangvaana hai
@@ -54,7 +77,7 @@ class App extends React.Component {
               
               <div class="col-9 p-5">
                    <Search />
-                   <Table selectedFilter={this.state.selectedFilter} moviesData={this.state.movies}/>
+                   <Table deleteMovie={this.deleteMovie} toggleHeart = {this.toggleLike} selectedFilter={this.state.selectedFilter} moviesData={this.state.movies}/>
                    
               </div>
         </div>

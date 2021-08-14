@@ -1,13 +1,15 @@
 import Pagination from "./Pagination";
 import "./Table.css";
+import React from "react";
 
-let Table = (props) => {
+class Table extends React.Component {
     
-    // console.log("Table props");
-    // console.log(props.moviesData);
-
-    let allMovies = props.moviesData;
-    let currFilter = props.selectedFilter;
+    // console.log("Table this.props");
+    // console.log(this.props.moviesData);
+    // class ke ander let keyword use nhi kar sakte , render ke ander kar sakte hai
+    
+     allMovies = this.props.moviesData;
+     currFilter = this.props.selectedFilter;
     
     let filteredMoviesArr = allMovies.filter((el)=>{
          if(currFilter == "All Genre"){
@@ -18,10 +20,10 @@ let Table = (props) => {
          }
     });
 
-    let arrToBeUsedInTable = filteredMoviesArr.slice(0,4);
-  
-
-    return (
+    arrToBeUsedInTable = filteredMoviesArr.slice(0,4);
+    
+    render(){
+          return (
         <>
             <div class="row">
                 <div class="col-10">
@@ -46,22 +48,18 @@ let Table = (props) => {
                                               <td>{el.genre.name}</td>
                                               <td>{el.numberInStock}</td>
                                               <td>{el.dailyRentalRate}</td>
-                                              <td>
-                                                 <span onClick={
-                                                       (e)=>{
-                                                           if(e.currentTarget.innerText=="favorite"){
-                                                               e.currentTarget.innerText = "favorite_border";
-                                                           }
-                                                           else{
-                                                               e.currentTarget.innerText = "favorite";
-                                                           }
-                                                       }
-                                                    }
-                                                   class="material-icons-outlined">
-                                                   favorite_border
-                                                 </span>
+                                              <td onClick={
+                                                  ()=>{ // toggle liked key
+                                                       this.props.toggleHeart(el._id);
+                                                  }}>
+                                                 { // right way => ApI ke data mein like name ki to koi key hai hi nhi 
+                                                   el.liked ? (<span class="material-icons-outlined">favorite</span>) : (<span class="material-icons-outlined">favorite_border</span>) 
+                                                 }
+                                                 
                                               </td>
-                                              <td><button className="table-delete-btn">Delete</button></td>
+                                              <td><button onClick={()=>{
+                                                    this.props.deleteMovie(el._id);
+                                               }} className="table-delete-btn">Delete</button></td>
                                          </tr>
                                      );
                                 })
@@ -74,7 +72,10 @@ let Table = (props) => {
             <Pagination />
         </>
 
-    );
+      );
+    }
+
+    
 }
 
 export default Table;
