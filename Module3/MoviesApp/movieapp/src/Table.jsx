@@ -8,33 +8,34 @@ class Table extends React.Component {
     // console.log(this.props.moviesData);
     // class ke ander let keyword use nhi kar sakte , render ke ander kar sakte hai
     
-    allMovies;
-    currFilter;
-
-    constructor(props){
-         super(props)
-         this.allMovies = props.moviesData;
-         this.currFilter = props.selectedFilter;
-
-         this.state = {
-             currPage: 1
-         }
+    state = {
+        currPage: 1
     }
 
-    
-     filteredMoviesArr = this.allMovies.filter((el)=>{
-         if(this.currFilter == "All Genre"){
-             return el;
-         }
-         else if(el.genre.name == this.currFilter){
-             return el;
-         }
-    });
-
-    arrToBeUsedInTable = this.filteredMoviesArr.slice(0,4);
+    selectPage = (value)=>{
+       this.setState({currPage: value});
+    }
     
     render(){
-          return (
+        
+        let allMovies = this.props.moviesData;
+        let currFilter = this.props.selectedFilter;
+        
+        
+        let filteredMoviesArr = allMovies.filter((el)=>{
+            if(currFilter == "All Genre"){
+                return el;
+            }
+            else if(el.genre.name == currFilter){
+                return el;
+            }
+        });
+        let numberOfPages = Math.ceil(filteredMoviesArr.length / 4);
+    
+        let arrToBeUsedInTable = filteredMoviesArr.slice(0,4);
+        // console.log(arrToBeUsedInTable)
+
+        return (
         <>
             <div class="row">
                 <div class="col-10">
@@ -80,7 +81,7 @@ class Table extends React.Component {
                 </div>
             </div>
 
-            <Pagination />
+            <Pagination selectPage={this.selectPage} currPage={this.state.currPage} numberOfPages= {numberOfPages} />
         </>
 
       );
