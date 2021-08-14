@@ -32,7 +32,10 @@ class Table extends React.Component {
         });
         let numberOfPages = Math.ceil(filteredMoviesArr.length / 4);
     
-        let arrToBeUsedInTable = filteredMoviesArr.slice(0,4);
+        let startIndex = (this.state.currPage - 1)*4;
+        let endIndex = Math.min(filteredMoviesArr.length, this.state.currPage*4);
+        
+        let arrToBeUsedInTable = filteredMoviesArr.slice(startIndex,endIndex);
         // console.log(arrToBeUsedInTable)
 
         return (
