@@ -8,19 +8,30 @@ class Table extends React.Component {
     // console.log(this.props.moviesData);
     // class ke ander let keyword use nhi kar sakte , render ke ander kar sakte hai
     
-     allMovies = this.props.moviesData;
-     currFilter = this.props.selectedFilter;
+    allMovies;
+    currFilter;
+
+    constructor(props){
+         super(props)
+         this.allMovies = props.moviesData;
+         this.currFilter = props.selectedFilter;
+
+         this.state = {
+             currPage: 1
+         }
+    }
+
     
-    let filteredMoviesArr = allMovies.filter((el)=>{
-         if(currFilter == "All Genre"){
+     filteredMoviesArr = this.allMovies.filter((el)=>{
+         if(this.currFilter == "All Genre"){
              return el;
          }
-         else if(el.genre.name == currFilter){
+         else if(el.genre.name == this.currFilter){
              return el;
          }
     });
 
-    arrToBeUsedInTable = filteredMoviesArr.slice(0,4);
+    arrToBeUsedInTable = this.filteredMoviesArr.slice(0,4);
     
     render(){
           return (

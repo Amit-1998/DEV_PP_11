@@ -38,6 +38,7 @@ class App extends React.Component {
        });
 
        this.setState({movies: filteredArr});
+       
    }
 
    componentDidMount() { // data ek baar hi laana hai to hum data compDidMount() mein likhenge
