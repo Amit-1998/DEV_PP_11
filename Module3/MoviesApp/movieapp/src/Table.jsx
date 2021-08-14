@@ -1,4 +1,6 @@
 import Pagination from "./Pagination";
+import "./Table.css";
+
 let Table = (props) => {
     
     // console.log("Table props");
@@ -15,6 +17,9 @@ let Table = (props) => {
              return el;
          }
     });
+
+    let arrToBeUsedInTable = filteredMoviesArr.slice(0,4);
+  
 
     return (
         <>
@@ -34,15 +39,29 @@ let Table = (props) => {
                         </thead>
                         <tbody>
                             {
-                                filteredMoviesArr.map((el)=>{
+                                arrToBeUsedInTable.map((el)=>{
                                      return (
                                          <tr key={el._id}>
                                               <td>{el.title}</td>
                                               <td>{el.genre.name}</td>
                                               <td>{el.numberInStock}</td>
                                               <td>{el.dailyRentalRate}</td>
-                                              <td>like</td>
-                                              <td><button>Delete</button></td>
+                                              <td>
+                                                 <span onClick={
+                                                       (e)=>{
+                                                           if(e.currentTarget.innerText=="favorite"){
+                                                               e.currentTarget.innerText = "favorite_border";
+                                                           }
+                                                           else{
+                                                               e.currentTarget.innerText = "favorite";
+                                                           }
+                                                       }
+                                                    }
+                                                   class="material-icons-outlined">
+                                                   favorite_border
+                                                 </span>
+                                              </td>
+                                              <td><button className="table-delete-btn">Delete</button></td>
                                          </tr>
                                      );
                                 })
