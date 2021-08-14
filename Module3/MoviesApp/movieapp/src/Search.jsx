@@ -8,7 +8,7 @@ let Search = (props)=>{
                 <div class="row">
                     <div class="col-4">
                         <div class="input-group flex-nowrap">
-                            <input type="text" class="form-control mt-4" placeholder="Search..." />
+                            <input type="text" class="form-control mt-4" placeholder="Search..." value={props.search} onChange={(e)=>{props.updateSearch(e.currentTarget.value)}} />
                         </div>
                     </div>
                 </div>

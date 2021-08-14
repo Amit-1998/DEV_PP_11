@@ -30,6 +30,15 @@ class Table extends React.Component {
                 return el;
             }
         });
+
+        filteredMoviesArr = filteredMoviesArr.filter((el)=>{
+            // for removing case sensitive
+            let movieTitle = el.title;
+            movieTitle = movieTitle.toLowerCase();
+            let s = this.props.search.toLowerCase();
+            return movieTitle.includes(s);
+        });
+
         let numberOfPages = Math.ceil(filteredMoviesArr.length / 4);
     
         let startIndex = (this.state.currPage - 1)*4;
