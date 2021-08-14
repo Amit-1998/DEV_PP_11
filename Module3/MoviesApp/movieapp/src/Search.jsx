@@ -1,7 +1,8 @@
-let Search = ()=>{
+let Search = (props)=>{
+    
     return(
             <>
-                <p class="mt-1">Show 9 movies from the database</p>
+                <p class="mt-1">Show {props.totalMovies} movies from the database</p>
                 <button type="button" class="btn btn-primary mt-2">New</button>
 
                 <div class="row">

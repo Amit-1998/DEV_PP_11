@@ -77,7 +77,7 @@ class App extends React.Component {
               <Filter handleFilter={this.setFilter} selectedFilter={this.state.selectedFilter} genreData={this.state.genre}/>
               
               <div class="col-9 p-5">
-                   <Search />
+                   <Search totalMovies={this.state.movies.length} />
                    <Table deleteMovie={this.deleteMovie} toggleHeart = {this.toggleLike} selectedFilter={this.state.selectedFilter} moviesData={this.state.movies}/>
                    
               </div>
