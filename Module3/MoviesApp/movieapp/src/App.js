@@ -89,10 +89,14 @@ class App extends React.Component {
                             <Customer />
                         </Route>
 
-                        <Route path="/rentals">
+                        <Route exact path="/rentals">
                             <Rentals />
                         </Route>
                         
+                        <Route exact path="/rentals/premium">
+                            <Login />
+                        </Route>
+
                         <Route path="/login">
                              <Login />
                         </Route>
