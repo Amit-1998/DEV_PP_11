@@ -35,6 +35,13 @@ let App = ()=> {
       console.log("Case1: Empty Array vaala useEffect was called");
   }, []);
 
+// case2 : 
+// In this case you only give a function and no arr
+// useEffect will execute your passed function after every render, that is after first render and after every re-render
+useEffect(()=>{
+    console.log("Case2 : No arr,only function passed vaala useEffect was called");
+});
+
   return (
     <div>
        <button onClick={()=>{setCount(count + 1)}}>+</button>
