@@ -14,7 +14,11 @@ let App = ()=> {
 
   // let [name, setname] = useState("amazon"); // If we need to make multiple states than we have to call multiple times useState()
 
-
+  // in class component when we say the component is being re-rendered it meant that render function is being executed
+  // what happens in functional component ?
+  // ans is jab functional component re-render hota hai tab ye function pura execute hota hai
+  // now quest is jab ye poora function fir se execute hota hai tab to state fir se 0 set ho jati hogi ? ans is no becoz hook apne aap internally state ko manage karta hai
+ 
   return (
     <div>
        <button onClick={()=>{setCount(count + 1)}}>+</button>
