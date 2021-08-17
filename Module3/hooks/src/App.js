@@ -33,26 +33,33 @@ let App = ()=> {
 
   // useEffect mein jo hamne function pass kra hai, usko useEffect apne aap call karta hai , kab call karta hai? usi par cases bante hai
   
-  useEffect(()=>{
-      console.log("Case1: Empty Array vaala useEffect was called");
-  }, []);
+  // useEffect(()=>{
+  //     console.log("Case1: Empty Array vaala useEffect was called");
+  // }, []);
 
-// case2 : 
+// for Cleanup= consider case2
+// Case2 : 
 // In this case you only give a function and no arr
 // useEffect will execute your passed function after every render, that is after first render and after every re-render
  useEffect(()=>{
     console.log("Case2 : No arr,only function passed vaala useEffect was called");
+
+    //ye har case ke liye ho sakta hai ki
+    // useEffect ko jo ham function dete hai vo return kar sakta hai ek nya function
+     return ()=>{
+        console.log("clean-up function");
+     }
  });
 
  //case3 : 
  // this useEffect will execute after first render
  // and also after the state variable which is being used changes
- useEffect(() => {
-    let arr = process.split("i");
-    // useEffect mein jo function hai agar vo meri state ke saath kaam kar rha hai
-    // to us state ko mujhe is array mein likhne padta hai
-    console.log(arr);
- }, [process]); // is arr ko ham dependency array bhi bolte hai 
+//  useEffect(() => {
+//     let arr = process.split("i");
+//     // useEffect mein jo function hai agar vo meri state ke saath kaam kar rha hai
+//     // to us state ko mujhe is array mein likhne padta hai
+//     console.log(arr);
+//  }, [process]); // is arr ko ham dependency array bhi bolte hai 
 
   return (
     <div>
@@ -60,8 +67,7 @@ let App = ()=> {
        <p>{count}</p>
        <button onClick={()=>{setCount(count - 1)}}>-</button>
        
-       <p>{process}</p>
-       <button onClick={ () => {setProcess("stop")} }>Kill Process</button>
+       
     </div>
   );
 }
