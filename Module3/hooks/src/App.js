@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 let App = ()=> {
   
@@ -11,7 +11,7 @@ let App = ()=> {
 
   let [count, setCount] = useState(0); // useState() mein ham state ki initial value pass karte hai
   // we can give any name to function Name setCount
-
+ console.log("render");
   // let [name, setname] = useState("amazon"); // If we need to make multiple states than we have to call multiple times useState()
 
   // in class component when we say the component is being re-rendered it meant that render function is being executed
@@ -19,6 +19,22 @@ let App = ()=> {
   // ans is jab functional component re-render hota hai tab ye function pura execute hota hai
   // now quest is jab ye poora function fir se execute hota hai tab to state fir se 0 set ho jati hogi ? ans is no becoz hook apne aap internally state ko manage karta hai
  
+  // second hook
+  //useEffect ek hook hai jo functional Component ke ander hi use hota hai
+  // it takes 2 arguments => function, arr [optional]
+  // based on you have passed the arr or not
+  // we have 3 cases
+  
+  // case1 => you have passed a function and an empty arr
+  // then useEffect calls the passed function only once, after first render
+  // so it works like componentDidMount()
+
+  // useEffect mein jo hamne function pass kra hai, usko useEffect apne aap call karta hai , kab call karta hai? usi par cases bante hai
+  
+  useEffect(()=>{
+      console.log("Case1: Empty Array vaala useEffect was called");
+  }, []);
+
   return (
     <div>
        <button onClick={()=>{setCount(count + 1)}}>+</button>
