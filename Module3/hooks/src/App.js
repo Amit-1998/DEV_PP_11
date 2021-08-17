@@ -11,7 +11,9 @@ let App = ()=> {
 
   let [count, setCount] = useState(0); // useState() mein ham state ki initial value pass karte hai
   // we can give any name to function Name setCount
- console.log("render");
+  let [process, setProcess] = useState("running"); // nayi state k liye bnaya for case3
+ 
+   console.log("render");
   // let [name, setname] = useState("amazon"); // If we need to make multiple states than we have to call multiple times useState()
 
   // in class component when we say the component is being re-rendered it meant that render function is being executed
@@ -38,15 +40,28 @@ let App = ()=> {
 // case2 : 
 // In this case you only give a function and no arr
 // useEffect will execute your passed function after every render, that is after first render and after every re-render
-useEffect(()=>{
+ useEffect(()=>{
     console.log("Case2 : No arr,only function passed vaala useEffect was called");
-});
+ });
+
+ //case3 : 
+ // this useEffect will execute after first render
+ // and also after the state variable which is being used changes
+ useEffect(() => {
+    let arr = process.split("i");
+    // useEffect mein jo function hai agar vo meri state ke saath kaam kar rha hai
+    // to us state ko mujhe is array mein likhne padta hai
+    console.log(arr);
+ }, [process]); // is arr ko ham dependency array bhi bolte hai 
 
   return (
     <div>
        <button onClick={()=>{setCount(count + 1)}}>+</button>
        <p>{count}</p>
        <button onClick={()=>{setCount(count - 1)}}>-</button>
+       
+       <p>{process}</p>
+       <button onClick={ () => {setProcess("stop")} }>Kill Process</button>
     </div>
   );
 }
