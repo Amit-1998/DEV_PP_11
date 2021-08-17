@@ -11,9 +11,9 @@ let App = ()=> {
 
   let [count, setCount] = useState(0); // useState() mein ham state ki initial value pass karte hai
   // we can give any name to function Name setCount
-  let [process, setProcess] = useState("running"); // nayi state k liye bnaya for case3
+  // let [process, setProcess] = useState("running"); // nayi state k liye bnaya for case3
  
-   console.log("render");
+  //  console.log("render");
   // let [name, setname] = useState("amazon"); // If we need to make multiple states than we have to call multiple times useState()
 
   // in class component when we say the component is being re-rendered it meant that render function is being executed
@@ -33,23 +33,33 @@ let App = ()=> {
 
   // useEffect mein jo hamne function pass kra hai, usko useEffect apne aap call karta hai , kab call karta hai? usi par cases bante hai
   
-  // useEffect(()=>{
-  //     console.log("Case1: Empty Array vaala useEffect was called");
-  // }, []);
+  //This is case 2 for clean  up
+  // in this case useEffect will only execute once and return a clean up function
+  //but we dont have other useEffect which will execute
+  // and we know clean up works before execution of useEffect
+  // so in this case the clean up execute when the component is getting unmounted from the screen
+
+  useEffect(()=>{
+      console.log("Case1: Empty Array vaala useEffect was called");
+
+      return ()=>{
+         console.log("clean up function");
+      };
+  }, []);
 
 // for Cleanup= consider case2
 // Case2 : 
 // In this case you only give a function and no arr
 // useEffect will execute your passed function after every render, that is after first render and after every re-render
- useEffect(()=>{
-    console.log("Case2 : No arr,only function passed vaala useEffect was called");
+//  useEffect(()=>{
+//     console.log("Case2 : No arr,only function passed vaala useEffect was called");
 
-    //ye har case ke liye ho sakta hai ki
-    // useEffect ko jo ham function dete hai vo return kar sakta hai ek nya function
-     return ()=>{
-        console.log("clean-up function");
-     }
- });
+//     //ye har case ke liye ho sakta hai ki
+//     // useEffect ko jo ham function dete hai vo return kar sakta hai ek nya function
+//      return ()=>{
+//         console.log("clean-up function");
+//      }
+//  });
 
  //case3 : 
  // this useEffect will execute after first render
