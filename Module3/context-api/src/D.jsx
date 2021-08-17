@@ -9,11 +9,16 @@ let D = ()=> {
 
     //step 6: inside the functional component call useContext and give it the context
     // from which you want the value
-    let value = useContext(countContext); // ye vo context leta hai jo hamne A comp mein bnaya the
+    let valueObject = useContext(countContext); // ye vo context leta hai jo hamne A comp mein bnaya the
     // jo hamne Provider comp ko value provide kari thi vo 'value' ko mil jayegi
     return (
       <div className="d-wala-div">
-          {value}
+          <button onClick={()=>{
+              valueObject.setCount(valueObject.count+1);
+          }}>
+          +
+          </button>
+          <p>{valueObject.count}</p>
       </div>
     );
   }
