@@ -21,4 +21,14 @@ import "firebase/firestore"; //ye firestore vaali chis upar bane firebase variab
 // config files hamne firebase ko dedi
 firebase.initializeApp(config); // is line se jo hamara React App hai vo firebase ke project(jo hamne uske platform par create kara the) se connect ho gya 
 
+let provider = new firebase.auth.GoogleAuthProvider();
+
+// make an authentication object
+// let auth = firebase.auth(); kuki mujhe ise export karna ha to ise aise likhenge
+export const auth = firebase.auth();
+
+export const signInWithGoogle = ()=>{
+    auth.signInWithPopup(provider);
+}
+
 export default firebase;
