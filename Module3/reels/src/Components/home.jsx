@@ -1,5 +1,5 @@
-let Home = ()=>{
-    return(
+let Home = ()=> {
+    return (
         <h1>Home</h1>
     );
 }
