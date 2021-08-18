@@ -10,7 +10,11 @@ let Login = ()=>{
     },[]);
 
     return(
-       <button onClick={()=>{ signInWithGoogle(); }} class="btn btn-primary m-4">Login with Google</button>
+        <>
+            <button onClick={()=>{ signInWithGoogle(); }} class="btn btn-primary m-4">Login with Google</button>
+    
+            <button onClick={()=>{ auth.signOut(); } }>Logout</button>
+        </>
     );
 }
 export default Login;
