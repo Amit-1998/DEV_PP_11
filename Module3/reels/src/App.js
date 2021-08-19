@@ -9,7 +9,20 @@ import { useEffect } from "react";
 let App = ()=> {
 
   useEffect(()=>{
+         // add
          firestore.collection("users").add({body: "This is some value"});
+
+         // get
+         async function f(){
+              let querySnapshot = await firestore.collection("users").get();
+              // console.log(querySnapshot.docs); //gives an array which is having all the documents in "users" collection
+              for(let i=0; i<querySnapshot.docs.length; i++){
+                  console.log(querySnapshot.docs[i].data());
+                  
+              }
+         }
+         f();
+
   }, []);
 
   return (   
