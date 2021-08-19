@@ -3,11 +3,19 @@ import Home from "./Components/home";
 import Login from "./Components/login";
 import AuthProvider from "./AuthProvider";
 
+import { firestore } from "./firebase"
+import { useEffect } from "react";
+
 let App = ()=> {
-  return (
-     
+
+  useEffect(()=>{
+         firestore.collection("users").add({body: "This is some value"});
+  }, []);
+
+  return (   
      <>
-        <AuthProvider>
+         <h1>App</h1>
+          { /*<AuthProvider>
                <Router>
                     <Switch>
                          <Route exact path="/login">
@@ -19,7 +27,9 @@ let App = ()=> {
                     </Switch>
                     
                </Router>
-        </AuthProvider>
+            </AuthProvider>
+            */
+          }
      </>
     
   );

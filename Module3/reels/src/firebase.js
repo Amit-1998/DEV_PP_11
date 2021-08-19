@@ -28,6 +28,7 @@ let provider = new firebase.auth.GoogleAuthProvider();
 // let auth = firebase.auth(); kuki mujhe ise export karna ha to ise aise likhenge
 // object jiske ander login/logout/signup
 export const auth = firebase.auth();
+export const firestore = firebase.firestore();
 
 export const signInWithGoogle = ()=>{
     // ki mujhe popup ko use karke signup krna hai with google
