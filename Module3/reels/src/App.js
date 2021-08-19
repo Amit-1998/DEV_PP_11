@@ -12,16 +12,27 @@ let App = ()=> {
          // add
          firestore.collection("users").add({body: "This is some value"});
 
-         // get
-         async function f(){
-              let querySnapshot = await firestore.collection("users").get();
-              // console.log(querySnapshot.docs); //gives an array which is having all the documents in "users" collection
-              for(let i=0; i<querySnapshot.docs.length; i++){
-                  console.log(querySnapshot.docs[i].data());
+         // getAll documents/objects
+     //     async function f(){
+     //          let querySnapshot = await firestore.collection("users").get();
+     //          // console.log(querySnapshot.docs); //gives an array which is having all the documents in "users" collection
+     //          for(let i=0; i<querySnapshot.docs.length; i++){
+     //              console.log(querySnapshot.docs[i].data());
                   
-              }
-         }
-         f();
+     //          }
+     //     }
+     //     f();
+
+        let f = async ()=>{
+             // getSingle
+     
+             // this gives you the reference of that document
+             let docRef = firestore.collection("users").doc("fLQNz12NfrWeOBgDtFJG");
+             let documentSnapshot = await docRef.get();
+             console.log(documentSnapshot.data());
+             console.log(documentSnapshot.id);
+          }
+        f();
 
   }, []);
 
