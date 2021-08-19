@@ -8,9 +8,9 @@ import { useEffect } from "react";
 
 let App = ()=> {
 
-  useEffect(()=>{
-         // add
-         firestore.collection("users").add({body: "This is some value"});
+//   useEffect(()=>{
+//          // add
+//          firestore.collection("users").add({body: "This is some value"});
 
          // getAll documents/objects
      //     async function f(){
@@ -23,23 +23,23 @@ let App = ()=> {
      //     }
      //     f();
 
-        let f = async ()=>{
-             // getSingle
+     //    let f = async ()=>{
+     //         // getSingle
      
-             // this gives you the reference of that document
-             let docRef = firestore.collection("users").doc("fLQNz12NfrWeOBgDtFJG");
-             let documentSnapshot = await docRef.get();
-             console.log(documentSnapshot.data());
-             console.log(documentSnapshot.id);
-          }
-        f();
+     //         // this gives you the reference of that document
+     //         let docRef = firestore.collection("users").doc("fLQNz12NfrWeOBgDtFJG");
+     //         let documentSnapshot = await docRef.get();
+     //         console.log(documentSnapshot.data());
+     //         console.log(documentSnapshot.id);
+     //      }
+     //    f();
 
-  }, []);
+//   }, []);
 
   return (   
      <>
-         <h1>App</h1>
-          { /*<AuthProvider>
+         
+          <AuthProvider>
                <Router>
                     <Switch>
                          <Route exact path="/login">
@@ -52,8 +52,8 @@ let App = ()=> {
                     
                </Router>
             </AuthProvider>
-            */
-          }
+          
+     
      </>
     
   );
