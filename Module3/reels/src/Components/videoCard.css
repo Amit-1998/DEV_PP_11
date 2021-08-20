@@ -1,0 +1,14 @@
+.video-card{
+     border: 1px solid white;
+     height: 100%;
+     width: 35%;
+     margin: auto;
+     scroll-snap-align: start; /*videocard(child) ka start part chipkega parent se*/
+      
+}
+
+.video-card-video{
+     height: 100%;
+     width: 100%;
+     object-fit: cover; /*video ko puri screen par*/
+}
