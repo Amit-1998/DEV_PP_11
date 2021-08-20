@@ -4,6 +4,7 @@ import "./videoCard.css"
 let VideoCard = () => {
 
     let [playing, setPlaying] = useState(false);
+    
 
     return (
         <div className="video-card">
