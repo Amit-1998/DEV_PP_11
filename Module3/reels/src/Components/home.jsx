@@ -16,9 +16,7 @@ let Home = ()=> {
             
             <div className="video-container">
                 <VideoCard />
-                <VideoCard />
-                <VideoCard />
-                <VideoCard />
+                
             </div>
 
             <button className="home-logout-btn" onClick={()=>{ auth.signOut(); } }>Logout</button>

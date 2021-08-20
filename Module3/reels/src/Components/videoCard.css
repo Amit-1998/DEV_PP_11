@@ -1,14 +1,46 @@
 .video-card{
-     border: 1px solid white;
+     /* border: 1px solid white; */
      height: 100%;
      width: 35%;
      margin: auto;
      scroll-snap-align: start; /*videocard(child) ka start part chipkega parent se*/
-      
+     position: relative;
 }
 
 .video-card-video{
      height: 100%;
      width: 100%;
      object-fit: cover; /*video ko puri screen par*/
+}
+.video-card-username{
+     color: white;
+    font-weight: 600;
+    position: absolute;
+    bottom: 10rem;
+    left: 20px;
+}
+
+.video-card-music{
+     color: white;
+    display: flex;
+    width: 50%;
+    position: absolute;
+    bottom: 9rem;
+    left: 12px;
+}
+
+.video-card-comment{
+     color: white;
+    font-size: 2rem;
+    position: absolute;
+    bottom: 14rem;
+    right: 13px;
+}
+
+.video-card-like{
+     color: red;
+     position: absolute;
+     bottom: 11rem;
+     right: 12px;
+     font-size: 2rem;
 }
