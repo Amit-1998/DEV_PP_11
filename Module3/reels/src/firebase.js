@@ -5,6 +5,7 @@ import config from "./config.json";
 
 import "firebase/auth"; //ye auth vaali chis upar bane firebase variable chali gayi
 import "firebase/firestore"; //ye firestore vaali chis upar bane firebase variable chali gayi
+import "firebase/storage";
 
 // const firebaseConfig = {
 //     apiKey: "AIzaSyD4-5bUvVckDAea5xJlbZfIv_ijUoPqofI",
@@ -29,6 +30,7 @@ let provider = new firebase.auth.GoogleAuthProvider();
 // object jiske ander login/logout/signup
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
+export const storage = firebase.storage();
 
 export const signInWithGoogle = ()=>{
     // ki mujhe popup ko use karke signup krna hai with google

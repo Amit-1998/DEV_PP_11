@@ -1,7 +1,7 @@
 .home-logout-btn{
     position: fixed;
     bottom: 4rem;
-    right: 20px;
+    right: 24px;
     height: 4rem;
     width: 5rem;
     border: none;
@@ -15,4 +15,13 @@
     overflow-y: scroll;
     scroll-snap-type: y mandatory; /*videoContainer(parent) y direction mein snap karega which is mandatory */
 
+}
+
+input[type="file"]{
+    border: none;
+    width: 6rem;
+    outline: none;
+    position: fixed;
+    bottom: 10rem;
+    right: 25px;
 }
