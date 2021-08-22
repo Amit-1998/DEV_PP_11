@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { authContext } from "../AuthProvider";
 import { auth, storage, firestore } from "../firebase";
@@ -9,15 +9,18 @@ import VideoCard from "./videoCard";
 let Home = ()=> {
 
     let user = useContext(authContext);
-    
+    let [posts, setPosts] = useState([]);
+
     useEffect(()=>{
          firestore.collection("posts").onSnapshot((querySnapshot)=>{
              let docArr = querySnapshot.docs;
              
-             for(let i=0; i<docArr.length; i++){
-                 console.log(docArr[i].data());
-             }
+             let arr = [];
 
+             for(let i=0; i<docArr.length; i++){
+                 arr.push( {id: docArr[i].id, ...docArr[i].data(), } );
+             }
+             setPosts(arr);
          })
     },[])
 
@@ -26,8 +29,9 @@ let Home = ()=> {
             {user ? "" : <Redirect to="./login" /> }
             
             <div className="video-container">
-                <VideoCard />
-                
+                 {
+                     posts.map((el)=>{ return <VideoCard key = {el.id} data={el} /> })
+                 }
             </div>
 
             <button className="home-logout-btn" onClick={()=>{ auth.signOut(); } }>Logout</button>
