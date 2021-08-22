@@ -1,7 +1,7 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { authContext } from "../AuthProvider";
-import { auth,storage } from "../firebase";
+import { auth, storage, firestore } from "../firebase";
 
 import "./home.css";
 import VideoCard from "./videoCard";
@@ -10,6 +10,17 @@ let Home = ()=> {
 
     let user = useContext(authContext);
     
+    useEffect(()=>{
+         firestore.collection("posts").onSnapshot((querySnapshot)=>{
+             let docArr = querySnapshot.docs;
+             
+             for(let i=0; i<docArr.length; i++){
+                 console.log(docArr[i].data());
+             }
+
+         })
+    },[])
+
     return (
         <>
             {user ? "" : <Redirect to="./login" /> }
@@ -42,6 +53,7 @@ let Home = ()=> {
                 uploadTask.on("state_changed", null, null, ()=>{
                     uploadTask.snapshot.ref.getDownloadURL().then((url)=>{
                         console.log(url);
+                        firestore.collection("posts").add({name: user.displayName, likes: [], comments: [], url}); // add karna bhi ek promisified kaam hota hai
                     })
                 })
 
