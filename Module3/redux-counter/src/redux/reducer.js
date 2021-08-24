@@ -2,7 +2,7 @@
 
 // reducer funct => takes two parameters => 1) state with initialize some value, 2) action
 
-let reducer = (state = 0, action)=>{ // hame nhi pta par khi se iske paas action object aayega
+let reducer = (state = {count: 0, login: false}, action)=>{ // hame nhi pta par khi se iske paas action object aayega
      
     switch(action.type){
         case "INCREMENT":
