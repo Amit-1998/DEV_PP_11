@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // import the actions
-import { incrementCreator } from "./redux/actions"; // incrementCreator is an action
+import { decrementCrestor, incrementCreator } from "./redux/actions"; // incrementCreator is an action
 
 
 let App = () => {
@@ -28,9 +28,20 @@ let App = () => {
   return (
     <>
        <button onClick={() => {
-           dispatch(incrementCreator());
-       }}>+</button>
+           dispatch(incrementCreator(1));
+       }}>+1</button>
+
+       <button onClick={() => {
+            dispatch(incrementCreator(10));
+        }}>+10</button>
+
+
        <p>{state}</p>
+
+       <button onClick={() => {
+          dispatch(decrementCrestor());
+        }}>-</button>
+
     </>
   );
 }

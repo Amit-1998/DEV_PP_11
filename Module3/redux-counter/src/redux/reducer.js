@@ -6,7 +6,11 @@ let reducer = (state = 0, action)=>{ // hame nhi pta par khi se iske paas action
      
     switch(action.type){
         case "INCREMENT":
-            return state + 1;
+            return state + action.payload;
+
+        case "DECREMENT":
+            return state - 1;
+
         default:
             return state;
     }
