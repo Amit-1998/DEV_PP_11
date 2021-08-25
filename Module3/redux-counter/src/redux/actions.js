@@ -29,6 +29,6 @@ export const loginCreator = ()=>{
 
 export const logoutCreator = ()=>{
     return {
-        type: "LOGOUt"
+        type: "LOGOUT"
     }
 }
