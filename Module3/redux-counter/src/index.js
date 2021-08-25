@@ -2,14 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-import { createStore } from "redux"
-import reducer from "./redux/reducer";
+import { combineReducers, createStore } from "redux"
+import reducer, { counterReducer } from "./redux/reducer";
 import { Provider } from "react-redux"; // for connecting our React App with redux
+import {countReducer, loginReducer} from "./redux/reducer";
+
+let rootReducer = combineReducers({
+    count: counterReducer,
+    logged: loginReducer
+});
 
 // createStore  is a function which comes from redux library
 // createStore() function ko hame ek reducer dena hota hai
 
-let myStore = createStore(reducer); // is function call se hame Store milega
+// let myStore = createStore(reducer); // is function call se hame Store milega
 // Store ko alag se State deni ki zaroorat nhi, reducer ke ander pehle se initialize kari hui thi
 
 // abhi tak hamne sirf redux ka code likha hai i.e all its three entities
@@ -21,6 +27,11 @@ let myStore = createStore(reducer); // is function call se hame Store milega
 // but in redux Provider comp takes store as its attribute
 
 // because of this Provider comp ,our state is accessible to our complete React App
+
+// let myStore = createStore(combineReducers({})) // combineReducers is a functionalso came from redux library
+// combineReducers takes an object
+
+let myStore = createStore(rootReducer);
 
 ReactDOM.render(
     <Provider store={myStore} > 

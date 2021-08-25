@@ -14,11 +14,12 @@ let App = () => {
   // useSelector() ke ander function jo paas hua hai vo state leta hai and ham state ke saath kuch bhi kar sakte hai sirf update ko chod kar
   // jo chis (state) ander passing function se return vhi same state useSelector se bhi return hoti hai
 
-  // let state = useSelector( function (state){
-  //          return state;
-  //     });
+  let state = useSelector( function (state){
+      console.log(state);        
+      return state;
+   });
 
- let state = useSelector( (state) => state );
+//  let state = useSelector( (state) => state );
 
  // another hook useDispatch()
  let dispatch = useDispatch(); // useDispatch() hook ko call karne se we get a function named "dispatch"
@@ -27,6 +28,7 @@ let App = () => {
 
   return (
     <>
+    { /*
        <button onClick={() => {
            dispatch(incrementCreator(1));
        }}>+1</button>
@@ -41,7 +43,7 @@ let App = () => {
        <button onClick={() => {
           dispatch(decrementCrestor());
         }}>-</button>
-
+      */} 
     </>
   );
 }
