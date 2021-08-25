@@ -1,9 +1,10 @@
+import Navbar from "./components/navbar"
 
 let App= ()=> {
   return (
-    <div >
-      
-    </div>
+      <>
+        <Navbar /> 
+      </>
   );
 }
 
