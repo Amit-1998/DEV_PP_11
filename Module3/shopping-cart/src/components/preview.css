@@ -1,0 +1,46 @@
+.preview-container{
+    height: calc(100vh - 52px);
+    width: 100vw;
+    display: flex;
+}
+
+.preview-container div{
+    height: 100%;
+    width: 50%;
+    /* border: 1px solid; */
+}
+
+/* .preview-img-container{
+    display: flex;
+} */
+
+.preview-img-container img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.preview-listing{
+
+}
+
+.preview-listing h2{
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.preview-listing p{
+    text-align: justify;
+    padding: 20px;
+}
+
+.preview-listing button{
+    display: block;
+    margin: auto;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background: #f1c40f;
+    color: white;
+    font-size: 1.2rem;
+}
