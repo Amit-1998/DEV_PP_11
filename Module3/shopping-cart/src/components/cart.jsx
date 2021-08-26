@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import "./cart.css";
 
 let Cart = () => {
 
@@ -6,6 +7,7 @@ let Cart = () => {
     console.log(state);
 
     let filteredArr = state.filter((el) => el.qty > 0);
+    let total = 0;
 
     return (
         <>
@@ -17,20 +19,33 @@ let Cart = () => {
                         <th scope="col">Price</th>
                         <th scope="col">Qty</th>
                         <th scope="col">Amount</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     
                      { filteredArr.map((el, index)=>{
+                          let amount = el.qty*el.price;
+                              total += amount;
+
                             return <tr>
                                   <td>{index+1}</td>
                                   <td>{el.name}</td>
                                   <td>Rs {el.price}</td>
                                   <td>{el.qty}</td>
-                                  <td>Rs {el.qty*el.price}</td>
+                                  <td>Rs {amount}</td>
+                                  <td><button>Remove</button></td>
                             </tr>
                        })
                      }
+
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Total</td>
+                        <td>Rs {total}</td>
+                     </tr>
 
                 </tbody>
             </table>

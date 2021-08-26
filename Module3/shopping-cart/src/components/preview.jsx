@@ -1,6 +1,15 @@
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import "./preview.css";
 
 let Preview = ()=>{
+
+    let { id } = useParams();
+    // console.log(value);
+    let state = useSelector(state=>state);
+    let reqObject = state[id];
+    console.log(reqObject);
+    
     return (
         <>
           <div className="preview-container">

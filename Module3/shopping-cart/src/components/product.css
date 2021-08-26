@@ -1,7 +1,7 @@
 .product-card{
     height: 20rem;
     width: 15rem;
-    box-shadow: 5px 5px 2px 1px #126ba7;
+    box-shadow: 0px 0px 5px 5px #126ba7;
 }
 
 .product-img{
