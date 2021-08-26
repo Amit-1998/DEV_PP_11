@@ -21,6 +21,17 @@ let Cart = () => {
                 </thead>
                 <tbody>
                     
+                     { filteredArr.map((el, index)=>{
+                            return <tr>
+                                  <td>{index+1}</td>
+                                  <td>{el.name}</td>
+                                  <td>Rs {el.price}</td>
+                                  <td>{el.qty}</td>
+                                  <td>Rs {el.qty*el.price}</td>
+                            </tr>
+                       })
+                     }
+
                 </tbody>
             </table>
         </>

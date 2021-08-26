@@ -16,7 +16,7 @@ let initialState = [
         name: "Kia Car",
         img : "https://media.zigcdn.com/media/content/2019/Aug/2019_kia_seltos_fd_goa_zigwheels_1_640x480.jpg",
         price: 1200000,
-        qty: 0
+        qty: 1
 
     },
 
