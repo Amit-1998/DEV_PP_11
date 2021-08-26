@@ -16,7 +16,7 @@ let initialState = [
         name: "Kia Car",
         img : "https://i.pinimg.com/originals/90/a5/50/90a550a223fad3071f81c4154cc8125a.jpg",
         price: 1200000,
-        qty: 1
+        qty: 0
 
     },
 

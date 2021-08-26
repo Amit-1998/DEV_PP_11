@@ -1,7 +1,7 @@
 import { ADD_TO_CART, REMOVE_FROM_CART } from "./constants"
 
 // add action OR addCreator
-export const addCreator = ()=>{ // action Creator jo sirf btayega ki kis product ko cart mein add krana hai
+export const addCreator = (id)=>{ // action Creator jo sirf btayega ki kis product ko cart mein add krana hai
      return{
          type: ADD_TO_CART,
          payload: id
