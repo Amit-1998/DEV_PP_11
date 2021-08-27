@@ -14,7 +14,7 @@ let initialState = [
     {
         id: 1,
         name: "Kia Car",
-        img : "https://i.pinimg.com/originals/90/a5/50/90a550a223fad3071f81c4154cc8125a.jpg",
+        img : "https://cdni.autocarindia.com/Galleries/20190806050125_GT_05567-01-01.jpg",
         price: 1200000,
         qty: 0
 
