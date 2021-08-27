@@ -24,7 +24,7 @@ export const failureCreator = (err)=>{
 // ye mera ek specific-action hai, jo thunk ke paas jayega
 // ye return krta hai ek function
 export const fetchUsers = ()=>{
-    // returns an function, is function mein dispatch function paas krte hain joki action ko dispatch krta hai
+    // returns a function, is function mein dispatch function paas krte hain joki action ko dispatch krta hai
     return (dispatch)=>{
         // dispatch function ki madad se hi async kaam kar payenge
         // is function ke andar hi async kaam hoga

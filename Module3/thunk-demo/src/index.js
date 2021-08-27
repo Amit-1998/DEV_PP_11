@@ -4,6 +4,8 @@ import App from './App';
 
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk'; // here thunk is our middleware
+import reducer from './redux/reducers';
+import { Provider } from 'react-redux';
 
 
 let myStore = createStore(reducer,  applyMiddleware(thunk)); //ye jo thunk is hmara middleware for our Store
