@@ -1,6 +1,8 @@
-import firebase from "firebase/app";
-import "firebase/firestore";
-import "firebase/auth";
+import firebase from "firebase/compat/app";
+import "firebase/compat/firestore";
+import "firebase/compat/auth";
+
+// With version 9 things changed a bit for importing firebase, but there is no need to downgrade to a previous version, there is a "compatibility" option so can use the /compat folder in your imports, like this
 
 const firebaseConfig = {
     apiKey: "AIzaSyCzZgYKfpxoHED12JXkKSGOMSGBfzg2LGU",
@@ -15,3 +17,5 @@ firebase.initializeApp(firebaseConfig);
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
+
+export default firebase;

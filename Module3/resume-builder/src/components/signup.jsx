@@ -1,8 +1,13 @@
+import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { auth } from "../firebase";
 
 let SignUp = () => {
 
     let history = useHistory();
+    let [password, setPassword] = useState("");
+    let [confirmPassword, setConfirmPassword] = useState("");
+    let [email, setEmail] = useState("");
 
     return (
         <>
@@ -12,20 +17,27 @@ let SignUp = () => {
                     <form className="mt-5">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                            <input type="email" class="form-control" value={email} onChange={(e)=>{ setEmail(e.currentTarget.value); }} id="exampleInputEmail1" aria-describedby="emailHelp" />
 
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword2" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" />
+                            <input type="password" value={password} onChange={(e)=>{ setPassword(e.currentTarget.value); }} class="form-control" id="exampleInputPassword1" />
                         </div>
 
                         <div class="mb-3">
                             <label for="exampleInputPassword2" class="form-label">Confirm Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" />
+                            <input type="password" value={confirmPassword} onChange={(e)=>{ setConfirmPassword(e.currentTarget.value); }} class="form-control" id="exampleInputPassword1" />
                         </div>
 
-                        <button class="btn btn-primary">SignUp</button>
+                        <button onClick={ (e)=>{
+                               e.preventDefault();
+                               if(confirmPassword == password){
+                                   auth.createUserWithEmailAndPassword(email, password);
+                               }
+                            }}
+                           class="btn btn-primary">SignUp
+                         </button>
                         <br />
                         <br />
 
