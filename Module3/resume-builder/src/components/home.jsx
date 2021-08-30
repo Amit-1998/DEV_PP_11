@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { auth } from "../firebase";
 
 import "./css/home.css"
@@ -14,17 +14,27 @@ let Home = ()=>{
     console.log(code);
 
     let dispatch = useDispatch();
+    let history = useHistory();
 
     return (
         <>
            { user?"Home" : <Redirect to="/login" /> }
 
             <div className="template-container">
-                <div onClick={()=>{ dispatch(templateCreator("A")); }} className="template">
+
+                <div onClick={()=>{
+                      dispatch(templateCreator("A"));
+                      history.push("/personal");
+                    }} 
+                    className="template">
                     <img src="http://localhost:3000/skin1.svg"></img>
                 </div>
                 
-                <div onClick={()=>{ dispatch(templateCreator("B")); }} className="template">
+                <div onClick={()=>{
+                       dispatch(templateCreator("B"));
+                       history.push("/personal");
+                    }} 
+                     className="template">
                      <img src="http://localhost:3000/skin2.svg"></img>
                 </div>
             </div>
