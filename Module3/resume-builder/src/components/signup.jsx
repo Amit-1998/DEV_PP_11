@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { auth } from "../firebase";
+import { Redirect } from "react-router-dom";
 
 let SignUp = () => {
 
@@ -9,8 +11,11 @@ let SignUp = () => {
     let [confirmPassword, setConfirmPassword] = useState("");
     let [email, setEmail] = useState("");
 
+    let user = useSelector((state)=>state);
+
     return (
         <>
+            {user ? <Redirect to="/home" />: ""}
             <div className="row">
                 <div className="col-4 offset-4">
                     <h1 className="mt-4 mb-4">Sign Up!</h1>
@@ -31,7 +36,7 @@ let SignUp = () => {
                         </div>
 
                         <button onClick={ (e)=>{
-                               e.preventDefault();
+                               e.preventDefault(); // to prevent default behaviour of submitting the forms
                                if(confirmPassword == password){
                                    auth.createUserWithEmailAndPassword(email, password);
                                }

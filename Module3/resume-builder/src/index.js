@@ -4,12 +4,13 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import userReducer from './redux/reducers/userReducer';
 import { createStore } from "redux";
+import { Provider } from 'react-redux';
 
 let myStore = createStore(userReducer);
 
 ReactDOM.render(
-  <Provide store={myStore}>
+  <Provider store={myStore}>
        <App />
-  </Provide>,
+  </Provider>,
   document.getElementById('root')
 );

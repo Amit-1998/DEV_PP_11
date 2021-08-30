@@ -6,13 +6,19 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./components/home";
 import { useEffect } from "react";
 import { auth, firestore } from "./firebase";
-
+import { userCreator } from "./redux/actions/userActions";
+import {useDispatch} from "react-redux";
 
 
 let App = ()=>{
 
+  let dispatch = useDispatch();
+
   useEffect( ()=>{
         let unsub = auth.onAuthStateChanged( async (user)=>{
+
+          dispatch(userCreator(user));
+
           if(user){
                let {uid, email} = user;
                  let docRef = firestore.collection("users").doc(uid);
@@ -24,7 +30,7 @@ let App = ()=>{
         });
 
         return ()=>{
-          unsub();
+          unsub(); // to prevent from memory leakage as auth.onAuthStateChanged listener memory mein pda rahega
         };
   }, []);
 
