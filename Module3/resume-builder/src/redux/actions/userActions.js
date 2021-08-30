@@ -1,6 +1,6 @@
 export const userCreator = (user)=>{
     return{
-        type: "SET-USER",
+        type: "SET_USER",
         payload: user,
     }
 }
