@@ -46,7 +46,7 @@ let App = ()=>{
               <Route path="/signup">
                   <SignUp />
               </Route>
-              
+
               <Route path="/">
                   <Home />
               </Route>

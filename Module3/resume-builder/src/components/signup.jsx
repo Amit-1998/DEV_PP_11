@@ -22,22 +22,22 @@ let SignUp = () => {
                     <form className="mt-5">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Email address</label>
-                            <input type="email" class="form-control" value={email} onChange={(e)=>{ setEmail(e.currentTarget.value); }} id="exampleInputEmail1" aria-describedby="emailHelp" />
+                            <input type="email" class="form-control" value={email} onChange={(e)=>{ setEmail(e.currentTarget.value); }} id="exampleInputEmail1"  />
 
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputPassword2" class="form-label">Password</label>
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
                             <input type="password" value={password} onChange={(e)=>{ setPassword(e.currentTarget.value); }} class="form-control" id="exampleInputPassword1" />
                         </div>
 
                         <div class="mb-3">
                             <label for="exampleInputPassword2" class="form-label">Confirm Password</label>
-                            <input type="password" value={confirmPassword} onChange={(e)=>{ setConfirmPassword(e.currentTarget.value); }} class="form-control" id="exampleInputPassword1" />
+                            <input type="password" value={confirmPassword} onChange={(e)=>{ setConfirmPassword(e.currentTarget.value); }} class="form-control" id="exampleInputPassword2" />
                         </div>
 
                         <button onClick={ (e)=>{
-                               e.preventDefault(); // to prevent default behaviour of submitting the forms
-                               if(confirmPassword == password){
+                               e.preventDefault(); // to prevent default behaviour of submitting the forms or reload na ho page isliye bhi
+                               if(password === confirmPassword){
                                    auth.createUserWithEmailAndPassword(email, password);
                                }
                             }}
