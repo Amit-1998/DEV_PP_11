@@ -1,0 +1,13 @@
+.personal-container{
+    height: calc(100vh - 52px);
+    display: flex;
+    /* border: 1px solid red; */
+}
+
+.personal-form{
+    border: 1px solid;
+    width: 50%;  
+    /* nhi de sakte kuki hame preview ko alag rakhna hai */
+    /* flex-grow: 1; */
+
+}
