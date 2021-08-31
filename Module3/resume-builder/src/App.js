@@ -9,6 +9,7 @@ import { auth, firestore } from "./firebase";
 import { userCreator } from "./redux/actions/userActions";
 import {useDispatch} from "react-redux";
 import PersonalData from "./components/personalData";
+import Qualifications from "./components/qualifications";
 
 
 let App = ()=>{
@@ -40,6 +41,10 @@ let App = ()=>{
        <Router>
            <Navbar />
            <Switch>
+
+              <Route path="/qualifications">
+                   <Qualifications />
+              </Route>
 
               <Route path="/personal">
                  <PersonalData />
