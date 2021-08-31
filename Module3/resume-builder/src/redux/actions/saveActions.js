@@ -1,3 +1,5 @@
+import { firestore } from "../../firebase";
+
 export const saveResumeCreator = ()=>{ // ye actionCreator hota hai
     return { // ye action/action-object hota hai
         type: "SAVE_RESUME",

@@ -5,11 +5,18 @@ import Preview from "./preview";
 import "./css/form.css"
 import { useSelector } from "react-redux";
 
+import { saveResume } from "../redux/actions/saveActions";
+
 let Qualifications = () => {
 
     let history = useHistory();
     let dispatch = useDispatch();
     let { degree, cgpa, year, college, isPublic } = useSelector((state) => state.details);
+
+    // I have to extract uid,details,code for dispatching special function
+    let details = useSelector(state=>state.details);
+    let code = useSelector(state=>state.template);
+    let {uid} = useSelector(state=>state.user);
 
     return (
         <>
@@ -34,7 +41,7 @@ let Qualifications = () => {
                         </div>
 
                         <div class="form-check m-4">
-                            <input checked={isPublic} onClick={(e)=>{ dispatch(detailCreator({isPublic: e.currentTarget.value})); }} class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                            <input checked={isPublic} onClick={(e)=>{ dispatch(detailCreator({isPublic: e.currentTarget.checked})); }} class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
                             <label class="form-check-label" for="flexCheckDefault">
                                 Make Public
                             </label>
@@ -49,7 +56,7 @@ let Qualifications = () => {
             </div>
 
             <button className="btn btn-primary qual-gen">Generate Link</button>
-            <button className="btn btn-primary qual-save">Save To Database</button>
+            <button onClick={()=>{ dispatch(saveResume(uid, details, code)); }} className="btn btn-primary qual-save">Save To Database</button>
         </>
     );
 }

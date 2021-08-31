@@ -18,7 +18,7 @@ let Home = ()=>{
 
     return (
         <>
-           { user?"Home" : <Redirect to="/login" /> }
+           { user?"" : <Redirect to="/login" /> }
 
             <div className="template-container">
 

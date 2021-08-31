@@ -2,7 +2,7 @@ let initialState = {
     loading: null,
     err: null,
     id: ""
-}
+};
 
 export const saveReducer = (state=initialState, action)=>{
     switch(action.type){
@@ -15,7 +15,7 @@ export const saveReducer = (state=initialState, action)=>{
                 ...state,
                 loading: false,
                 err: action.payload
-            }
+            };
 
         case "SAVE_COMPLETED":
             return{
@@ -23,5 +23,8 @@ export const saveReducer = (state=initialState, action)=>{
                 loading: false,
                 id: action.payload
             }
+        
+        default:
+            return state;
     }
 }
