@@ -9,7 +9,7 @@ let Qualifications = () => {
 
     let history = useHistory();
     let dispatch = useDispatch();
-    let { degree, cgpa, year, college } = useSelector((state) => state.details);
+    let { degree, cgpa, year, college, isPublic } = useSelector((state) => state.details);
 
     return (
         <>
@@ -18,7 +18,7 @@ let Qualifications = () => {
                     <h2 className="m-4">Professional Details</h2>
                     <div class="row m-3">
                         <div class="col-5">
-                            <input type="text" value={degree} onChange={(e) => { dispatch(detailCreator({ degree: e.currentTarget.value })) }} class="form-control" placeholder="Degree" />
+                            <input type="text" value={degree  /*store mein jo value hai vo "value" mein lelo*/} onChange={(e) => { dispatch(detailCreator({ degree: e.currentTarget.value })) }} class="form-control" placeholder="Degree" />
                         </div>
 
                         <div class="col-5">
@@ -34,9 +34,9 @@ let Qualifications = () => {
                         </div>
 
                         <div class="form-check m-4">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                            <input checked={isPublic} onClick={(e)=>{ dispatch(detailCreator({isPublic: e.currentTarget.value})); }} class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
                             <label class="form-check-label" for="flexCheckDefault">
-                                Default checkbox
+                                Make Public
                             </label>
                         </div>
 
@@ -47,6 +47,9 @@ let Qualifications = () => {
 
                 <Preview />
             </div>
+
+            <button className="btn btn-primary qual-gen">Generate Link</button>
+            <button className="btn btn-primary qual-save">Save To Database</button>
         </>
     );
 }

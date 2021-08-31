@@ -8,7 +8,8 @@ let initialState = {
     degree: "",
     college: "",
     cgpa: "",
-    year: ""
+    year: "",
+    isPublic: false
 }
 
 let detailsReducer = (state=initialState, action)=>{
