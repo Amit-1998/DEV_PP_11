@@ -10,6 +10,7 @@ import { userCreator } from "./redux/actions/userActions";
 import {useDispatch} from "react-redux";
 import PersonalData from "./components/personalData";
 import Qualifications from "./components/qualifications";
+import PublicPreview from "./components/publicPreview";
 
 
 let App = ()=>{
@@ -41,6 +42,10 @@ let App = ()=>{
        <Router>
            <Navbar />
            <Switch>
+
+              <Route path="/publicpreview/:rid">
+                  <PublicPreview />
+              </Route>
 
               <Route path="/qualifications">
                    <Qualifications />

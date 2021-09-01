@@ -13,10 +13,13 @@ let Qualifications = () => {
     let dispatch = useDispatch();
     let { degree, cgpa, year, college, isPublic } = useSelector((state) => state.details);
 
+    let {id} = useSelector((state)=>state.saveState);
+
     // I have to extract uid,details,code for dispatching special function
-    let details = useSelector(state=>state.details);
-    let code = useSelector(state=>state.template);
-    let {uid} = useSelector(state=>state.user);
+    let details = useSelector((state)=>state.details);
+    let code = useSelector((state)=>state.template);
+    let { uid } = useSelector((state)=>state.user);
+
 
     return (
         <>
@@ -55,7 +58,7 @@ let Qualifications = () => {
                 <Preview />
             </div>
 
-            <button className="btn btn-primary qual-gen">Generate Link</button>
+            <button onClick={()=>{ alert(`localhost:3000/publicpreview/${id}`); }} className="btn btn-primary qual-gen">Generate Link</button>
             <button onClick={()=>{ dispatch(saveResume(uid, details, code)); }} className="btn btn-primary qual-save">Save To Database</button>
         </>
     );
