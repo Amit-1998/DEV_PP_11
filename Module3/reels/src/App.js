@@ -38,7 +38,6 @@ let App = ()=> {
 
   return (   
      <>
-         
           <AuthProvider>
                <Router>
                     <Switch>
@@ -51,7 +50,7 @@ let App = ()=> {
                     </Switch>
                     
                </Router>
-            </AuthProvider>
+          </AuthProvider>
           
      
      </>

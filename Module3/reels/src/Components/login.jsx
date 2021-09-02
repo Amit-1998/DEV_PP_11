@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 
 let Login = ()=>{
     
-    let user = useContext(authContext);
+    let user = useContext(authContext); // jo ahamne createContext se bnaya the vo useContext mein paas kra  
     console.log(user);
 
     // useEffect(()=>{

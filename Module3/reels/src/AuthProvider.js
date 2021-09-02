@@ -2,6 +2,8 @@ import { createContext,useEffect, useState } from "react";
 import { auth } from "./firebase";
 // let authContext = createContext();
 import { firestore } from "./firebase";
+
+
 export const authContext = createContext();
 
 let AuthProvider = (props)=>{ // isko props milenge
@@ -42,7 +44,7 @@ let AuthProvider = (props)=>{ // isko props milenge
 
     },[]);
 
-    return (
+    return ( //yha par vo top comp is AuthProvider (w.r.t) propsdrilling)
         <authContext.Provider value={user}>
             { !loading && props.children }
         </authContext.Provider>

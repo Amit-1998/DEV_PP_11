@@ -5,7 +5,7 @@ import B from "./B";
 // createContext() se ek context create ho jaata hai
 
 //step 1 : create a context
-let countContext = createContext(); // createContext mein ham default value kuch bhi daal dakte hai
+let countContext = createContext(); // createContext mein ham default value kuch bhi daal sakte hai
 // ab is countContext ke paas hi Provider component hota hai
 
 // <Provider> comp ke paas value keyword hota hai jismein vo props value dena hota jo sabse niche vaale comp ko dena hota hai
