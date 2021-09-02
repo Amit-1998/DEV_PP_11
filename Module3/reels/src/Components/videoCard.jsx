@@ -57,11 +57,11 @@ let VideoCard = (props) => {
                  let likesArr = props.data.likes;
                     if(currUserLiked){
                          likesArr = likesArr.filter((el)=> el!=user.uid);
-                        }  
-                        else{
-                           likesArr.push(user.uid);    
-                        }
-                        firestore.collection("posts").doc(props.data.id).update({likes:likesArr});
+                    }  
+                    else{
+                         likesArr.push(user.uid);    
+                    }
+                    firestore.collection("posts").doc(props.data.id).update({likes:likesArr});
                }}>
                 {
                     // (props.data.likes.includes(user.uid))?"favorite":"favorite_border"
