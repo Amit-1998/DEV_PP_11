@@ -18,7 +18,7 @@ let Home = ()=> {
              let arr = [];
 
              for(let i=0; i<docArr.length; i++){
-                 arr.push( {id: docArr[i].id, ...docArr[i].data(), } );
+                 arr.push( {id: docArr[i].id, ...docArr[i].data(), } ); // id isliye dalvayi taki niche posts collections par map maar paye to vha par props mein dena hai
              }
              setPosts(arr);
          });
