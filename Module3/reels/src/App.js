@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Home from "./Components/home";
 import Login from "./Components/login";
 import AuthProvider from "./AuthProvider";
+import Profile from "./Components/profile";
 
 import { firestore } from "./firebase"
 import { useEffect } from "react";
@@ -41,6 +42,9 @@ let App = ()=> {
           <AuthProvider>
                <Router>
                     <Switch>
+                         <Route exact path="/profile">
+                            <Profile />
+                         </Route>
                          <Route exact path="/login">
                               <Login />
                          </Route>
