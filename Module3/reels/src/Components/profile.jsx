@@ -1,4 +1,5 @@
 import { useContext, useState, useEffect } from "react";
+import { useHistory } from "react-router";
 import { authContext } from "../AuthProvider";
 import { auth, firestore, storage } from "../firebase";
 import "./profile.css";
@@ -11,6 +12,8 @@ let Profile = ()=>{
     let user = useContext(authContext);
     console.log(user);
     // console.log(user.uid);
+    let history = useHistory();
+
     let [userKipostskiArr,setArr] = useState([]);
     
     useEffect(()=>{
@@ -53,9 +56,12 @@ let Profile = ()=>{
         <div className="displayInfo">
               <div className="Info">
                   <h1>{user.displayName}</h1>
-                  <p>{`No of Posts : ${userKipostskiArr.length}`}</p>
+                  <p>
+                      <h5>No of Posts : {userKipostskiArr.length}</h5>
+                  </p>
               </div>
 
+              <button onClick={()=>{ history.push("/"); }} className="GoBack">Back</button>
         </div>
     );
 }
