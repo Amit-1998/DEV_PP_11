@@ -7,10 +7,10 @@ import { decrementCrestor, incrementCreator, loginCreator, logoutCreator } from 
 
 let App = () => {
 
-  // Provider component ke store se state nikal kar ham us state ko change kar sakte 
+  // Provider component ke store se state nikaal kar ham us state ko change kar sakte hai
   // for this work we have two hooks 1) useSelector() 2) useDispatch()
 
-  // useSelector(function(){}) takes a function and is function ko vo saari states milti milti hai jo store mein hoti hai
+  // useSelector(function(){}) takes a function and is function ko vo saari states milti hai jo store mein hoti hai
   // useSelector() ke ander function jo paas hua hai vo state leta hai and ham state ke saath kuch bhi kar sakte hai sirf update ko chod kar
   // jo chis (state) ander passing function se return vhi same state useSelector se bhi return hoti hai
 
@@ -19,7 +19,7 @@ let App = () => {
     //     return state;
     //  });
     
-  // let's destructure the both states
+  // let's destructured the both states
   let { count,logged } = useSelector( function (state){
     console.log(state);        
     return state;

@@ -43,8 +43,8 @@ function initDB(){
                 name: cellName,
                 value: "",
                 formula: "",
-                childrens: [],
-                parents: [],
+                childrens: [], // is cell ki value ko kon kon use kar rha hai those are children
+                parents: [],  // mein(cell) jis cell ki value use kar rha hu vo mera parent
                 visited: false,
                 fontStyles: {bold: false, italic: false, underline: false },
                 textAlign: "left"

@@ -2,10 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-import { combineReducers, createStore } from "redux"
-import reducer, { counterReducer } from "./redux/reducer";
+import { combineReducers, createStore } from "redux";
 import { Provider } from "react-redux"; // for connecting our React App with redux
-import {countReducer, loginReducer} from "./redux/reducer";
+import { counterReducer, loginReducer} from "./redux/reducer";
 
 let rootReducer = combineReducers({
     count: counterReducer,
