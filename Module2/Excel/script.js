@@ -128,6 +128,7 @@ function solveFormula(formula, selfCellObject){
       // find valid component
       for(let i=0; i<formulaComps.length; i++){
           let fComp = formulaComps[i];
+
           if( (fComp[0] >= "A" && fComp[0] <= "Z") || (fComp[0] >= "a" && fComp[0] <= "z")){
                // A1 || A2
                // fComp = A1
@@ -168,7 +169,7 @@ function updateChildrens(childrens){
          let child = childrens[i];
          // B1
          let childCellObject = getCellObjectFromName(child);
-         let updatedValueOfChild = solveFormula(childCellObject.formula);
+         let updatedValueOfChild = solveFormula(childCellObject.formula,childCellObject);
          // db update
          childCellObject.value = updatedValueOfChild;
          // UI update
