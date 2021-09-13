@@ -29,6 +29,45 @@ formulaInput.addEventListener("blur", function(e){
         if(cellObject.formula != formula){
             deleteFormula(cellObject);
         }
+         
+        // cycle detection
+        // ["(" , "A1" , "+" , "A2" , ")"]
+        let formulaComps = formula.split(" ");
+        let parent1 = formulaComps[1];
+        let parent2 = formulaComps[3];
+        
+        let cellObjectOfPar1 = getCellObjectFromName(parent1);
+        let cellObjectOfPar2 = getCellObjectFromName(parent2);
+
+        console.log(cellObjectOfPar1);
+        console.log(cellObjectOfPar2);
+
+        let ParentArrOfPart1 = cellObjectOfPar1.parents;
+        let ParentArrOfPart2 = cellObjectOfPar2.parents;
+        
+        if(ParentArrOfPart1.length>0){
+            for(let i=0; i<ParentArrOfPart1.length; i++)
+             { if(ParentArrOfPart1[i] == cellObject.name)
+                { alert(" Cycle detected "); 
+                //  console.log(formula);
+                  formulaInput.value = ""; 
+                  return; 
+                }
+             }
+        }
+
+        if(ParentArrOfPart2.length>0){
+            for(let i=0; i<ParentArrOfPart2.length; i++)
+             { if(ParentArrOfPart2[i] == cellObject.name)
+                { alert(" Cycle detected ");
+                //   console.log(formula); 
+                  formulaInput.value= ""; 
+                  return; 
+                }
+             }
+        }
+        
+    
         let calculatedValue = solveFormula(formula, cellObject);
          // UI update
          lastSelectedCell.textContent = calculatedValue;
@@ -99,7 +138,7 @@ function attachClickAndBlurEventOnCell(){
     }
 }
 attachClickAndBlurEventOnCell();
-//hi
+
 
 function deleteFormula(cellObject){
     cellObject.formula = "";
@@ -128,7 +167,6 @@ function solveFormula(formula, selfCellObject){
       // find valid component
       for(let i=0; i<formulaComps.length; i++){
           let fComp = formulaComps[i];
-
           if( (fComp[0] >= "A" && fComp[0] <= "Z") || (fComp[0] >= "a" && fComp[0] <= "z")){
                // A1 || A2
                // fComp = A1
@@ -169,7 +207,7 @@ function updateChildrens(childrens){
          let child = childrens[i];
          // B1
          let childCellObject = getCellObjectFromName(child);
-         let updatedValueOfChild = solveFormula(childCellObject.formula,childCellObject);
+         let updatedValueOfChild = solveFormula(childCellObject.formula);
          // db update
          childCellObject.value = updatedValueOfChild;
          // UI update
