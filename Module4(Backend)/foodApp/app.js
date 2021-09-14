@@ -46,3 +46,19 @@ app.get('/user', (req, res)=>{
      // agar hmare paas json data hai to
      res.json(obj);
 });
+
+// agar hame ek line ke bajaye puri file res.send() karni ho tab
+app.get('/home', (req, res)=>{
+    // how to send a file
+    // way1 => puri file ka path (absolute path )chipka do
+    // koi bhi frontend hamare backend ke through hi jayega 
+    // res.sendFile('G:\DEV_PP_11\Module4(Backend)\foodApp\views\index.html');
+    
+    // ab ham itna bda path to denge nhi
+    // way2(smart) => ./views/index.html is a relative path
+    // ./views/index.html ye path to hame path hain ki ye file yha par padi hai but server ko nhi pta na ki system pura path kya hai  
+    // ./views/index.html ye to foodApp ke respect mein hai path but pure system mein kha par hai?
+    
+    console.log(__dirname); // gives us G:\DEV_PP_11\Module4(Backend)\foodApp
+    res.sendFile('./views/index.html', {root:__dirname}); // ye directory ka name lekar aayega
+});
