@@ -62,3 +62,4 @@ app.get('/home', (req, res)=>{
     console.log(__dirname); // gives us G:\DEV_PP_11\Module4(Backend)\foodApp
     res.sendFile('./views/index.html', {root:__dirname}); // ye directory ka name lekar aayega
 });
+

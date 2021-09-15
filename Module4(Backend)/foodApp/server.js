@@ -1,0 +1,64 @@
+// postman par request methods ke liye
+
+const express = require('express');
+const app = express();
+
+app.listen('5000', function(){
+    console.log('server listening on port 5000');
+});
+
+app.use(express.json()); // use this line before using any kind of requests //  to recognize the incoming Request Object as a JSON Object
+
+let user = {};
+
+// hamesha client ke perspective se dekho
+
+// get request => when client data mangvaata hai server se
+// client <- server
+app.get('/', (req, res)=>{
+    res.send('Home Page');
+});
+
+app.get('/user', (req, res)=>{
+    // res.send('user');
+    res.json(user); // json format mein data mangvaaya
+});
+
+// post request -> koi bhi data bhejne ke liye we use post request 
+// client -> server (when client sends data to the server )
+
+app.post('/user', (req, res)=>{
+    user = req.body;
+    // console.log(req.body);
+    res.send('data has been added successfully'); // server se client par message bhejne ke liye res.send()
+
+});
+
+// patch request method -> koi bhi chis update karne ke liye
+app.patch('/user', (req, res)=>{
+      // user = req.body;
+      // console.log(user); // { age: '10' }
+      let obj = req.body; // { age: '10' }
+      for(let key in obj){
+          user[key] = obj[key]; // vo key(age) user mein ban jayegi
+          // key is age
+          // object[key] => 10
+           // user[key] ye dekhega ki mere paas to "key" as a key to hai hi nhi to vo sochega acha ye koi variable hai jisme "age" hai to apne ander "age" ko as a key dekhega vo bhi nhi milega to bna dega
+      }
+      // res.send("data has been updated successfully");
+      res.json(user);
+});
+
+// rough work
+// let user = {name: "Amit"};
+// let object = {age: "10"};
+
+// for(let key in object){
+//     user[key] = object[key];
+//     // key is age
+//     // object[key] => 10
+//     // user[key] ye dekhega ki mere paas to "key" as a key to hai hi nhi to vo sochega acha ye koi variable hai jisme "age" hai to apne ander "age" ko as a key dekhega vo bhi nhi milega to bna dega
+// }
+
+
+
