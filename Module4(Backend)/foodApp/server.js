@@ -13,6 +13,12 @@ let user = {};
 
 // hamesha client ke perspective se dekho
 
+// C.R.U.D operations = create, read, update and delete
+// 1) Create by post request
+// 2) Read by get request
+// 3) Update by patch request
+// 4) delete by delete request 
+
 // get request => when client data mangvaata hai server se
 // client <- server
 app.get('/', (req, res)=>{
@@ -66,3 +72,10 @@ app.delete('/user', (req, res)=>{
     res.json(user);
 });
 
+// param route
+// req.params => ismein object aata hai
+app.get('/user/:id',(req, res)=>{
+    console.log(req.params); // {"id":"1998"}
+    res.send(req.params.id); // 1998
+    // res.json(req.params.id); // "1998"
+});
