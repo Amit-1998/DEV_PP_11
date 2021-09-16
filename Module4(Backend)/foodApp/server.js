@@ -8,14 +8,18 @@ app.listen('5000', function(){
 });
 
 app.use(express.json()); // use this line before using any kind of requests //  to recognize the incoming Request Object as a JSON Object
+app.use(express.static('public'));
 
 // make router in express
 const userRouter = express.Router(); // user ke liye ek specific router bna diya user ka router
 // ab router bna liya
+const authRouter = express.Router();
 // '/user' is a base route
 app.use('/user', userRouter); // hamne app ko bola ki tu by default '/user' vaala route lele 
 // useRouter se jab mein route banaunga to unse pehle '/user' automatic lga hoga and then baad mein forw slash userRouter lga sdega aisa'/user/' and then aage ka route 
 // ab router par jitne bhi hmare routes hai ab vo specific karenge
+app.use('/auth', authRouter);
+
 
 // mounting in express => sabhi routes ko mount kar liya hai
 userRouter.route('/')
@@ -27,8 +31,11 @@ userRouter.route('/')
 userRouter.route('/:id')
 .get(getUserById)
 
+authRouter.route('/signup')
+.post(signupUser)
 
-let user = {};
+// let user = {};
+let user = [];
 
 // hamesha client ke perspective se dekho
 
@@ -134,11 +141,28 @@ function deleteUser(req, res){
 // req.params => ismein object aata hai
 // iska route thoda alag hai to iske liye alag router banega
 // app.get('/user/:id', getUserById);
-function getUserById(req, res){
+function getUserById(req, res){ // req object mein parameters aayenge url ke
     console.log(req.params); // {"id":"1998"}
     res.send(req.params.id); // 1998
     // res.json(req.params.id); // "1998"
 }
+
+function signupUser(req, res){
+    // let userDetails = req.body;
+    // let name = userDetails.name;
+    // let email = userDetails.email;
+    // let password = userDetails.password;
+    
+    let {name, email, password} = req.body;
+    user.push( {name, email, password} );
+
+    console.log('user', req.body);
+    res.json({
+        message: 'user signedUp',
+        user: req.body
+    });
+}
+
 
 // Key points : 
 // yha par React jaise routes nhi hote

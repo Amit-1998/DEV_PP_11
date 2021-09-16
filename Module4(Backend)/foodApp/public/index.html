@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <label>Email</label>
+        <input type="email">
+        <label>Name</label>
+        <input type="text">
+        <label>password</label>
+        <input type="password">
+        <button>Signup</button>
+    </form>
+    
+    <!-- axios ka cdn link -->
+    <!-- axios ki request aa gayi -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.4/axios.min.js" integrity="sha512-lTLt+W7MrmDfKam+r3D2LURu0F47a3QaW5nF0c6Hl0JDZ57ruei+ovbg7BrZ+0bjVJ5YgzsAWE+RreERbpPE1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- ham jo data enter karva rahe vo hame pehle select bhi to karna hoga i.e to be done with DOM -->
+    <script>
+         let btn = document.querySelector('button');
+         btn.addEventListener('click', async function(e){
+             
+             e.preventDefault(); // button ke click par page reload na ho agar reload hoga to hmara bhara hua data gayab ho jayega so to prevent that
+             let email = document.querySelector("input[type='email']").value;
+             let name = document.querySelector("input[type='text']").value;
+             let password = document.querySelector("input[type='password']").value;
+             // ab chise to nikal li email,name,password
+             // ab hame post ki request bhi maarni padegi server ko for sending the data to server from frontend
+             let resp = await axios.post('/auth/signup', {email,password,name}); // {} iske ander teeno chise bheji then hame ek response bhi mila
+             console.log(resp.data);
+         })
+
+    </script>
+
+</body>
+
+</html>
