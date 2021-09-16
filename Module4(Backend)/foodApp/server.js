@@ -9,6 +9,25 @@ app.listen('5000', function(){
 
 app.use(express.json()); // use this line before using any kind of requests //  to recognize the incoming Request Object as a JSON Object
 
+// make router in express
+const userRouter = express.Router(); // user ke liye ek specific router bna diya user ka router
+// ab router bna liya
+// '/user' is a base route
+app.use('/user', userRouter); // hamne app ko bola ki tu by default '/user' vaala route lele 
+// useRouter se jab mein route banaunga to unse pehle '/user' automatic lga hoga and then baad mein forw slash userRouter lga sdega aisa'/user/' and then aage ka route 
+// ab router par jitne bhi hmare routes hai ab vo specific karenge
+
+// mounting in express => sabhi routes ko mount kar liya hai
+userRouter.route('/')
+.get(getUser)
+.post(createUser)
+.patch(updateUser)
+.delete(deleteUser);
+
+userRouter.route('/:id')
+.get(getUserById)
+
+
 let user = {};
 
 // hamesha client ke perspective se dekho
@@ -25,35 +44,66 @@ app.get('/', (req, res)=>{
     res.send('Home Page');
 });
 
-app.get('/user', (req, res)=>{
-    // res.send('user');
-    res.json(user); // json format mein data mangvaaya server se
-});
 
-// post request -> koi bhi data bhejne ke liye we use post request 
-// client -> server (when client sends data to the server )
+// app.get('/user', getUser); // getUser is a callback function
+function getUser(req, res){ 
+    res.json(user);
+}
 
-app.post('/user', (req, res)=>{
+// pehle aise likha the
+// app.get('/user', (req, res)=>{
+//     // res.send('user');
+//     res.json(user); // json format mein data mangvaaya server se
+// });
+
+// app.post('/user', createUser);
+function createUser(req, res){
     user = req.body; // server ke paas req object mein milta hai data jo frontend se client ne bheja hota hai
     // console.log(req.body);
     res.send('data has been added successfully'); // server se client par message bhejne ke liye res.send()
+}
 
-});
+//pehle aise likha the
 
+// post request -> koi bhi data bhejne ke liye we use post request 
+// client -> server (when client sends data to the server )
+// app.post('/user', (req, res)=>{
+//     user = req.body; // server ke paas req object mein milta hai data jo frontend se client ne bheja hota hai
+//     // console.log(req.body);
+//     res.send('data has been added successfully'); // server se client par message bhejne ke liye res.send()
+
+// });
+
+// app.patch('/user', updateUser);
+function updateUser(req, res){
+    // user = req.body;
+    // console.log(user); // { age: '10' }
+    let obj = req.body; // { age: '10' }
+    for(let key in obj){
+        user[key] = obj[key]; // vo key(age) user mein ban jayegi
+        // key is age
+        // object[key] => 10
+         // user[key] ye dekhega ki mere paas to "key" as a key to hai hi nhi to vo sochega acha ye koi variable hai jisme "age" hai to apne ander "age" ko as a key dekhega vo bhi nhi milega to bna dega
+    }
+    // res.send("data has been updated successfully");
+    res.json(user); // {"name":"Amit Kumar","age":"10"}
+}
+
+// pehle aise likha the
 // patch request method -> koi bhi chis update karne ke liye client -> server
-app.patch('/user', (req, res)=>{
-      // user = req.body;
-      // console.log(user); // { age: '10' }
-      let obj = req.body; // { age: '10' }
-      for(let key in obj){
-          user[key] = obj[key]; // vo key(age) user mein ban jayegi
-          // key is age
-          // object[key] => 10
-           // user[key] ye dekhega ki mere paas to "key" as a key to hai hi nhi to vo sochega acha ye koi variable hai jisme "age" hai to apne ander "age" ko as a key dekhega vo bhi nhi milega to bna dega
-      }
-      // res.send("data has been updated successfully");
-      res.json(user); // {"name":"Amit Kumar","age":"10"}
-});
+// app.patch('/user', (req, res)=>{
+//       // user = req.body;
+//       // console.log(user); // { age: '10' }
+//       let obj = req.body; // { age: '10' }
+//       for(let key in obj){
+//           user[key] = obj[key]; // vo key(age) user mein ban jayegi
+//           // key is age
+//           // object[key] => 10
+//            // user[key] ye dekhega ki mere paas to "key" as a key to hai hi nhi to vo sochega acha ye koi variable hai jisme "age" hai to apne ander "age" ko as a key dekhega vo bhi nhi milega to bna dega
+//       }
+//       // res.send("data has been updated successfully");
+//       res.json(user); // {"name":"Amit Kumar","age":"10"}
+// });
 
 // rough work
 // let user = {name: "Amit"};
@@ -66,16 +116,30 @@ app.patch('/user', (req, res)=>{
 //     // user[key] ye dekhega ki mere paas to "key" as a key to hai hi nhi to vo sochega acha ye koi variable hai jisme "age" hai to apne ander "age" ko as a key dekhega vo bhi nhi milega to bna dega
 // }
 
-// delete request -> used to delete the user
-app.delete('/user', (req, res)=>{
+// app.delete('/user', deleteUser);
+function deleteUser(req, res){
     user = {};
     res.json(user);
-});
+}
+
+
+// pehle aisa likha the
+// delete request -> used to delete the user
+// app.delete('/user', (req, res)=>{
+//     user = {};
+//     res.json(user);
+// });
 
 // param route
 // req.params => ismein object aata hai
-app.get('/user/:id',(req, res)=>{
+// iska route thoda alag hai to iske liye alag router banega
+// app.get('/user/:id', getUserById);
+function getUserById(req, res){
     console.log(req.params); // {"id":"1998"}
     res.send(req.params.id); // 1998
     // res.json(req.params.id); // "1998"
-});
+}
+
+// Key points : 
+// yha par React jaise routes nhi hote
+// ye exact match karte hai automatically chahe order kaise bhi ho
