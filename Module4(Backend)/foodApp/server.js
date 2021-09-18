@@ -3,7 +3,7 @@
 const express = require('express');
 const app = express();
 
-app.listen('5000', function(){
+app.listen('5000', function () {
     console.log('server listening on port 5000');
 });
 
@@ -23,16 +23,29 @@ app.use('/auth', authRouter);
 
 // mounting in express => sabhi routes ko mount kar liya hai
 userRouter.route('/')
-.get(getUser)
-.post(createUser)
-.patch(updateUser)
-.delete(deleteUser);
+    .get(getUser)
+    .post(createUser)
+    .patch(updateUser)
+    .delete(deleteUser);
 
-userRouter.route('/:id')
-.get(getUserById)
+// userRouter.route('/:id')
+//     .get(getUserById)
 
 authRouter.route('/signup')
 .post(signupUser)
+
+// redirects
+app.get('/user-all',(req,res)=>{
+    res.redirect('/user');
+});
+
+// middleware function 
+// isko sab routers ke  last mein likho
+// 404 page
+app.use((req, res)=>{ // middleware function -> which runs everytime top to bottom (jab given route on browser nhi mila to ye chal jayega)
+        res.sendFile('public/404.html',{root:__dirname})
+});
+
 
 // let user = {};
 let user = [];
@@ -47,13 +60,13 @@ let user = [];
 
 // get request => when client data mangvaata hai server se
 // client <- server
-app.get('/', (req, res)=>{
+app.get('/', (req, res) => {
     res.send('Home Page');
 });
 
 
 // app.get('/user', getUser); // getUser is a callback function
-function getUser(req, res){ 
+function getUser(req, res) {
     res.json(user);
 }
 
@@ -64,7 +77,7 @@ function getUser(req, res){
 // });
 
 // app.post('/user', createUser);
-function createUser(req, res){
+function createUser(req, res) {
     user = req.body; // server ke paas req object mein milta hai data jo frontend se client ne bheja hota hai
     // console.log(req.body);
     res.send('data has been added successfully'); // server se client par message bhejne ke liye res.send()
@@ -82,15 +95,15 @@ function createUser(req, res){
 // });
 
 // app.patch('/user', updateUser);
-function updateUser(req, res){
+function updateUser(req, res) {
     // user = req.body;
     // console.log(user); // { age: '10' }
     let obj = req.body; // { age: '10' }
-    for(let key in obj){
+    for (let key in obj) {
         user[key] = obj[key]; // vo key(age) user mein ban jayegi
         // key is age
         // object[key] => 10
-         // user[key] ye dekhega ki mere paas to "key" as a key to hai hi nhi to vo sochega acha ye koi variable hai jisme "age" hai to apne ander "age" ko as a key dekhega vo bhi nhi milega to bna dega
+        // user[key] ye dekhega ki mere paas to "key" as a key to hai hi nhi to vo sochega acha ye koi variable hai jisme "age" hai to apne ander "age" ko as a key dekhega vo bhi nhi milega to bna dega
     }
     // res.send("data has been updated successfully");
     res.json(user); // {"name":"Amit Kumar","age":"10"}
@@ -124,7 +137,7 @@ function updateUser(req, res){
 // }
 
 // app.delete('/user', deleteUser);
-function deleteUser(req, res){
+function deleteUser(req, res) {
     user = {};
     res.json(user);
 }
@@ -141,20 +154,20 @@ function deleteUser(req, res){
 // req.params => ismein object aata hai
 // iska route thoda alag hai to iske liye alag router banega
 // app.get('/user/:id', getUserById);
-function getUserById(req, res){ // req object mein parameters aayenge url ke
+function getUserById(req, res) { // req object mein parameters aayenge url ke
     console.log(req.params); // {"id":"1998"}
     res.send(req.params.id); // 1998
     // res.json(req.params.id); // "1998"
 }
 
-function signupUser(req, res){
+function signupUser(req, res) {
     // let userDetails = req.body;
     // let name = userDetails.name;
     // let email = userDetails.email;
     // let password = userDetails.password;
-    
-    let {name, email, password} = req.body;
-    user.push( {name, email, password} );
+
+    let { name, email, password } = req.body;
+    user.push({ name, email, password });
 
     console.log('user', req.body);
     res.json({
@@ -162,6 +175,7 @@ function signupUser(req, res){
         user: req.body
     });
 }
+
 
 
 // Key points : 
