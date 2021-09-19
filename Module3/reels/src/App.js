@@ -4,8 +4,8 @@ import Login from "./Components/login";
 import AuthProvider from "./AuthProvider";
 import Profile from "./Components/profile";
 
-import { firestore } from "./firebase"
-import { useEffect } from "react";
+// import { firestore } from "./firebase"
+// import { useEffect } from "react";
 
 let App = ()=> {
 

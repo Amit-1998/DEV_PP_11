@@ -8,12 +8,27 @@ app.listen('5000', function () {
 });
 
 app.use(express.json()); // use this line before using any kind of requests //  to recognize the incoming Request Object as a JSON Object
+
+app.use((req,res,next)=>{
+    // do some work
+    console.log('I am a middleware');
+    next();
+});
+
+
 app.use(express.static('public'));
 
 // make router in express
 const userRouter = express.Router(); // user ke liye ek specific router bna diya user ka router
 // ab router bna liya
 const authRouter = express.Router();
+
+app.use((req,res,next)=>{
+    // do some work
+    console.log('I am a middleware 2nd time');
+    next();
+});
+
 // '/user' is a base route
 app.use('/user', userRouter); // hamne app ko bola ki tu by default '/user' vaala route lele 
 // useRouter se jab mein route banaunga to unse pehle '/user' automatic lga hoga and then baad mein forw slash userRouter lga sdega aisa'/user/' and then aage ka route 
@@ -67,6 +82,7 @@ app.get('/', (req, res) => {
 
 // app.get('/user', getUser); // getUser is a callback function
 function getUser(req, res) {
+    console.log("get User called");
     res.json(user);
 }
 
