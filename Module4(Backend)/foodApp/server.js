@@ -23,11 +23,11 @@ const userRouter = express.Router(); // user ke liye ek specific router bna diya
 // ab router bna liya
 const authRouter = express.Router();
 
-app.use((req,res,next)=>{
-    // do some work
-    console.log('I am a middleware 2nd time');
-    next();
-});
+// app.use((req,res,next)=>{
+//     // do some work
+//     console.log('I am a middleware 2nd time');
+//     next();
+// });
 
 // '/user' is a base route
 app.use('/user', userRouter); // hamne app ko bola ki tu by default '/user' vaala route lele 
@@ -43,11 +43,51 @@ userRouter.route('/')
     .patch(updateUser)
     .delete(deleteUser);
 
-// userRouter.route('/:id')
-//     .get(getUserById)
+app.use((req,res,next)=>{
+        // do some work
+        console.log('I am a middleware 2nd time');
+        next();
+});
+
+userRouter.route('/:id')
+    .get(getUserById)
 
 authRouter.route('/signup')
 .post(signupUser)
+
+authRouter.route('/forgetPassword')
+.get(getForgetPassword)
+.post(postForgetPassword, validateEmail); // postForgetPassword iske andar next() call par agla middleware function i.e validateEmail hamne saath mein hi pass kar dia 
+
+function getForgetPassword(req, res){
+    res.sendFile('./public/forgetPassword.html', {root:__dirname});
+}
+
+function postForgetPassword(req, res,next){
+   let data = req.body;
+   console.log('data', data);
+   // check if emailid is correct - validate(emailid hi di hai ya kuch bhi likh dia)
+   next(); // next middleware function par jao
+
+   // check if user exists in db
+   // so response bhejne se pehle hame ek check lgana hoga
+//    res.json({
+//        message: "data received",
+//        data: data.email
+//    })
+}
+
+function validateEmail(req, res){
+   // req.body mein vhi aata hai jo postForgetPassword ki req.body mein aata hai
+   console.log("in validateEmail function");
+   console.log(req.body);
+   // how to check if email is correct or not -> @ , .
+   
+    // res.json({
+    //       message: "data received",
+    //       data: data.email
+    //    })
+}
 
 // redirects
 app.get('/user-all',(req,res)=>{
