@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 // const db_link = 'mongodb+srv://AmitfoodApp:<password>@cluster0.lwgl1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 // const db_link = 'mongodb+srv://AmitfoodApp:SeeBa5L6SDwmEHiR@cluster0.lwgl1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-const db_link = require('../secrets');
+const { db_link } = require('../secrets');
 // copied password => SeeBa5L6SDwmEHiR
 
 const validator = require("email-validator");

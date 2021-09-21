@@ -43,6 +43,44 @@ userRouter.route('/')
     .patch(updateUser)
     .delete(deleteUser);
 
+// app.post('/user', createUser);
+function createUser(req, res) {
+    user = req.body; // server ke paas req object mein milta hai data jo frontend se client ne bheja hota hai
+    // console.log(req.body);
+    res.send('data has been added successfully'); // server se client par message bhejne ke liye res.send()
+}
+
+// app.patch('/user', updateUser);
+function updateUser(req, res) {
+    // user = req.body;
+    // console.log(user); // { age: '10' }
+    let obj = req.body; // { age: '10' }
+    for (let key in obj) {
+        user[key] = obj[key]; // vo key(age) user mein ban jayegi
+        // key is age
+        // object[key] => 10
+        // user[key] ye dekhega ki mere paas to "key" as a key to hai hi nhi to vo sochega acha ye koi variable hai jisme "age" hai to apne ander "age" ko as a key dekhega vo bhi nhi milega to bna dega
+    }
+    // res.send("data has been updated successfully");
+    res.json(user); // {"name":"Amit Kumar","age":"10"}
+}
+
+// app.delete('/user', deleteUser);
+function deleteUser(req, res) {
+    user = {};
+    res.json(user);
+}
+
+// param route
+// req.params => ismein object aata hai
+// iska route thoda alag hai to iske liye alag router banega
+// app.get('/user/:id', getUserById);
+function getUserById(req, res) { // req object mein parameters aayenge url ke
+    console.log(req.params); // {"id":"1998"}
+    res.send(req.params.id); // 1998
+    // res.json(req.params.id); // "1998"
+}
+
 // app.use((req,res,next)=>{
 //         // do some work
 //         console.log('I am a middleware 2nd time');
@@ -50,10 +88,27 @@ userRouter.route('/')
 // });
 
 userRouter.route('/:id')
-    .get(getUserById)
+.get(getUserById);
 
 authRouter.route('/signup')
-.post(signupUser)
+.post(signupUser);
+
+function signupUser(req, res) {
+    // let userDetails = req.body;
+    // let name = userDetails.name;
+    // let email = userDetails.email;
+    // let password = userDetails.password;
+
+    let { name, email, password } = req.body;
+    // user.push({ name, email, password });
+    // ab se put all data in mongo db
+
+    console.log('user', req.body);
+    res.json({
+        message: 'user signedUp',
+        user: req.body
+    });
+}
 
 authRouter.route('/forgetPassword')
 .get(getForgetPassword)
@@ -101,6 +156,8 @@ app.use((req, res)=>{ // middleware function -> which runs everytime top to bott
 });
 
 
+
+
 // let user = {};
 let user = [];
 
@@ -131,12 +188,7 @@ function getUser(req, res) {
 //     res.json(user); // json format mein data mangvaaya server se
 // });
 
-// app.post('/user', createUser);
-function createUser(req, res) {
-    user = req.body; // server ke paas req object mein milta hai data jo frontend se client ne bheja hota hai
-    // console.log(req.body);
-    res.send('data has been added successfully'); // server se client par message bhejne ke liye res.send()
-}
+
 
 //pehle aise likha the
 
@@ -149,20 +201,7 @@ function createUser(req, res) {
 
 // });
 
-// app.patch('/user', updateUser);
-function updateUser(req, res) {
-    // user = req.body;
-    // console.log(user); // { age: '10' }
-    let obj = req.body; // { age: '10' }
-    for (let key in obj) {
-        user[key] = obj[key]; // vo key(age) user mein ban jayegi
-        // key is age
-        // object[key] => 10
-        // user[key] ye dekhega ki mere paas to "key" as a key to hai hi nhi to vo sochega acha ye koi variable hai jisme "age" hai to apne ander "age" ko as a key dekhega vo bhi nhi milega to bna dega
-    }
-    // res.send("data has been updated successfully");
-    res.json(user); // {"name":"Amit Kumar","age":"10"}
-}
+
 
 // pehle aise likha the
 // patch request method -> koi bhi chis update karne ke liye client -> server
@@ -191,11 +230,7 @@ function updateUser(req, res) {
 //     // user[key] ye dekhega ki mere paas to "key" as a key to hai hi nhi to vo sochega acha ye koi variable hai jisme "age" hai to apne ander "age" ko as a key dekhega vo bhi nhi milega to bna dega
 // }
 
-// app.delete('/user', deleteUser);
-function deleteUser(req, res) {
-    user = {};
-    res.json(user);
-}
+
 
 
 // pehle aisa likha the
@@ -205,32 +240,9 @@ function deleteUser(req, res) {
 //     res.json(user);
 // });
 
-// param route
-// req.params => ismein object aata hai
-// iska route thoda alag hai to iske liye alag router banega
-// app.get('/user/:id', getUserById);
-function getUserById(req, res) { // req object mein parameters aayenge url ke
-    console.log(req.params); // {"id":"1998"}
-    res.send(req.params.id); // 1998
-    // res.json(req.params.id); // "1998"
-}
 
-function signupUser(req, res) {
-    // let userDetails = req.body;
-    // let name = userDetails.name;
-    // let email = userDetails.email;
-    // let password = userDetails.password;
 
-    let { name, email, password } = req.body;
-    // user.push({ name, email, password });
-    // ab se put all data in mongo db
 
-    console.log('user', req.body);
-    res.json({
-        message: 'user signedUp',
-        user: req.body
-    });
-}
 
 
 
