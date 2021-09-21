@@ -9,11 +9,11 @@ app.listen('5000', function () {
 
 app.use(express.json()); // use this line before using any kind of requests //  to recognize the incoming Request Object as a JSON Object
 
-app.use((req,res,next)=>{
-    // do some work
-    console.log('I am a middleware');
-    next();
-});
+// app.use((req,res,next)=>{
+//     // do some work
+//     console.log('I am a middleware');
+//     next();
+// });
 
 
 app.use(express.static('public'));
@@ -43,11 +43,11 @@ userRouter.route('/')
     .patch(updateUser)
     .delete(deleteUser);
 
-app.use((req,res,next)=>{
-        // do some work
-        console.log('I am a middleware 2nd time');
-        next();
-});
+// app.use((req,res,next)=>{
+//         // do some work
+//         console.log('I am a middleware 2nd time');
+//         next();
+// });
 
 userRouter.route('/:id')
     .get(getUserById)
@@ -82,11 +82,10 @@ function validateEmail(req, res){
    console.log("in validateEmail function");
    console.log(req.body);
    // how to check if email is correct or not -> @ , .
-   
-    // res.json({
-    //       message: "data received",
-    //       data: data.email
-    //    })
+    res.json({
+          message: "data received",
+          data: req.body
+       })
 }
 
 // redirects
@@ -223,7 +222,8 @@ function signupUser(req, res) {
     // let password = userDetails.password;
 
     let { name, email, password } = req.body;
-    user.push({ name, email, password });
+    // user.push({ name, email, password });
+    // ab se put all data in mongo db
 
     console.log('user', req.body);
     res.json({
