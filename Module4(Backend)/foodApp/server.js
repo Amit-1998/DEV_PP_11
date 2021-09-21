@@ -91,23 +91,43 @@ userRouter.route('/:id')
 .get(getUserById);
 
 authRouter.route('/signup')
-.post(signupUser);
+.post(setCreatedAt, signupUser); // setCreatedAt is a middleware which runs before signupUser
 
-function signupUser(req, res) {
+// middleware function
+function setCreatedAt(req,res,next){
+    let obj = req.body;
+    // keys ka arr -> uska length
+    let length = Object.keys(obj).length; // Obj ki keys lekar aao jo ki hame ek array dega uski length nikal lo
+    if(length==0){
+        return res.status(400).json({message: "cannot create user if req.body is empty"});
+    }
+    req.body.createdAt = new Date().toISOString();
+    next();
+}
+
+const userModel = require('./models/userModel');
+
+async function signupUser(req, res) {
     // let userDetails = req.body;
     // let name = userDetails.name;
     // let email = userDetails.email;
     // let password = userDetails.password;
-
-    let { name, email, password } = req.body;
-    // user.push({ name, email, password });
-    // ab se put all data in mongo db
-
-    console.log('user', req.body);
-    res.json({
-        message: 'user signedUp',
-        user: req.body
-    });
+    try{
+        // let { name, email, password } = req.body; ab aise nhi nikalenge
+        let userObj = req.body; // user ka data frontend se aayega
+        // user.push({ name, email, password });
+        // ab se put all data in mongo db
+        let user = await userModel.create(userObj);
+        // console.log('user', req.body);
+        res.json({
+            message: 'user signedUp',
+            user: userObj
+        });
+    }
+    catch(err){
+        console.log(err);
+        res.json({message: err.message});
+    }
 }
 
 authRouter.route('/forgetPassword')

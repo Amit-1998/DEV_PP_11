@@ -33,6 +33,10 @@ const userSchema = new mongoose.Schema({
         }
     },
 
+    createdAt:{
+        type: Date,
+    },
+
     password: {
         type: String,
         required: true,
@@ -50,16 +54,28 @@ const userSchema = new mongoose.Schema({
 
 });
 
+userSchema.pre('save', function(){
+    this.confirmPassword = undefined;
+});
+
 const userModel = mongoose.model('userModel', userSchema);
 
-(async function createUser(){
-    let user={
-        name: 'Abhi',
-        age: 20,
-        email: 'abc@gmail.com',
-        password: '12345678',
-        confirmPassword: '12345678'
-    };
-   let userObj = await userModel.create(user);
-   console.log(userObj);
-})();
+// module.exports{
+//     userModel: userModel
+// }
+
+// shorthand of above is
+module.exports = userModel;
+
+/* ab hame is creteUser function ki zarroorat nhi kuki ham signupuser mein d=sab kuch likh chuke*/ 
+// (async function createUser(){
+//     let user={
+//         name: 'Abhi',
+//         age: 20,
+//         email: 'abc@gmail.com',
+//         password: '12345678',
+//         confirmPassword: '12345678'
+//     };
+// //    let userObj = await userModel.create(user); ye line jayegi signupUser function 
+//    console.log(userObj);
+// })();
