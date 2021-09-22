@@ -2,7 +2,8 @@ const { mongoose } = require("mongoose");
 
 const planSchema = new mongoose.Schema({
     id: { 
-       type: Number
+       type: Number,
+       required: true
     },
 
     name: {
@@ -11,22 +12,27 @@ const planSchema = new mongoose.Schema({
     },
 
     ratings:{
-        type: Number
+        type: Number,
+        required: true
     },
 
     price:{
-        type: Number
+        type: Number,
+        required: true
     },
     
     delivery:{
-        type: Boolean
+        type: Boolean,
+        required: true
     },
 
     meals: {
-       type: Number
+       type: Number,
+       required: true
     },
 
     description: {
-        type: String
+        type: String,
+        required: true
     },
 });
