@@ -19,9 +19,12 @@ app.use(express.json()); // use this line before using any kind of requests //  
 app.use(express.static('public'));
 
 // make router in express
-const userRouter = express.Router(); // user ke liye ek specific router bna diya user ka router
+//const userRouter = express.Router(); // user ke liye ek specific router bna diya user ka router
+const userRouter = require('./Routers/userRouter');
+
 // ab router bna liya
-const authRouter = express.Router();
+// const authRouter = express.Router();
+const authRouter = require('./Routers/authRouter');
 
 // app.use((req,res,next)=>{
 //     // do some work
@@ -37,49 +40,55 @@ app.use('/auth', authRouter);
 
 
 // mounting in express => sabhi routes ko mount kar liya hai
-userRouter.route('/')
-    .get(getUser)
-    .post(createUser)
-    .patch(updateUser)
-    .delete(deleteUser);
+// userRouter.route('/')
+//     .get(getUser)
+//     .post(createUser)
+//     .patch(updateUser)
+//     .delete(deleteUser);
+
+// app.get('/user', getUser); // getUser is a callback function
+// function getUser(req, res) {
+//     console.log("get User called");
+//     res.json(user);
+// }
 
 // app.post('/user', createUser);
-function createUser(req, res) {
-    user = req.body; // server ke paas req object mein milta hai data jo frontend se client ne bheja hota hai
-    // console.log(req.body);
-    res.send('data has been added successfully'); // server se client par message bhejne ke liye res.send()
-}
+// function createUser(req, res) {
+//     user = req.body; // server ke paas req object mein milta hai data jo frontend se client ne bheja hota hai
+//     // console.log(req.body);
+//     res.send('data has been added successfully'); // server se client par message bhejne ke liye res.send()
+// }
 
 // app.patch('/user', updateUser);
-function updateUser(req, res) {
-    // user = req.body;
-    // console.log(user); // { age: '10' }
-    let obj = req.body; // { age: '10' }
-    for (let key in obj) {
-        user[key] = obj[key]; // vo key(age) user mein ban jayegi
-        // key is age
-        // object[key] => 10
-        // user[key] ye dekhega ki mere paas to "key" as a key to hai hi nhi to vo sochega acha ye koi variable hai jisme "age" hai to apne ander "age" ko as a key dekhega vo bhi nhi milega to bna dega
-    }
-    // res.send("data has been updated successfully");
-    res.json(user); // {"name":"Amit Kumar","age":"10"}
-}
+// function updateUser(req, res) {
+//     // user = req.body;
+//     // console.log(user); // { age: '10' }
+//     let obj = req.body; // { age: '10' }
+//     for (let key in obj) {
+//         user[key] = obj[key]; // vo key(age) user mein ban jayegi
+//         // key is age
+//         // object[key] => 10
+//         // user[key] ye dekhega ki mere paas to "key" as a key to hai hi nhi to vo sochega acha ye koi variable hai jisme "age" hai to apne ander "age" ko as a key dekhega vo bhi nhi milega to bna dega
+//     }
+//     // res.send("data has been updated successfully");
+//     res.json(user); // {"name":"Amit Kumar","age":"10"}
+// }
 
 // app.delete('/user', deleteUser);
-function deleteUser(req, res) {
-    user = {};
-    res.json(user);
-}
+// function deleteUser(req, res) {
+//     user = {};
+//     res.json(user);
+// }
 
 // param route
 // req.params => ismein object aata hai
 // iska route thoda alag hai to iske liye alag router banega
 // app.get('/user/:id', getUserById);
-function getUserById(req, res) { // req object mein parameters aayenge url ke
-    console.log(req.params); // {"id":"1998"}
-    res.send(req.params.id); // 1998
-    // res.json(req.params.id); // "1998"
-}
+// function getUserById(req, res) { // req object mein parameters aayenge url ke
+//     console.log(req.params); // {"id":"1998"}
+//     res.send(req.params.id); // 1998
+//     // res.json(req.params.id); // "1998"
+// }
 
 // app.use((req,res,next)=>{
 //         // do some work
@@ -87,81 +96,81 @@ function getUserById(req, res) { // req object mein parameters aayenge url ke
 //         next();
 // });
 
-userRouter.route('/:id')
-.get(getUserById);
+// userRouter.route('/:id')
+// .get(getUserById);
 
-authRouter.route('/signup')
-.post(setCreatedAt, signupUser); // setCreatedAt is a middleware which runs before signupUser
+// authRouter.route('/signup')
+// .post(setCreatedAt, signupUser); // setCreatedAt is a middleware which runs before signupUser
 
 // middleware function
-function setCreatedAt(req,res,next){
-    let obj = req.body;
-    // keys ka arr -> uska length
-    let length = Object.keys(obj).length; // Obj ki keys lekar aao jo ki hame ek array dega uski length nikal lo
-    if(length==0){
-        return res.status(400).json({message: "cannot create user if req.body is empty"});
-    }
-    req.body.createdAt = new Date().toISOString();
-    next();
-}
+// function setCreatedAt(req,res,next){
+//     let obj = req.body;
+//     // keys ka arr -> uska length
+//     let length = Object.keys(obj).length; // Obj ki keys lekar aao jo ki hame ek array dega uski length nikal lo
+//     if(length==0){
+//         return res.status(400).json({message: "cannot create user if req.body is empty"});
+//     }
+//     req.body.createdAt = new Date().toISOString();
+//     next();
+// }
 
-const userModel = require('./models/userModel');
+// const userModel = require('./models/userModel');
 
-async function signupUser(req, res) {
-    // let userDetails = req.body;
-    // let name = userDetails.name;
-    // let email = userDetails.email;
-    // let password = userDetails.password;
-    try{
-        // let { name, email, password } = req.body; ab aise nhi nikalenge
-        let userObj = req.body; // user ka data frontend se aayega
-        // user.push({ name, email, password });
-        // ab se put all data in mongo db
-        let user = await userModel.create(userObj);
-        // console.log('user', req.body);
-        res.json({
-            message: 'user signedUp',
-            user: userObj
-        });
-    }
-    catch(err){
-        console.log(err);
-        res.json({message: err.message});
-    }
-}
+// async function signupUser(req, res) {
+//     // let userDetails = req.body;
+//     // let name = userDetails.name;
+//     // let email = userDetails.email;
+//     // let password = userDetails.password;
+//     try{
+//         // let { name, email, password } = req.body; ab aise nhi nikalenge
+//         let userObj = req.body; // user ka data frontend se aayega
+//         // user.push({ name, email, password });
+//         // ab se put all data in mongo db
+//         let user = await userModel.create(userObj);
+//         // console.log('user', req.body);
+//         res.json({
+//             message: 'user signedUp',
+//             user: userObj
+//         });
+//     }
+//     catch(err){
+//         console.log(err);
+//         res.json({message: err.message});
+//     }
+// }
 
-authRouter.route('/forgetPassword')
-.get(getForgetPassword)
-.post(postForgetPassword, validateEmail); // postForgetPassword iske andar next() call par agla middleware function i.e validateEmail hamne saath mein hi pass kar dia 
+// authRouter.route('/forgetPassword')
+// .get(getForgetPassword)
+// .post(postForgetPassword, validateEmail); // postForgetPassword iske andar next() call par agla middleware function i.e validateEmail hamne saath mein hi pass kar dia 
 
-function getForgetPassword(req, res){
-    res.sendFile('./public/forgetPassword.html', {root:__dirname});
-}
+// function getForgetPassword(req, res){
+//     res.sendFile('./public/forgetPassword.html', {root:__dirname});
+// }
 
-function postForgetPassword(req, res,next){
-   let data = req.body;
-   console.log('data', data);
-   // check if emailid is correct - validate(emailid hi di hai ya kuch bhi likh dia)
-   next(); // next middleware function par jao
+// function postForgetPassword(req, res,next){
+//    let data = req.body;
+//    console.log('data', data);
+//    // check if emailid is correct - validate(emailid hi di hai ya kuch bhi likh dia)
+//    next(); // next middleware function par jao
 
-   // check if user exists in db
-   // so response bhejne se pehle hame ek check lgana hoga
-//    res.json({
-//        message: "data received",
-//        data: data.email
-//    })
-}
+//    // check if user exists in db
+//    // so response bhejne se pehle hame ek check lgana hoga
+// //    res.json({
+// //        message: "data received",
+// //        data: data.email
+// //    })
+// }
 
-function validateEmail(req, res){
-   // req.body mein vhi aata hai jo postForgetPassword ki req.body mein aata hai
-   console.log("in validateEmail function");
-   console.log(req.body);
-   // how to check if email is correct or not -> @ , .
-    res.json({
-          message: "data received",
-          data: req.body
-       })
-}
+// function validateEmail(req, res){
+//    // req.body mein vhi aata hai jo postForgetPassword ki req.body mein aata hai
+//    console.log("in validateEmail function");
+//    console.log(req.body);
+//    // how to check if email is correct or not -> @ , .
+//     res.json({
+//           message: "data received",
+//           data: req.body
+//        })
+// }
 
 // redirects
 app.get('/user-all',(req,res)=>{
@@ -195,12 +204,6 @@ app.get('/', (req, res) => {
     res.send('Home Page');
 });
 
-
-// app.get('/user', getUser); // getUser is a callback function
-function getUser(req, res) {
-    console.log("get User called");
-    res.json(user);
-}
 
 // pehle aise likha the
 // app.get('/user', (req, res)=>{
