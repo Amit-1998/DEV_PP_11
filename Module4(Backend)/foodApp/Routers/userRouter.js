@@ -13,11 +13,27 @@ userRouter.route('/:id')
 // functions
 // app.get('/user', getUser); // getUser is a callback function
 const userModel = require('../models/userModel'); // db chahiye hoga to vo reuire kar liya for getUsers
-function getUsers(req, res) {
-    console.log("get User called");
-    // pehle hamne ek user array bnaye the use bhej rhe they server se frontend par
-    // ab mongodb mein jo users honge vo idhar aayenge yaani vo bhejenge server se frontend par
-    res.json(user);
+async function getUsers(req, res) {
+    
+       try{
+            console.log("get User called");
+            // pehle hamne ek user array bnaye the use bhej rhe they server se frontend par
+            // ab mongodb mein jo users honge vo idhar aayenge yaani vo bhejenge server se frontend par
+            let users = await userModel.find();
+            if(users){
+                res.json(user);
+            }
+            else{
+                return res.json({
+                    message: "users not found"
+                });
+            }
+       }
+       catch(err){
+           return res.json({
+               message: err.message
+            });
+       } 
 }
 
 function createUser(req, res) {
