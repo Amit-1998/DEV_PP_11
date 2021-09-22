@@ -2,7 +2,7 @@ const express = require('express');
 const userRouter = express.Router();
 
 userRouter.route('/')
-    .get(getUser)
+    .get(getUsers)
     .post(createUser)
     .patch(updateUser)
     .delete(deleteUser);
@@ -12,8 +12,11 @@ userRouter.route('/:id')
 
 // functions
 // app.get('/user', getUser); // getUser is a callback function
-function getUser(req, res) {
+const userModel = require('../models/userModel'); // db chahiye hoga to vo reuire kar liya for getUsers
+function getUsers(req, res) {
     console.log("get User called");
+    // pehle hamne ek user array bnaye the use bhej rhe they server se frontend par
+    // ab mongodb mein jo users honge vo idhar aayenge yaani vo bhejenge server se frontend par
     res.json(user);
 }
 
