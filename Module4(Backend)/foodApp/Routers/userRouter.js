@@ -71,9 +71,17 @@ function getUserById(req, res) { // req object mein parameters aayenge url ke
 let flag = true; // consider initially user is loggedin
 function protectRoute(req,res,next){
 
-    try{
-        if(flag){
-            next(); // user is already loggedIn so he can see the users info call to next middleware function
+    try{  // no need to have a flag
+        // now user is liggedIn & now he wants to get()
+        if(req.cookies){
+            if(req.cookies.login=='1234'){
+                next(); // user is already loggedIn so he can see the users info call to next middleware function
+            }
+            else{
+                res.json({
+                    message: "Not Authorized"
+                });
+            }
         }
         else{
             res.json({
