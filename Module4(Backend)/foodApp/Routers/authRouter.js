@@ -87,6 +87,8 @@ async function loginUser(req, res) {
             // if user exists means ismein kuch data aaya ki hhi
             if (user) {
                  if (req.body.password == user.password) {
+                    res.cookie('login','1234',{httpOnly:true}); // for initially server gives cookie name'login' and its tokenNo to frontEnd browser as shoesStall gives  tokenNo to the owner of shoe
+
                      res.json({
                         message: "user logged in"
                      });

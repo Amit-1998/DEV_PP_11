@@ -2,7 +2,7 @@ const express = require('express');
 const userRouter = express.Router();
 
 userRouter.route('/')
-    .get(getUsers)
+    .get(protectRoute, getUsers)
     .post(createUser)
     .patch(updateUser)
     .delete(deleteUser);
@@ -19,9 +19,9 @@ async function getUsers(req, res) {
             console.log("get User called");
             // pehle hamne ek user array bnaye the use bhej rhe they server se frontend par
             // ab mongodb mein jo users honge vo idhar aayenge yaani vo bhejenge server se frontend par
-            let users = await userModel.find();
+            let users = await userModel.find(); // userModel collections mein jitne bhi documents honge sab le aayega
             if(users){
-                res.json(user);
+                res.json(users);
             }
             else{
                 return res.json({
@@ -65,6 +65,27 @@ function getUserById(req, res) { // req object mein parameters aayenge url ke
     console.log(req.params); // {"id":"1998"}
     res.send(req.params.id); // 1998
     // res.json(req.params.id); // "1998"
+}
+
+// protect Route -> middleware function
+let flag = true; // consider initially user is loggedin
+function protectRoute(req,res,next){
+
+    try{
+        if(flag){
+            next(); // user is already loggedIn so he can see the users info call to next middleware function
+        }
+        else{
+            res.json({
+                message: "Operation not allowed"
+            });
+        }
+    }
+    catch(err){
+        return res.status(500).json({
+            message: err.message
+        });
+    }
 }
 
 module.exports = userRouter;
