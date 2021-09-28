@@ -2,6 +2,7 @@ const express = require('express');
 const authRouter = express.Router();
 const jwt = require('jsonwebtoken');
 const {JWT_KEY} = require('../secrets');
+const sendMail = require('../nodemailer');
 
 authRouter.route('/signup')
     .post(setCreatedAt, signupUser); // setCreatedAt is a middleware which runs before signupUser
@@ -40,6 +41,7 @@ async function signupUser(req, res) {
         // user.push({ name, email, password });
         // ab se put all data in mongo db
         let user = await userModel.create(userObj);
+        sendMail(user);
         // console.log('user', req.body);
         res.json({
             message: 'user signedUp',
