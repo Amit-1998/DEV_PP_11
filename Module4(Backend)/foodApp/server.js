@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 
 const cookieParser = require('cookie-parser');
-app.use(cookieParser()); // cookies ko available kra deta hai puri application mein, also it is a middleware function sabse upar likha hai to sabse pehle chalega 
+app.use(cookieParser()); // req ke obj mein cookies ko populate kra deta hai// cookies ko available kra deta hai puri application mein, also it is a middleware function sabse upar likha hai to sabse pehle chalega 
 
 app.listen('5000', function () {
     console.log('server listening on port 5000');

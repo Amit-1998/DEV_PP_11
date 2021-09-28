@@ -1,5 +1,6 @@
 const express = require('express');
 const userRouter = express.Router();
+const protectRoute = require('./authHelper'); 
 
 userRouter.route('/')
     .get(protectRoute, getUsers)
@@ -67,33 +68,35 @@ function getUserById(req, res) { // req object mein parameters aayenge url ke
     // res.json(req.params.id); // "1998"
 }
 
-// protect Route -> middleware function
-let flag = true; // consider initially user is loggedin
-function protectRoute(req,res,next){
+// we have shifted this protect route in the authHelper.js
 
-    try{  // no need to have a flag
-        // now user is liggedIn & now he wants to get()
-        if(req.cookies){
-            if(req.cookies.login=='1234'){
-                next(); // user is already loggedIn so he can see the users info call to next middleware function
-            }
-            else{
-                res.json({
-                    message: "Not Authorized"
-                });
-            }
-        }
-        else{
-            res.json({
-                message: "Operation not allowed"
-            });
-        }
-    }
-    catch(err){
-        return res.status(500).json({
-            message: err.message
-        });
-    }
-}
+// protect Route -> middleware function
+// let flag = true; // consider initially user is loggedin
+// function protectRoute(req,res,next){
+
+//     try{  // no need to have a flag
+//         // now user is loggedIn & now he wants to get()
+//         if(req.cookies){
+//             if(req.cookies.login=='1234'){
+//                 next(); // user is already loggedIn so he can see the users info call to next middleware function
+//             }
+//             else{
+//                 res.json({
+//                     message: "Not Authorized"
+//                 });
+//             }
+//         }
+//         else{
+//             res.json({
+//                 message: "Operation not allowed"
+//             });
+//         }
+//     }
+//     catch(err){
+//         return res.status(500).json({
+//             message: err.message
+//         });
+//     }
+// }
 
 module.exports = userRouter;

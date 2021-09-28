@@ -1,5 +1,7 @@
 const express = require('express');
 const authRouter = express.Router();
+const jwt = require('jsonwebtoken');
+const {JWT_KEY} = require('../secrets');
 
 authRouter.route('/signup')
     .post(setCreatedAt, signupUser); // setCreatedAt is a middleware which runs before signupUser
@@ -87,7 +89,10 @@ async function loginUser(req, res) {
             // if user exists means ismein kuch data aaya ki hhi
             if (user) {
                  if (req.body.password == user.password) {
-                    res.cookie('login','1234',{httpOnly:true}); // for initially server gives cookie name'login' and its tokenNo to frontEnd browser as shoesStall gives  tokenNo to the owner of shoe
+                     let payload = user['_id'];
+                     let token = jwt.sign({id:payload},JWT_KEY); // Sign with algorithm default (HMAC SHA256)
+                      
+                     res.cookie('login',token,{httpOnly:true}); // for initially server gives cookie name'login' and its tokenNo to frontEnd browser as shoesStall gives  tokenNo to the owner of shoe
 
                      res.json({
                         message: "user logged in"
