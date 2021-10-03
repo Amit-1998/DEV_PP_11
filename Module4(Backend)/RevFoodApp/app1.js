@@ -4,11 +4,11 @@ const express = require("express");
 const fs = require("fs");
 const path = require("path");
 
-const jwt = require('jsonwebtoken');
-const { JWT_SECRET } = require('./secrets');
+// const jwt = require('jsonwebtoken');
+// const { JWT_SECRET } = require('./secrets');
 const cookieParser = require('cookie-parser');
 
-let userModel = require("./models/userModel");
+// let userModel = require("./models/userModel");
 
 // Server: // route  -> request -> response/file 
 // File system// path -> interact/type -> file /folder
@@ -33,17 +33,17 @@ app.use(cookieParser());
 // // frontend -> req -> /
 // read data storage
 // localhost/user/10 -> post 
-let content = JSON.parse(fs.readFileSync("./data.json"));
-const userRouter = express.Router();
-const authRouter = express.Router();
+// let content = JSON.parse(fs.readFileSync("./data.json"));
+// const userRouter = express.Router();
+// const authRouter = express.Router();
 // // localhost / auth / 10-> patch
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
 
-userRouter
-    .route('/')
+// userRouter
+    // .route('/')
 //     localhost/user -> get
-    .get(protectRoute, getUsers)
+    // .get(protectRoute, getUsers)
 //     localhost/user -> post
 //     .post(bodyChecker, isAuthenticated, isAuthorized, createUser);
 // userRouter
@@ -51,11 +51,11 @@ userRouter
 //     // localhost/user/10-> post
 //     .get(getUser)
 
-authRouter.route("/signup")
-    .post(bodyChecker, signupUser);
+// authRouter.route("/signup")
+//     .post(bodyChecker, signupUser);
 
-authRouter.route("/login")
-    .post(bodyChecker, loginUser);
+// authRouter.route("/login")
+//     .post(bodyChecker, loginUser);
 
 /* jwtkey bnane se pehle protectRoute aise likha the*/
 
@@ -73,49 +73,49 @@ authRouter.route("/login")
 // }
 
 /* after require JWT_SECRET key*/ 
-function protectRoute(req, res, next){
-    try{
-        console.log("reached body checker");
-        // cookie-parser
-        console.log("61", req.cookies);
-        // jwt 
-        // -> verify everytime that if 
-        // you are bringing the token to get your response
-        let decryptedToken = jwt.verify(req.cookies.JWT, JWT_SECRET);
-        // console.log("66", decryptedToken);
-        console.log("68", decryptedToken);  
-        if(decryptedToken){
-            next();
-        }
-        else{
-            res.send("kindly login to access this resource ");
-        }
-    }
-    catch(err){
-        res.status(200).json({
-            message: err.message
-        })
-    }
+// function protectRoute(req, res, next){
+//     try{
+//         console.log("reached body checker");
+//         // cookie-parser
+//         console.log("61", req.cookies);
+//         // jwt 
+//         // -> verify everytime that if 
+//         // you are bringing the token to get your response
+//         let decryptedToken = jwt.verify(req.cookies.JWT, JWT_SECRET);
+//         // console.log("66", decryptedToken);
+//         console.log("68", decryptedToken);  
+//         if(decryptedToken){
+//             next();
+//         }
+//         else{
+//             res.send("kindly login to access this resource ");
+//         }
+//     }
+//     catch(err){
+//         res.status(200).json({
+//             message: err.message
+//         })
+//     }
 
-}
+// }
 
-function getUsers(req, res)
-{  res.status(200).json({
-      "message" : content
-   })
-}
+// function getUsers(req, res)
+// {  res.status(200).json({
+//       "message" : content
+//    })
+// }
 
 
-function bodyChecker(req, res, next) {
-    console.log("reached body checker");
-    let isPresent = Object.keys(req.body).length; // check object mein keys hai kya ?
-    console.log("ispresent", isPresent)
-    if (isPresent) {
-        next();
-    } else {
-        res.send("kind send details in body ");
-    }
-}
+// function bodyChecker(req, res, next) {
+//     console.log("reached body checker");
+//     let isPresent = Object.keys(req.body).length; // check object mein keys hai kya ?
+//     console.log("ispresent", isPresent)
+//     if (isPresent) {
+//         next();
+//     } else {
+//         res.send("kind send details in body ");
+//     }
+// }
 
 // userModel se pehle ka signUpUser function
 // function signupUser(req, res) {
@@ -140,21 +140,21 @@ function bodyChecker(req, res, next) {
 // }
 
 // userModel bnane ke baad ka signUpUser function
-async function signupUser(req, res) {
-    try{
-        let newUser = await userModel.create(req.body);
-        res.status(200).json({
-            "message": "user created successfully",
-            user: newUser
-        })
-    }
-    catch(err){
-        console.error(err);
-        res.status(500).json({
-            message: err.message
-        })
-    }
-}
+// async function signupUser(req, res) {
+//     try{
+//         let newUser = await userModel.create(req.body);
+//         res.status(200).json({
+//             "message": "user created successfully",
+//             user: newUser
+//         })
+//     }
+//     catch(err){
+//         console.error(err);
+//         res.status(500).json({
+//             message: err.message
+//         })
+//     }
+// }
 
 
 
@@ -186,37 +186,37 @@ async function signupUser(req, res) {
 // }
 
 // token ke baad
-function loginUser(req, res){
-    let { email, password } = req.body;
-    let obj = content.find((obj)=>{ // content ke har ek obj par kind of loop
-        return obj.email == email
-    })
+// function loginUser(req, res){
+//     let { email, password } = req.body;
+//     let obj = content.find((obj)=>{ // content ke har ek obj par kind of loop
+//         return obj.email == email
+//     })
 
-    if (!obj) {
-       return res.status(404).json({
-           message: "User not found"
-       })
-    }
+//     if (!obj) {
+//        return res.status(404).json({
+//            message: "User not found"
+//        })
+//     }
 
-   if (obj.password == password) {
-       var token = jwt.sign({ email: obj.email },JWT_SECRET); // when first time login // here email is our payload
-       console.log(token);
+//    if (obj.password == password) {
+//        var token = jwt.sign({ email: obj.email },JWT_SECRET); // when first time login // here email is our payload
+//        console.log(token);
 
-       res.cookie("JWT", token); // server ye cookie with its token client ko dega
-       // sign with RSA SHA256
-        // res body 
+//        res.cookie("JWT", token); // server ye cookie with its token client ko dega
+//        // sign with RSA SHA256
+//         // res body 
 
-       res.status(200).json({
-           message: "user logged In",
-           user: obj
-       })
-   }
-   else {
-       res.status(422).json({
-           message: "password doesn't match"
-       })
-   }     
-}
+//        res.status(200).json({
+//            message: "user logged In",
+//            user: obj
+//        })
+//    }
+//    else {
+//        res.status(422).json({
+//            message: "password doesn't match"
+//        })
+//    }     
+// }
 
 // authRouter.route("/:id").patch(forgetPassword)
 // function createUser(req, res) {
@@ -234,25 +234,25 @@ function loginUser(req, res){
 app.listen(8081, function () {
     console.log("server started");
 })
-app.post("/", function (req, res, next) {
-    let body = req.body;
-    console.log("inside first post", body);
-    next();
-})
-app.use(function (req, res, next) {
-    console.log("inside app.use",)
-    next();
-})
-app.get("/", function (req, res) {
-    let body = req.body;
-    console.log("inside first get", body);
+// app.post("/", function (req, res, next) {
+//     let body = req.body;
+//     console.log("inside first post", body);
+//     next();
+// })
+// app.use(function (req, res, next) {
+//     console.log("inside app.use",)
+//     next();
+// })
+// app.get("/", function (req, res) {
+//     let body = req.body;
+//     console.log("inside first get", body);
 
-})
-app.post("/", function (req, res, next) {
-    let body = req.body;
-    console.log("inside second post ", body);
-    res.send("tested next");
-})
+// })
+// app.post("/", function (req, res, next) {
+//     let body = req.body;
+//     console.log("inside second post ", body);
+//     res.send("tested next");
+// })
 app.use(function (req, res) {
     // console.log("fullPath", fullPath);
     res.status(404).sendFile
