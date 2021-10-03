@@ -3,6 +3,11 @@
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
+
+const jwt = require('jsonwebtoken');
+const { JWT_SECRET } = require('./secrets');
+const cookieParser = require('cookie-parser');
+
 // Server: // route  -> request -> response/file 
 // File system// path -> interact/type -> file /folder
 // server init
@@ -20,6 +25,7 @@ const app = express();
 // reserve a folder only from which client can acces the files 
 app.use(express.static("Frontend_folder")); // tha se saari files serve hoti hai
 app.use(express.json());
+app.use(cookieParser());
 
 // // function -> route  path
 // // frontend -> req -> /
@@ -31,6 +37,7 @@ const authRouter = express.Router();
 // // localhost / auth / 10-> patch
 app.use('/user', userRouter);
 app.use('/auth', authRouter);
+
 userRouter
     .route('/')
 //     localhost/user -> get
