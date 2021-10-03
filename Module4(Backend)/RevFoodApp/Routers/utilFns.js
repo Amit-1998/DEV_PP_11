@@ -18,7 +18,6 @@ module.exports.protectRoute = function protectRoute(req, res, next) {
             res.send("kindly login to access this resource ");
         }
     } catch (err) {
-
         res.status(200).json({
             message: err.message
         })
