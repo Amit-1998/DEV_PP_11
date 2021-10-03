@@ -18,7 +18,7 @@ const app = express();
 // always use me
 //  express json -> req.body add
 // reserve a folder only from which client can acces the files 
-app.use(express.static("Frontend_folder"));
+app.use(express.static("Frontend_folder")); // tha se saari files serve hoti hai
 app.use(express.json());
 
 // // function -> route  path
@@ -26,15 +26,15 @@ app.use(express.json());
 // read data storage
 // localhost/user/10 -> post 
 let content = JSON.parse(fs.readFileSync("./data.json"));
-// const userRouter = express.Router();
+const userRouter = express.Router();
 const authRouter = express.Router();
 // // localhost / auth / 10-> patch
-// app.use('/user', userRouter);
+app.use('/user', userRouter);
 app.use('/auth', authRouter);
-// userRouter
-//     .route('/')
+userRouter
+    .route('/')
 //     localhost/user -> get
-//     .get(getUsers)
+    .get(protectRoute, getUsers)
 //     localhost/user -> post
 //     .post(bodyChecker, isAuthenticated, isAuthorized, createUser);
 // userRouter
@@ -45,9 +45,33 @@ app.use('/auth', authRouter);
 authRouter.route("/signup")
     .post(bodyChecker, signupUser);
 
+authRouter.route("/login")
+    .post(bodyChecker, loginUser);
+
+function protectRoute(req, res, next){
+    console.log("reached body checker");
+    // jwt 
+    // -> verify everytime that if 
+    // you are bringing the token to get your response
+    let isallowed = false;
+    if (isallowed) {
+        next();
+    } else {
+        res.send("kindly login to access this resource ");
+    }
+
+}
+
+function getUsers(req, res)
+{  res.status(200).json({
+      "message" : content
+   })
+}
+
+
 function bodyChecker(req, res, next) {
     console.log("reached body checker");
-    let isPresent = Object.keys(req.body).length;
+    let isPresent = Object.keys(req.body).length; // check object mein keys hai kya ?
     console.log("ispresent", isPresent)
     if (isPresent) {
         next();
@@ -55,6 +79,7 @@ function bodyChecker(req, res, next) {
         res.send("kind send details in body ");
     }
 }
+
 function signupUser(req, res) {
     let { name, email, password,confirmPassword } = req.body;
     console.log("req.body", req.body);
@@ -75,6 +100,33 @@ function signupUser(req, res) {
         })
     }
 }
+
+function loginUser(req, res){
+     let { email, password } = req.body;
+     let obj = content.find((obj)=>{ // content ke har ek obj par kind of loop
+         return obj.email == email
+     })
+
+     if (!obj) {
+        return res.status(404).json({
+            message: "User not found"
+        })
+     }
+
+    if (obj.password == password) {
+        res.status(200).json({
+            message: "user logged In",
+            user: obj
+        })
+    }
+    else {
+        res.status(422).json({
+            message: "password doesn't match"
+        })
+    }     
+
+}
+
 // authRouter.route("/:id").patch(forgetPassword)
 // function createUser(req, res) {
 //     console.log("create users");
