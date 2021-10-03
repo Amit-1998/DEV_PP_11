@@ -55,16 +55,44 @@ authRouter.route("/signup")
 authRouter.route("/login")
     .post(bodyChecker, loginUser);
 
+/* jwtkey bnane se pehle protectRoute aise likha the*/
+
+// function protectRoute(req, res, next){
+//     console.log("reached body checker");
+//     // jwt 
+//     // -> verify everytime that if 
+//     // you are bringing the token to get your response
+//     let isallowed = false;
+//     if (isallowed) {
+//         next();
+//     } else {
+//         res.send("kindly login to access this resource ");
+//     }
+// }
+
+/* after require JWT_SECRET key*/ 
 function protectRoute(req, res, next){
-    console.log("reached body checker");
-    // jwt 
-    // -> verify everytime that if 
-    // you are bringing the token to get your response
-    let isallowed = false;
-    if (isallowed) {
-        next();
-    } else {
-        res.send("kindly login to access this resource ");
+    try{
+        console.log("reached body checker");
+        // cookie-parser
+        console.log("61", req.cookies);
+        // jwt 
+        // -> verify everytime that if 
+        // you are bringing the token to get your response
+        let decryptedToken = jwt.verify(req.cookies.JWT, JWT_SECRET);
+        // console.log("66", decryptedToken);
+        console.log("68", decryptedToken);  
+        if(decryptedToken){
+            next();
+        }
+        else{
+            res.send("kindly login to access this resource ");
+        }
+    }
+    catch(err){
+        res.status(200).json({
+            message: err.message
+        })
     }
 
 }
@@ -108,29 +136,64 @@ function signupUser(req, res) {
     }
 }
 
+/* token se pehle aise likha the*/ 
+// function loginUser(req, res){
+//      let { email, password } = req.body;
+//      let obj = content.find((obj)=>{ // content ke har ek obj par kind of loop
+//          return obj.email == email
+//      })
+
+//      if (!obj) {
+//         return res.status(404).json({
+//             message: "User not found"
+//         })
+//      }
+
+//     if (obj.password == password) {
+//         res.status(200).json({
+//             message: "user logged In",
+//             user: obj
+//         })
+//     }
+//     else {
+//         res.status(422).json({
+//             message: "password doesn't match"
+//         })
+//     }     
+
+// }
+
+// token ke baad
 function loginUser(req, res){
-     let { email, password } = req.body;
-     let obj = content.find((obj)=>{ // content ke har ek obj par kind of loop
-         return obj.email == email
-     })
+    let { email, password } = req.body;
+    let obj = content.find((obj)=>{ // content ke har ek obj par kind of loop
+        return obj.email == email
+    })
 
-     if (!obj) {
-        return res.status(404).json({
-            message: "User not found"
-        })
-     }
-
-    if (obj.password == password) {
-        res.status(200).json({
-            message: "user logged In",
-            user: obj
-        })
+    if (!obj) {
+       return res.status(404).json({
+           message: "User not found"
+       })
     }
-    else {
-        res.status(422).json({
-            message: "password doesn't match"
-        })
-    }     
+
+   if (obj.password == password) {
+       var token = jwt.sign({ email: obj.email },JWT_SECRET); // when first time login // here email is our payload
+       console.log(token);
+
+       res.cookie("JWT", token); // server ye cookie with its token client ko dega
+       // sign with RSA SHA256
+        // res body 
+
+       res.status(200).json({
+           message: "user logged In",
+           user: obj
+       })
+   }
+   else {
+       res.status(422).json({
+           message: "password doesn't match"
+       })
+   }     
 
 }
 
