@@ -29,7 +29,7 @@ module.exports = async function sendMail(userObj) { // documentation se padke as
         // isse samn bhejenge
         let info = await transporter.sendMail({
             from: '"foodApp 🍦" <amit9810970545@gmail.com>', // sender address
-            to: "amitkumar654521@gmial.com", // list of receivers
+            to: "amitkumar654521@gmail.com", // list of receivers
             subject: Ownsubject, // Subject line
             text: Owntext, // plain text body
             html: Ownhtml, // html body

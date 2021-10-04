@@ -46,9 +46,17 @@ const userSchema = new mongoose.Schema({
     },
     createdAt: {
         type: String,
-
-    }
+    },
+    token: String
 })
+
+// hook
+userSchema.pre('save',function(next){
+   // do stuff
+   this.confirmPassword = undefined;
+   next();
+})
+
 // model
 let userModel = mongoose.model("UserModel", userSchema);
 module.exports = userModel;

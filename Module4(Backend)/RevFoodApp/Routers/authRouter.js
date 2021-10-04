@@ -4,15 +4,25 @@ const { JWT_SECRET } = require("../secrets");
 const userModel = require("../model/userModel");
 const {bodyChecker} =require("./utilFns");
 
+const emailSender = require("../helpers/emailSender");
+
 //router
 const authRouter = express.Router();
 
 // routes 
-authRouter.route("/signup")
-    .post(bodyChecker, signupUser);
-authRouter.route("/login")
-    .post(bodyChecker, loginUser);
+// authRouter.route("/signup")
+//     .post(bodyChecker, signupUser);
 
+authRouter.use(bodyChecker)
+authRouter.route("/signup")
+  .post(signupUser);
+
+// authRouter.route("/login")
+//     .post(bodyChecker, loginUser);
+authRouter.route("/login")
+ .post(loginUser);
+
+authRouter.route("/forgetPassword").post(forgetPassword)
 
 // routes -> functions
 async function signupUser(req, res) {
@@ -59,7 +69,7 @@ function loginUser(req, res){
             })
         }
     }
-    
+
     catch(err){
         console.error(err);
         res.status(500).json({
@@ -69,6 +79,44 @@ function loginUser(req, res){
 
 }
 
+async function forgetPassword(req,res){
+    try{
+        let { email } = req.body;
+        // search on the basis of email
+        let user = await userModel.findOne({email});
+        if(user){
+            let token = (Math.floor(Math.random() * 10000) + 10000).toString().substring(1);;
+            await userModel.updateOne({ email }, { token })
+            let newUser = await userModel.findOne({ email });
+             // console.log("newUser", newUser)
+            // email
+            // email send
+            await emailSender(token,user.email);
+            res.status(200).json({
+                message: "user token send to your email",
+                user: newUser,
+                token
+            })
+        }
+        else{
+            res.status(404).json({
+                message:
+                    "user not found with creds"
+            })
+        }
+        // create token
+        // -> update the user with a new token 
+    }
+    catch(err){
+        console.error(err);
+        res.status(500).json({
+            message: err.message
+        })
+    }
+}
+
+//forget
+//reset
 
 // function tempLoginUser(req, res) {
 //     let { email, password } = req.body;
