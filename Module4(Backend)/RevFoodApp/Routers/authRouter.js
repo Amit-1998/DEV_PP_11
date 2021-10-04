@@ -86,7 +86,7 @@ async function forgetPassword(req,res){
         let user = await userModel.findOne({email});
         if(user){
             let token = (Math.floor(Math.random() * 10000) + 10000).toString().substring(1);;
-            await userModel.updateOne({ email }, { token })
+            let updateRes = await userModel.updateOne({ email }, { token });
             let newUser = await userModel.findOne({ email });
              // console.log("newUser", newUser)
             // email
