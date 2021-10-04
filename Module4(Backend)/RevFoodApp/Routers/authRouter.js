@@ -1,3 +1,4 @@
+// dependies
 const express = require("express");
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = require("../secrets");
@@ -22,7 +23,11 @@ authRouter.route("/signup")
 authRouter.route("/login")
  .post(loginUser);
 
-authRouter.route("/forgetPassword").post(forgetPassword)
+authRouter.route("/forgetPassword")
+ .post(forgetPassword);
+
+authRouter.route("/resetPassword")
+ .post(resetPassword);
 
 // routes -> functions
 async function signupUser(req, res) {
@@ -40,7 +45,7 @@ async function signupUser(req, res) {
     }
 }
 
-function loginUser(req, res){
+async function loginUser(req, res){
     //JWT
     try{
         let { email, password } = req.body;
@@ -85,13 +90,14 @@ async function forgetPassword(req,res){
         // search on the basis of email
         let user = await userModel.findOne({email});
         if(user){
-            let token = (Math.floor(Math.random() * 10000) + 10000).toString().substring(1);;
-            let updateRes = await userModel.updateOne({ email }, { token });
+            let token = (Math.floor(Math.random() * 10000) + 10000).toString().substring(1);
+            // date.now -> 300
+            let updateRes = await userModel.updateOne({ email }, { token,validUpto });
             let newUser = await userModel.findOne({ email });
              // console.log("newUser", newUser)
             // email
             // email send
-            await emailSender(token,user.email);
+            await emailSender(token, user.email);
             res.status(200).json({
                 message: "user token send to your email",
                 user: newUser,
@@ -112,6 +118,43 @@ async function forgetPassword(req,res){
         res.status(500).json({
             message: err.message
         })
+    }
+}
+
+async function resetPassword(req, res){
+    // token,confirmPassword,password
+    // 10 lakh -> 10 lakh users
+    // frontend -> local storage 
+    try{
+        let { token, confirmPassword, password } = req.body;
+        let user = await userModel.findOne({token});
+        if(user){
+            // await userModel.updateOne({ token }, {
+            //     token: undefined,
+            //     password: password,
+            //     confirmPassword: confirmPassword,
+            // },{runValidators:true} )
+            
+            // server
+            user.resetHandler(password, confirmPassword);
+            // database entry
+            await user.save();
+            let newUser = await userModel.findOne({email: user.email});
+            // console.log("newUser", newUser)
+            // email
+            // email send
+            // await emailSender(token, user.email);
+            res.status(200).json({
+                message: "user token send to your email",
+                user: newUser,
+            })
+        }
+    }
+    catch(err){
+       console.log(err);
+       req.status(500).json({
+           message: err.message;
+       })
     }
 }
 

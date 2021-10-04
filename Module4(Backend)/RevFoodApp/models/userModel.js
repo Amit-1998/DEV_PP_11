@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-       
+        unique: true,
         validate: function () {
             // third party library 
             return validator.validate(this.email)
@@ -47,7 +47,8 @@ const userSchema = new mongoose.Schema({
     createdAt: {
         type: String,
     },
-    token: String
+    token: String,
+    validUpto: Date
 })
 
 // hook
@@ -56,6 +57,13 @@ userSchema.pre('save',function(next){
    this.confirmPassword = undefined;
    next();
 })
+
+// document method
+userSchema.methods.resetHandler = function(password, confirmPassword){
+    this.password = password;
+    this.confirmPassword = confirmPassword;
+    this.token = undefined;
+}
 
 // model
 let userModel = mongoose.model("UserModel", userSchema);
