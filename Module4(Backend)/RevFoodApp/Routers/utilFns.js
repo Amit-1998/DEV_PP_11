@@ -13,6 +13,8 @@ module.exports.protectRoute = function protectRoute(req, res, next) {
         // console.log("66", decryptedToken)
         console.log("68", decryptedToken)
         if (decryptedToken) {
+            let userId = decryptedToken.id;
+            req.userId = userId;
             next();
         } else {
             res.send("kindly login to access this resource ");
