@@ -7,8 +7,8 @@ const path = require("path");
 // const jwt = require('jsonwebtoken');
 // const { JWT_SECRET } = require('./secrets');
 const cookieParser = require('cookie-parser');
-const userRouter = require('./Router/userRouter');
-const authRouter = require('./Router/authRouter');
+const userRouter = require("./Routers/userRouter");
+const authRouter = require('./Routers/authRouter');
 
 // let userModel = require("./models/userModel");
 

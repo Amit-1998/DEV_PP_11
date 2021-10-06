@@ -2,7 +2,7 @@
 const express = require("express");
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = require("../secrets");
-const userModel = require("../model/userModel");
+const userModel = require("../models/userModel");
 const {bodyChecker} =require("./utilFns");
 
 const emailSender = require("../helpers/emailSender");
@@ -53,7 +53,7 @@ async function loginUser(req, res){
         if (user) {
             // password
                 if (user.password == password) {
-                    let token = jwt.sign({ id: user["_id"] }, JWT_SECRET, { httpOnly: true })
+                    let token = jwt.sign({ id: user["_id"] }, JWT_SECRET)
                     res.cookie("JWT", token);
                     res.status(200).json({
                         data: user,
@@ -92,7 +92,7 @@ async function forgetPassword(req,res){
         if(user){
             let token = (Math.floor(Math.random() * 10000) + 10000).toString().substring(1);
             // date.now -> 300
-            let updateRes = await userModel.updateOne({ email }, { token,validUpto });
+            let updateRes = await userModel.updateOne({ email }, { token});
             let newUser = await userModel.findOne({ email });
              // console.log("newUser", newUser)
             // email
@@ -149,11 +149,16 @@ async function resetPassword(req, res){
                 user: newUser,
             })
         }
+        else{
+            res.status(404).json({
+                message: "user with this token not found"
+            })
+        }
     }
     catch(err){
        console.log(err);
        req.status(500).json({
-           message: err.message;
+           message: err.message
        })
     }
 }

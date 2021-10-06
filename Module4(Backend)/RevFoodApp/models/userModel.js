@@ -3,13 +3,13 @@ let { PASSWORD } = require("../secrets");
 const validator = require("email-validator");
 
 // let dbLink = `mongodb+srv://admin:${PASSWORD}@cluster0.y9gic.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
-let dbLink = `mongodb+srv://AmitfoodApp:${PASSWORD}@cluster0.y9gic.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+let dbLink = `mongodb+srv://AmitfoodApp:${PASSWORD}@cluster0.lwgl1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
 mongoose.connect(dbLink).then(function(connection){
     console.log("db has been connected");
 })
 .catch(function(err){
-    console.log("err", error);
+    console.log("err", err);
 })
 
 //mongoose -> data -> exact -> data -> that is required to form an entity 
@@ -34,8 +34,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 8,
-    }
-    ,
+    },
     confirmPassword: {
         type: String,
         required: true,
@@ -56,7 +55,7 @@ userSchema.pre('save',function(next){
    // do stuff
    this.confirmPassword = undefined;
    next();
-})
+});
 
 // document method
 userSchema.methods.resetHandler = function(password, confirmPassword){
