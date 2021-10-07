@@ -13,9 +13,9 @@ module.exports.protectRoute = function protectRoute(req, res, next) {
         // console.log("66", decryptedToken)
         console.log("68", decryptedToken)
         if (decryptedToken) {
-            let userId = decryptedToken.id;
-            req.userId = userId;
-            next();
+            let userId = decryptedToken.id; // isliye hmane jwtTOken bnate vakt jaan bujh kar payload mein uid ko userModel kw user ki id hi de daali thi taaki ham uska use yha par kar sake (isAuthorized function mein)
+            req.userId = userId; // req object hamesha same rahega, to ham req Obj mein userId ko add kar denge 
+            next(); // then fir bodychecker par jayega usmein body check hoyegi then body check hone ke baad isAuthorized([roles]) par jayega ismein ham is req.userId ko use karenge
         } else {
             res.send("kindly login to access this resource ");
         }
