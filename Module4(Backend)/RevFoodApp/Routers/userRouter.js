@@ -23,109 +23,114 @@ userRouter.route("/:id")
   .delete(bodyChecker, isAuthorized(["admin"]), deleteUser)
 
 // functions
+const createUser = createElement(userModel); // idhar se createUser ban jayega
+
 // createUser is only authorized to admin
-async function createUser(req, res){
-    try{
-       let user = await userModel.create(req.body);
-       res.status(200).json({
-           user: user
-       })
-    }
-    catch(err){
-        console.log(err);
-        res.status(500).json({
-            message: "Server Error"
-        })
-    }
-}
+// async function createUser(req, res){
+//     try{
+//        let user = await userModel.create(req.body);
+//        res.status(200).json({
+//            user: user
+//        })
+//     }
+//     catch(err){
+//         console.log(err);
+//         res.status(500).json({
+//             message: "Server Error"
+//         })
+//     }
+// }
 
+const getUser = getElement(userModel);
 // getUser is authorized to normal moderators, users
-async function getUser(req, res){
-    let { id } = req.params;
-    try{
-        let user = await userModel.findById(id);
-        // console.log(user);
-        res.status(200).json({
-            "message": user
-        })
-    }
-    catch(err){
-        res.status(502).json({
-            message: err.message
-        })
-    }
-}
+// async function getUser(req, res){
+//     let { id } = req.params;
+//     try{
+//         let user = await userModel.findById(id);
+//         // console.log(user);
+//         res.status(200).json({
+//             "message": user
+//         })
+//     }
+//     catch(err){
+//         res.status(502).json({
+//             message: err.message
+//         })
+//     }
+// }
 
+const getUsers = getElements(userModel);
 // getUsers is authorized to normal moderators, users
-async function getUsers(req, res) {
-    try {
-        let users = await userModel.find();
-        res.status(200).json({
-            "message": users
-        })
-    } catch (err) {
-        res.status(502).json({
-            message: err.message
-        })
-    }
-}
+// async function getUsers(req, res) {
+//     try {
+//         let users = await userModel.find();
+//         res.status(200).json({
+//             "message": users
+//         })
+//     } catch (err) {
+//         res.status(502).json({
+//             message: err.message
+//         })
+//     }
+// }
 
+const updateUser = updateElement(userModel);
+// async function updateUser(req, res){
+//     let { id } = req.params;
+//     try{
+//         // ham password & confirm Password nhi  update  krvana chahenge through updateUser
+//         if (req.body.password || req.body.confirmPassword) {
+//             return res.json({
+//                 message: "use forget password instead, to update p & cP"
+//             })
+//         }
+//        let user = await userModel.findById(id);
+//        if(user){
+//            for(let key in user){
+//                user[key] = req.body[key];
+//            }
+//            // save -> confirm, password
+//            // [options.validateBeforeSave] «Boolean» set to false to save without validating.
+//            // validateBeforeSave: false krane se jo schema mein hamne required: true kra hai and jo email ko validaate function diye ye sab chise ko run or check nhi karega unhe rokega validate karne se
+//            // schema mein jo pre('save') likha use bhi nhi chalne dega
+//            await user.save({
+//                validateBeforeSave: false
+//            });
+//            res.status(200).json({
+//                user: user
+//            });
+//         }
+//        else{
+//           res.status(404).json({
+//               message: "user not found"
+//           })  
+//        }
+//     } 
+//     catch(err){
+//          console.log(err);
+//          res.status(500).json({
+//              message: "Server error"
+//          });
+//     }
+// }
 
-async function updateUser(req, res){
-    let { id } = req.params;
-    try{
-        // ham password & confirm Password nhi  update  krvana chahenge through updateUser
-        if (req.body.password || req.body.confirmPassword) {
-            return res.json({
-                message: "use forget password instead, to update p & cP"
-            })
-        }
-       let user = await userModel.findById(id);
-       if(user){
-           for(let key in user){
-               user[key] = req.body[key];
-           }
-           // save -> confirm, password
-           // [options.validateBeforeSave] «Boolean» set to false to save without validating.
-           // validateBeforeSave: false krane se jo schema mein hamne required: true kra hai and jo email ko validaate function diye ye sab chise ko run or check nhi karega unhe rokega validate karne se
-           // schema mein jo pre('save') likha use bhi nhi chalne dega
-           await user.save({
-               validateBeforeSave: false
-           });
-           res.status(200).json({
-               user: user
-           });
-        }
-       else{
-          res.status(404).json({
-              message: "user not found"
-          })  
-       }
-    } 
-    catch(err){
-         console.log(err);
-         res.status(500).json({
-             message: "Server error"
-         });
-    }
-}
-
+const deleteUser = deleteElement(userModel);
 // deleteUser is only authorized to admin
-async function deleteUser(req, res){
-     let { id } = req.params;
-     try{
-        let user = await userModel.findByIdAndDelete(id);
-        res.status(200).json({
-            user: user
-        });
-     }
-     catch(err){
-         console.log(err);
-         req.status(500).json({
-             message: "Server error"
-         });
-     }
-}
+// async function deleteUser(req, res){
+//      let { id } = req.params;
+//      try{
+//         let user = await userModel.findByIdAndDelete(id);
+//         res.status(200).json({
+//             user: user
+//         });
+//      }
+//      catch(err){
+//          console.log(err);
+//          req.status(500).json({
+//              message: "Server error"
+//          });
+//      }
+// }
 
 // isAuthorized mein ham closure ka use kar rha hu taaki ham sabke liye general code likh paaye 
 // function isAuthorized(roles){
