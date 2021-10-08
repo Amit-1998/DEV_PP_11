@@ -22,7 +22,7 @@ const planSchema = new mongoose.Schema({
         required: [true, "kindly pass the name"], // agar aap required: true nhi karoge to error mein "kindly pass the name" ye dega 
         unique: [true, "plan name should be unique"],
         // error
-        maxlength: [40, "Your paln length is more than 40 characters"], // agar maxlength 40 nhi diya to ye error dega
+        maxlength: [40, "Your plan length is more than 40 characters"], // agar maxlength 40 nhi diya to ye error dega
     },
     duration: {
         type: Number,

@@ -1,10 +1,10 @@
-// dependency
+// dependencies
 const express = require("express");
 const userModel = require("../models/userModel");
 
 // router
 const userRouter = express.Router();
-const { protectRoute, bodyChecker } = require("./utilFns");
+const { protectRoute, bodyChecker, isAuthorized } = require("./utilFns");
 
 // routes -> id
 userRouter.use(protectRoute); // sabke pehle yhi lgado // sabhi function se pehle ham protectRoute lga de rahe hai jisske hoga ye ki hame protectRoute se user mil jayega through decryptedToken mein req.userId
@@ -128,43 +128,43 @@ async function deleteUser(req, res){
 }
 
 // isAuthorized mein ham closure ka use kar rha hu taaki ham sabke liye general code likh paaye 
-function isAuthorized(roles){
-    console.log("I will run when the server is started"); // ye line to return se pehle likhi hai to sirf isAuthorized(roles) ke call par hi chal jayegi
-    // function call
-    // ye async vaala function to request par hi chalega
-    // jab updateUser ya createUser ys deleteUser par request aayegi tab hi ye async function chalega
-    return async function(req, res){
-        console.log("I will run when a call is made ");
-        // jo protectRoute mein decryptedToken se id nikali thi and us id ko hamne req ke object mein add kara diya the usko ham yha use karenge
-        // to fir us req object se userId nikali
-        let { userId } = req; // protectRoute se hame ye userKi Id  mil gayi matlab user mil gya
-        // us userId se user get kra
-        // and fir us user se uska role get kra
-        // id -> user get, user role
-        // than fir is user ka role ko pure "roles" array mein check kra ki vo is array mein exist karta hai ki nhi
-        // if role exist -> allow the user
-        // if role notExist -> don't allow the user
-        try{
-           let user = userModel.findById(userId);
-           let userisAuthorized = roles.includes(user.role);
-           if(userisAuthorized){
-               req.user = user;  // isse hamne whole user hi dediya client ko as we did req.userId in protectRoute
-               next();
-           }
-           else{
-               req.status(200).json({
-                   message: "user not authorized"
-               })
-           }
+// function isAuthorized(roles){
+//     console.log("I will run when the server is started"); // ye line to return se pehle likhi hai to sirf isAuthorized(roles) ke call par hi chal jayegi
+//     // function call
+//     // ye async vaala function to request par hi chalega
+//     // jab updateUser ya createUser ys deleteUser par request aayegi tab hi ye async function chalega
+//     return async function(req, res){
+//         console.log("I will run when a call is made ");
+//         // jo protectRoute mein decryptedToken se id nikali thi and us id ko hamne req ke object mein add kara diya the usko ham yha use karenge
+//         // to fir us req object se userId nikali
+//         let { userId } = req; // protectRoute se hame ye userKi Id  mil gayi matlab user mil gya
+//         // us userId se user get kra
+//         // and fir us user se uska role get kra
+//         // id -> user get, user role
+//         // than fir is user ka role ko pure "roles" array mein check kra ki vo is array mein exist karta hai ki nhi
+//         // if role exist -> allow the user
+//         // if role notExist -> don't allow the user
+//         try{
+//            let user = userModel.findById(userId);
+//            let userisAuthorized = roles.includes(user.role);
+//            if(userisAuthorized){
+//                req.user = user;  // isse hamne whole user hi dediya client ko as we did req.userId in protectRoute
+//                next();
+//            }
+//            else{
+//                req.status(200).json({
+//                    message: "user not authorized"
+//                })
+//            }
 
-        }
-        catch(err){
-            console.log(err);
-            res.status(500).json({
-                message: "Server error"
-            })
-        }
-    }
-}
+//         }
+//         catch(err){
+//             console.log(err);
+//             res.status(500).json({
+//                 message: "Server error"
+//             })
+//         }
+//     }
+// }
 
 module.exports = userRouter;
