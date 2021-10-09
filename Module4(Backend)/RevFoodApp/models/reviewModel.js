@@ -29,7 +29,7 @@ const reviewSchema = new mongoose.Schema({
      user: {
          type: mongoose.Schema.ObjectId,
          required: [true, "Review must belong to a user"],
-         ref: "userModel", // jab hame data mangaane hoga na to kis chis se ham is user ko refer karenge i.e userModel // ref mein btayenge ki uper jo "type" mein user ki id hai vo kis model ki hai 
+         ref: "userModel" // jab hame data mangaane hoga na to kis chis se ham is user ko refer karenge i.e userModel // ref mein btayenge ki uper jo "type" mein user ki id hai vo kis model ki hai 
      },
      plan: {
          type: mongoose.Schema.ObjectId,
