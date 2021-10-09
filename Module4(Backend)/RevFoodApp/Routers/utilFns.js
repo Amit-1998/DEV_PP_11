@@ -46,7 +46,7 @@ module.exports.isAuthorized = function(roles){
     // function call
     // ye async vaala function to request par hi chalega
     // jab updateUser ya createUser ys deleteUser par request aayegi tab hi ye async function chalega
-    return async function(req, res){
+    return async function(req, res, next){
         console.log("I will run when a call is made ");
         // jo protectRoute mein decryptedToken se id nikali thi and us id ko hamne req ke object mein add kara diya the usko ham yha use karenge
         // to fir us req object se userId nikali
@@ -58,14 +58,18 @@ module.exports.isAuthorized = function(roles){
         // if role exist -> allow the user
         // if role notExist -> don't allow the user
         try{
-           let user = userModel.findById(userId);
+           let user = await userModel.findById(userId);
+           console.log("5", user);
+        //    console.log(req.body.role);
+        //    let userisAuthorized = roles.includes(req.body.role);
            let userisAuthorized = roles.includes(user.role);
+           console.log(userisAuthorized);
            if(userisAuthorized){
                req.user = user;  // isse hamne whole user hi dediya client ko as we did req.userId in protectRoute
                next();
            }
            else{
-               req.status(200).json({
+               res.status(200).json({
                    message: "user not authorized"
                })
            }

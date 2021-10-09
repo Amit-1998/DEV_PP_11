@@ -10,7 +10,7 @@ const cookieParser = require('cookie-parser');
 const userRouter = require("./Routers/userRouter");
 const authRouter = require('./Routers/authRouter');
 const planRouter = require('./Routers/planRouter');
-
+const reviewRouter = require("./Routers/reviewRouter");
 // let userModel = require("./models/userModel");
 
 // Server: // route  -> request -> response/file 
@@ -41,8 +41,9 @@ app.use(cookieParser());
 // const authRouter = express.Router();
 // // localhost / auth / 10-> patch
 app.use('/api/user', userRouter);
-app.use("api/plan", planRouter);
+app.use("/api/plan", planRouter);
 app.use('/api/auth', authRouter);
+app.use("/api/review", reviewRouter);
 
 // userRouter
     // .route('/')

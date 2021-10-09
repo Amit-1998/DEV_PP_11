@@ -1,3 +1,6 @@
+// design Pattern hai -> code ko likhne ka ek pattern
+// this is called low-level design
+
 function createElement(elementModel){ // high-level function which uses or takes model
     // async function vaala tabhi chalega jab ise call lagegi yha se .post(bodyChecker, isAuthorized(["admin"]), createUser) 
     return async function(req, res){
@@ -23,7 +26,7 @@ function getElement(elementModel){
             let element = await elementModel.findById(id);
             // console.log(user);
             res.status(200).json({
-                "message": user
+                "message": element
             })
         }
         catch(err){
@@ -39,7 +42,7 @@ function getElements(elementModel){
         try {
             let elements = await elementModel.find();
             res.status(200).json({
-                "message": users
+                "message": elements
             })
         } catch (err) {
             res.status(502).json({
@@ -54,16 +57,20 @@ function updateElement(elementModel){
         let { id } = req.params;
         try{
             // ham password & confirm Password nhi  update  krvana chahenge through updateUser
-            if (req.body.password || req.body.confirmPassword) {
+            // agar galti se bande ne req.body mein password daal dia hai to
+            if (req.body.password || req.body.confirmPassword) { // ye vaala code sirf userModel ke liye hi chalega ,planModel mein is if mein nhi ghusega
                 return res.json({
                     message: "use forget password instead, to update p & cP"
                 })
             }
            let element = await elementModel.findById(id);
+              console.log("element",element);
+           console.log(req.body);
            if(element){
-               for(let key in user){
+               for(let key in req.body){
                    element[key] = req.body[key];
                }
+               console.log("element",element);
                // save -> confirm, password
                // [options.validateBeforeSave] «Boolean» set to false to save without validating.
                // validateBeforeSave: false krane se jo schema mein hamne required: true kra hai and jo email ko validaate function diye ye sab chise ko run or check nhi karega unhe rokega validate karne se
@@ -107,3 +114,9 @@ function deleteElement(elementModel){
         }
    }
 }
+
+module.exports.createElement = createElement;
+module.exports.getElement = getElement;
+module.exports.getElements = getElements;
+module.exports.updateElement = updateElement;
+module.exports.deleteElement = deleteElement;

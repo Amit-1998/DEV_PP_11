@@ -6,21 +6,11 @@ const userModel = require("../models/userModel");
 const userRouter = express.Router();
 const { protectRoute, bodyChecker, isAuthorized } = require("./utilFns");
 
+const { createElement, getElement, getElements, updateElement, deleteElement } = require("../helpers/factory");
 // routes -> id
 userRouter.use(protectRoute); // sabke pehle yhi lgado // sabhi function se pehle ham protectRoute lga de rahe hai jisske hoga ye ki hame protectRoute se user mil jayega through decryptedToken mein req.userId
 // let authCheckerCE = isAuthorized(["admin", "ce"]); // "ce" is our customer executive (like restaurant owner)
 // let authChecker = isAuthorized(["admin"]);
-
-// routes
-userRouter.route('/')
-  .post(bodyChecker, isAuthorized(["admin"]), createUser) // post will call function on itself
-   // localhost/user -> get
-  .get(protectRoute, isAuthorized(["admin", "ce"]), getUsers);
-
-userRouter.route("/:id")
-  .get(getUser)
-  .patch(bodyChecker, isAuthorized(["admin", "ce"]), updateUser) 
-  .delete(bodyChecker, isAuthorized(["admin"]), deleteUser)
 
 // functions
 const createUser = createElement(userModel); // idhar se createUser ban jayega
@@ -171,5 +161,16 @@ const deleteUser = deleteElement(userModel);
 //         }
 //     }
 // }
+
+// routes
+userRouter.route('/')
+  .post(bodyChecker, isAuthorized(["admin"]), createUser) // post will call function on itself
+   // localhost/user -> get
+  .get(protectRoute, isAuthorized(["admin", "ce"]), getUsers);
+
+userRouter.route("/:id")
+  .get(getUser)
+  .patch(bodyChecker, isAuthorized(["admin", "ce"]), updateUser) 
+  .delete(bodyChecker, isAuthorized(["admin"]), deleteUser)
 
 module.exports = userRouter;

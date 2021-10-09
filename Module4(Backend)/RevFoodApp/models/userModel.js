@@ -50,7 +50,7 @@ const userSchema = new mongoose.Schema({
     validUpto: Date,
     role: {
         type: String,
-        enum: ["admin", "ce", "user"],
+        enum: ["admin", "ce", "user"], // ye teen hi accept karega
         default: "user"
     }
 })
