@@ -6,15 +6,16 @@ function createElement(elementModel){ // high-level function which uses or takes
     return async function(req, res){
         try{
            let element = await elementModel.create(req.body);
+           console.log(element);
            res.status(200).json({
                element: element
-           })
+           });
         }
         catch(err){
             console.log(err);
             res.status(500).json({
                 message: "Server Error"
-            })
+            });
         }
     }
 }
