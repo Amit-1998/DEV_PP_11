@@ -53,7 +53,7 @@ const userSchema = new mongoose.Schema({
         enum: ["admin", "ce", "user"], // ye teen hi accept karega
         default: "user"
     },
-    booking: {
+    bookings: {
         // array of object id
         type: [mongoose.Schema.ObjectId],
         ref: "bookingModel"
