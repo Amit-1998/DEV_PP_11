@@ -44,12 +44,16 @@ const planSchema = new mongoose.Schema({
     planImages: {
         type: [String], // plan ki Images has array of Strings i.e array of URL of Images 
     },
-    review: {
+    reviews: { // is plan ke reviews kya-kya hai 
         // array of object id
         type: [mongoose.Schema.ObjectId],
         ref: "reviewModel"
-    }
-
+    },
+    averageRating: Number
+    // ratingsAverage: {
+    //     type: Number,
+    // }
+    
 })
 
 // model
