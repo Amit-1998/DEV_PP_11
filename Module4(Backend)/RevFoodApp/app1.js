@@ -11,6 +11,7 @@ const userRouter = require("./Routers/userRouter");
 const authRouter = require('./Routers/authRouter');
 const planRouter = require('./Routers/planRouter');
 const reviewRouter = require("./Routers/reviewRouter");
+const bookingRouter = require("./Routers/bookingRouter");
 // let userModel = require("./models/userModel");
 
 // Server: // route  -> request -> response/file 
@@ -44,6 +45,7 @@ app.use('/api/user', userRouter);
 app.use("/api/plan", planRouter);
 app.use('/api/auth', authRouter);
 app.use("/api/review", reviewRouter);
+app.use("/api/booking", bookingRouter);
 
 // userRouter
     // .route('/')

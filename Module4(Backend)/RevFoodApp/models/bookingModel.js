@@ -29,6 +29,11 @@ const bookingSchema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: "planModel", // jab hame data mangaane hoga na to kis chis se ham is plan ko refer karenge i.e planModel // ref mein btayenge ki type mein jo id hai vo kis model ki hai
         required: [true, "Booking must belong to a plan"]
+    },
+    status: {
+        type: String,
+        enum: ["pending","successful","rejected"],
+        default: "pending"
     }
 });
 
