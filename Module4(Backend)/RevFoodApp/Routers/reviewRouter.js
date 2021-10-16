@@ -17,19 +17,25 @@ const deletereview = deleteElement(reviewModel);
 
 
 // route -> id
-reviewRouter.use(protectRoute);
+// reviewRouter.use(protectRoute);
 
 // routes
 reviewRouter.get("/getuseralso", getUsersAlso);
 
+// createReview
+// review -> put entry
+// plan: average rating update
+// plan -> reviewId
+
+
 reviewRouter.route("/")
-  .post(bodyChecker, isAuthorized(["admin"]), createreview)
+  .post(protectRoute, bodyChecker, isAuthorized(["admin"]), createreview)
   .get(protectRoute, isAuthorized(["admin","ce"]), getreviews);
 
 reviewRouter.route("/:id")
   .get(getreview)
-  .patch(bodyChecker, isAuthorized(["admin", "ce"]), updatereview)
-  .delete(bodyChecker, isAuthorized(["admin"]), deletereview);
+  .patch(protectRoute, bodyChecker, isAuthorized(["admin", "ce"]), updatereview)
+  .delete(protectRoute, bodyChecker, isAuthorized(["admin"]), deletereview);
 
 async function getUsersAlso(req, res){
     try{    

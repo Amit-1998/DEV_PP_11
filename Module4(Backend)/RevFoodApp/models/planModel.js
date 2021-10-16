@@ -47,12 +47,9 @@ const planSchema = new mongoose.Schema({
     reviews: { // is plan ke reviews kya-kya hai 
         // array of object id
         type: [mongoose.Schema.ObjectId],
-        ref: "reviewModel"
+        // ref: "reviewModel" 
     },
     averageRating: Number
-    // ratingsAverage: {
-    //     type: Number,
-    // }
     
 })
 
