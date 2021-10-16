@@ -65,9 +65,9 @@ planRouter.route("/:id")
 async function getbestPlans(req, res){
     console.log("Inside getBestPlans");
     try{
-        // sort("-averageRating") -> -ve means in decreasing order 
+        // sort("-averageRating") -> -ve means in decreasing order (sort ke ander key ka name dena padta hai)
         let plans = await planModel.find().sort("-averageRating").populate({
-            path: "review",
+            path: "reviews",
             select: "review"
         })
         console.log(plans);

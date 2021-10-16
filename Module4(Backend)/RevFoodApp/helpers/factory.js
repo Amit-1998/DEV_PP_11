@@ -41,10 +41,46 @@ function getElement(elementModel){
 function getElements(elementModel){
     return async function(req, res) {
         try {
-            let elements = await elementModel.find();
+            // query.params vaali chis hame req.query se mil jaati hai
+            let requestPromise;
+            // query
+            if(req.query.myQuery){ // agar req.query mein myQuery exist karti hai to uske hisaab se element mangaalo but that would nbe the promise
+                // jaan bhujh kar Promise mein mangaaya for some reason hamne chaining kar di wait nhi kar rhe saare kaamsortthan select than paginate sab krane ke baad hi await kra hai
+                requestPromise = elementModel.find(req.query.myQuery);
+            }
+            else{
+                requestPromise = elementModel.find(); // if myQuery not exist than normal find kardo
+            }
+            //sort -> iske hisaab se sort kardo
+            if(req.query.sort){
+                requestPromise = requestPromise.sort(req.query.sort); // jo ismein req.query.sort mein aaya hai usi basis par sort karenge
+
+            }
+            // select(menas filter) -> is something select only kuch part
+            if(req.query.select){
+                // iske ander keys alag-alag hokar aa jayengi
+                // jaise kisine query mein name and price ke basis par kuch maanga to ham pehle name and price par chise alag alag karenge than fir chise add karunga
+                let params = req.query.select.split("%").join(" ");
+                requestPromise = requestPromise.select(params);
+            }
+
+            // paginate
+            let page = Number(req.query.page) || 1; // atleast 1 page to bydefault ham rakhenge hi agar user ne nhi bhi pass kara to req.query.page mein to
+            let limit = Number(req.query.limit) || 4; // by default ek page par 4 items ki limit rakh di agar user nhi bhi pass karega req.query.limit mein tab bhi
+            let toSkip = (page-1)*limit;
+            requestPromise = requestPromise.skip(toSkip).limit(limit);
+            
+            // pehle chaining chal rhi thi
+            let elements = await requestPromise; // hamne last mein jakr await lgaya
+            // if(req.query.page && req.query.limit){
+            //     // bande ne do chise di hai ek to page no and ek page par kitni chise aa sakti hai
+            // }
+
+
             res.status(200).json({
                 "message": elements
             })
+
         } catch (err) {
             res.status(502).json({
                 message: err.message
