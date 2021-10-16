@@ -54,10 +54,33 @@ planRouter.route("/")
    .post(bodyChecker, isAuthorized(["admin"]), createPlan)
    .get(protectRoute, isAuthorized(["admin","ce"]), getPlans);
   
+planRouter.route("/sortByRating", getbestPlans); // jiski jyda rating usbasis par plans dede
+
 
 planRouter.route("/:id")
   .get(getPlan) // don't put semicolns here
   .patch(bodyChecker, isAuthorized(["admin", "ce"]), updatePlan) // don't put semicolns here
   .delete(bodyChecker, isAuthorized(["admin"]), deletePlan) // last vaali request par u can put semicolon
+
+async function getbestPlans(req, res){
+    console.log("Inside getBestPlans");
+    try{
+        // sort("-averageRating") -> -ve means in decreasing order 
+        let plans = await planModel.find().sort("-averageRating").populate({
+            path: "review",
+            select: "review"
+        })
+        console.log(plans);
+        res.status(200).json({
+           plans
+        })
+    }
+    catch(err){
+        console.log(err);
+        res.status(200).json({
+           message: err.message
+        })
+    }
+}
 
 module.exports = planRouter;

@@ -71,6 +71,24 @@ const createReview = async function(req, res){
      }
 }
 
+const deleteReview = async function(req, res){
+    try{
+        let review = await reviewModel.findByIdAndDelete(req.body.id);
+        let planId = review.plan;
+        let plan = await planModel.findById(planId);
+        let idxOfReview = plan.reviews.indexOf(review["_id"]);
+        plan.review.splice(idxOfReview, 1);
+        await plan.save();
+        res.status(200).json({
+            message: "review created",
+            review: review
+        })
+    }
+    catch(err){
+
+    }
+}
+
 async function getUsersAlso(req, res){
     try{    
             // ref ke saath function aata hai populate
