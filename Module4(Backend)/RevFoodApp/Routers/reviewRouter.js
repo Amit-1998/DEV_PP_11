@@ -7,13 +7,14 @@ const { protectRoute, bodyChecker, isAuthorized } = require("./utilFns");
 
 const reviewModel = require("../models/reviewModel");
 const { createElement, getElement, getElements, updateElement, deleteElement } = require("../helpers/factory");
+const planModel = require("../models/planModel");
 
 // functions
-const createreview = createElement(reviewModel);
-const getreview = getElement(reviewModel);
-const getreviews = getElements(reviewModel);
-const updatereview = updateElement(reviewModel);
-const deletereview = deleteElement(reviewModel);
+const createReview = createElement(reviewModel);
+const getReview = getElement(reviewModel);
+const getReviews = getElements(reviewModel);
+const updateReview = updateElement(reviewModel);
+const deleteReview = deleteElement(reviewModel);
 
 
 // route -> id
@@ -29,13 +30,46 @@ reviewRouter.get("/getuseralso", getUsersAlso);
 
 
 reviewRouter.route("/")
-  .post(protectRoute, bodyChecker, isAuthorized(["admin"]), createreview)
-  .get(protectRoute, isAuthorized(["admin","ce"]), getreviews);
+  .post(protectRoute, bodyChecker, isAuthorized(["admin"]), createReview)
+  .get(protectRoute, isAuthorized(["admin","ce"]), getReviews);
 
 reviewRouter.route("/:id")
   .get(getreview)
-  .patch(protectRoute, bodyChecker, isAuthorized(["admin", "ce"]), updatereview)
-  .delete(protectRoute, bodyChecker, isAuthorized(["admin"]), deletereview);
+  .patch(protectRoute, bodyChecker, isAuthorized(["admin", "ce"]), updateReview)
+  .delete(protectRoute, bodyChecker, isAuthorized(["admin"]), deleteReview);
+
+const createReview = async function(req, res){
+     try{
+        // review -> put entry
+        let review = await reviewModel.create(req.body);
+        // extract planId from this review
+        let planid = review.plan; // plan ki Id nikali reviewModel se
+        // planKiId se hamne vo plan hi dhundh lia
+        let plan = await planModel.findById(planid); // planId ke basis par plan nikala from planModel
+        // fir us plan ke reviews apne review ki id daaldi
+        plan.reviews.push(review["_id"]); // and then plan mein reviews key ke ander jakar review ki Id daal di
+  
+        // fir plan ki avgrating update kardi
+        if(plan.averageRating){
+            let sum = plan.averageRating * plan.reviews.length;
+            let finalAvgRating = (sum + review.rating) / (plan.review.length+1);
+            plan.averageRating = finalAvgRating;
+        }
+        else{
+           plan.averageRating = review.rating; // initially jab koi plan add hota hai to uski koi rating nhi hoti, to jo review ki rating hogi initiall vhi plan ki avg Rating hogi
+        }
+        await plan.save(); // than us plan ko save kar dia
+        res.status(200).json({
+            message: "review created",
+            review: review
+        })
+     }
+     catch(err){
+         res.status(500).json({
+             message: err.message
+         })
+     }
+}
 
 async function getUsersAlso(req, res){
     try{    
@@ -58,5 +92,7 @@ async function getUsersAlso(req, res){
         })
     }
 }
+
+
 
 module.exports = reviewRouter;
