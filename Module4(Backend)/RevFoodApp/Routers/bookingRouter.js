@@ -29,7 +29,7 @@ bookingRouter.use(protectRoute);
 
 // routes
 bookingRouter.get("/getuseralso", getUsersAlso);
-
+bookingRouter.route("/verification").post(verifyPayment);
 bookingRouter.route("/")
   .post(bodyChecker, isAuthorized(["admin"]), initiatebooking)
   .get(protectRoute, isAuthorized(["admin","ce"]), getbookings);
@@ -39,6 +39,13 @@ bookingRouter.route("/:id")
   .patch(bodyChecker, isAuthorized(["admin", "ce"]), updatebooking)
   .delete(bodyChecker, isAuthorized(["admin"]), deletebooking);
 
+  let { KEY_ID, KEY_SECRET } = require("../secrets");
+  var razorpay = new Razorpay({
+      key_id: KEY_ID,
+      key_secret: KEY_SECRET,
+  });
+
+// createBooking
 const initiatebooking = async function(req, res){
     try{
         let booking = await bookingModel.create(req.body);
@@ -49,9 +56,25 @@ const initiatebooking = async function(req, res){
         await user.save();
         // itne tak booking abhi hui nhi hai
 
+        //yha se razorpay ka code -> it shows ki order aisa hone ewala hai
+        const payment_capture = 1;
+        const amount = 500;
+        const currency = "INR";
+        const options = {
+            amount,
+            currency,
+            receipt: `rs_${bookingId}`,
+            payment_capture,
+        };
+        const response = await razorpay.orders.create(options);
+        console.log(response);
+        
         res.status(200).json({
            message: "booking created",
-           booking: booking
+           booking: booking,
+           id: response.id,
+           currency: response.currency,
+           amount: response.amount
         })
     }
     catch(err){
@@ -60,6 +83,28 @@ const initiatebooking = async function(req, res){
          })
     }
 }
+
+async function verifyPayment(req, res) {
+    // JWT 
+    const secret = KEY_SECRET
+
+    // console.log(req.body);
+    // 
+    const shasum = crypto.createHmac("sha256", secret);
+    shasum.update(JSON.stringify(req.body));
+    const digest = shasum.digest("hex");
+
+    console.log(digest, req.headers["x-razorpay-signature"]);
+
+    if (digest === req.headers["x-razorpay-signature"]) {
+        console.log("request is legit");
+        res.status(200).json({
+            message: "OK",
+        });
+    } else {
+        res.status(403).json({ message: "Invalid" });
+    }
+};
 
 const deleteBooking = async function(req, res){
     try{
