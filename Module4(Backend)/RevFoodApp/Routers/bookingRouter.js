@@ -10,6 +10,7 @@ const planModel = require("../models/planModel");
 // const factory = require("../helpers/factory");
 
 const { createElement, getElement, getElements, updateElement, deleteElement } = require("../helpers/factory");
+const razorpay = require("razorpay");
 
 // functions
 // for doing createBookings -> we have to change in bookingModel as well as change in userModel -> change user
