@@ -16,7 +16,7 @@ const { createElement, getElement, getElements, updateElement, deleteElement } =
 // for doing deleteBookings -> we have to change in bookingModel as well as change in userModel -> change user
 
 // only we have to write createBookings and deleteBookings functions ,else other functions would remain same as reviewRouter 
-const createbooking = createElement(bookingModel);
+const initiatebooking = createElement(bookingModel);
 const getbooking = getElement(bookingModel);
 const getbookings = getElements(bookingModel);
 const updatebooking = updateElement(bookingModel);
@@ -30,13 +30,57 @@ bookingRouter.use(protectRoute);
 bookingRouter.get("/getuseralso", getUsersAlso);
 
 bookingRouter.route("/")
-  .post(bodyChecker, isAuthorized(["admin"]), createbooking)
+  .post(bodyChecker, isAuthorized(["admin"]), initiatebooking)
   .get(protectRoute, isAuthorized(["admin","ce"]), getbookings);
 
 bookingRouter.route("/:id")
   .get(getbooking)
   .patch(bodyChecker, isAuthorized(["admin", "ce"]), updatebooking)
   .delete(bodyChecker, isAuthorized(["admin"]), deletebooking);
+
+const initiatebooking = async function(req, res){
+    try{
+        let booking = await bookingModel.create(req.body);
+        let bookingId  = booking["_id"]; // is bookingId ko userModel mein bhi daaldo
+        let userId = req.body.user;
+        let user = await userModel.findById(userId);
+        user.bookings.push(bookingId);
+        await user.save();
+        // itne tak booking abhi hui nhi hai
+
+        res.status(200).json({
+           message: "booking created",
+           booking: booking
+        })
+    }
+    catch(err){
+         res.status(500).json({
+             message: err.message
+         })
+    }
+}
+
+const deleteBooking = async function(req, res){
+    try{
+        let booking = await bookingModel.findByIdAndDelete(req.body.id);
+        console.log("booking", booking);
+        let userId = booking.user;
+        let user = await userModel.findById(userId);
+        let idxOfbooking = user.bookings.indexOf(booking["_id"]);
+        user.booking.splice(idxOfbooking, 1);
+        await user.save();
+
+        res.status(200).json({
+           message: "booking deleted",
+           booking: booking
+        })
+    }
+    catch(err){
+         res.status(500).json({
+             message: err.message
+         })
+    }
+}
 
 async function getUsersAlso(req, res){
     try{    
