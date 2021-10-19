@@ -10,33 +10,12 @@ const { createElement, getElement, getElements, updateElement, deleteElement } =
 const planModel = require("../models/planModel");
 
 // functions
-const createReview = createElement(reviewModel);
+// const createReview = createElement(reviewModel);
 const getReview = getElement(reviewModel);
 const getReviews = getElements(reviewModel);
 const updateReview = updateElement(reviewModel);
-const deleteReview = deleteElement(reviewModel);
+// const deleteReview = deleteElement(reviewModel);
 
-
-// route -> id
-// reviewRouter.use(protectRoute);
-
-// routes
-reviewRouter.get("/getuseralso", getUsersAlso);
-
-// createReview
-// review -> put entry
-// plan: average rating update
-// plan -> reviewId
-
-
-reviewRouter.route("/")
-  .post(protectRoute, bodyChecker, isAuthorized(["admin"]), createReview)
-  .get(protectRoute, isAuthorized(["admin","ce"]), getReviews);
-
-reviewRouter.route("/:id")
-  .get(getreview)
-  .patch(protectRoute, bodyChecker, isAuthorized(["admin", "ce"]), updateReview)
-  .delete(protectRoute, bodyChecker, isAuthorized(["admin"]), deleteReview);
 
 const createReview = async function(req, res){
      try{
@@ -113,6 +92,25 @@ async function getUsersAlso(req, res){
     }
 }
 
+// route -> id
+// reviewRouter.use(protectRoute);
 
+// routes
+reviewRouter.get("/getuseralso", getUsersAlso);
+
+// createReview
+// review -> put entry
+// plan: average rating update
+// plan -> reviewId
+
+
+reviewRouter.route("/")
+  .post(protectRoute, bodyChecker, isAuthorized(["admin"]), createReview)
+  .get(protectRoute, isAuthorized(["admin","ce"]), getReviews);
+
+reviewRouter.route("/:id")
+  .get(getReview)
+  .patch(protectRoute, bodyChecker, isAuthorized(["admin", "ce"]), updateReview)
+  .delete(protectRoute, bodyChecker, isAuthorized(["admin"]), deleteReview);
 
 module.exports = reviewRouter;

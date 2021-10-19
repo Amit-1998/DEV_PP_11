@@ -10,34 +10,19 @@ const planModel = require("../models/planModel");
 // const factory = require("../helpers/factory");
 
 const { createElement, getElement, getElements, updateElement, deleteElement } = require("../helpers/factory");
-const razorpay = require("razorpay");
 
 // functions
 // for doing createBookings -> we have to change in bookingModel as well as change in userModel -> change user
 // for doing deleteBookings -> we have to change in bookingModel as well as change in userModel -> change user
 
 // only we have to write createBookings and deleteBookings functions ,else other functions would remain same as reviewRouter 
-const initiatebooking = createElement(bookingModel);
+// const initiatebooking = createElement(bookingModel);
 const getbooking = getElement(bookingModel);
 const getbookings = getElements(bookingModel);
 const updatebooking = updateElement(bookingModel);
-const deletebooking = deleteElement(bookingModel);
+// const deletebooking = deleteElement(bookingModel);
 
-
-// route -> id
-bookingRouter.use(protectRoute);
-
-// routes
-bookingRouter.get("/getuseralso", getUsersAlso);
-bookingRouter.route("/verification").post(verifyPayment);
-bookingRouter.route("/")
-  .post(bodyChecker, isAuthorized(["admin"]), initiatebooking)
-  .get(protectRoute, isAuthorized(["admin","ce"]), getbookings);
-
-bookingRouter.route("/:id")
-  .get(getbooking)
-  .patch(bodyChecker, isAuthorized(["admin", "ce"]), updatebooking)
-  .delete(bodyChecker, isAuthorized(["admin"]), deletebooking);
+const Razorpay = require("razorpay");
 
   let { KEY_ID, KEY_SECRET } = require("../secrets");
   var razorpay = new Razorpay({
@@ -106,7 +91,7 @@ async function verifyPayment(req, res) {
     }
 };
 
-const deleteBooking = async function(req, res){
+const deletebooking = async function(req, res){
     try{
         let booking = await bookingModel.findByIdAndDelete(req.body.id);
         console.log("booking", booking);
@@ -149,5 +134,21 @@ async function getUsersAlso(req, res){
         })
     }
 }
+
+// route -> id
+bookingRouter.use(protectRoute);
+
+// routes
+bookingRouter.get("/getuseralso", getUsersAlso);
+bookingRouter.route("/verification").post(verifyPayment);
+bookingRouter.route("/")
+  .post(bodyChecker, isAuthorized(["admin"]), initiatebooking)
+  .get(protectRoute, isAuthorized(["admin","ce"]), getbookings);
+
+bookingRouter.route("/:id")
+  .get(getbooking)
+  .patch(bodyChecker, isAuthorized(["admin", "ce"]), updatebooking)
+  .delete(bodyChecker, isAuthorized(["admin"]), deletebooking);
+
 
 module.exports = bookingRouter;
