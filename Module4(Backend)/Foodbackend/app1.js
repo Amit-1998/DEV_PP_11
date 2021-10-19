@@ -262,8 +262,11 @@ app.listen(8081, function () {
 // })
 app.use(function (req, res) {
     // console.log("fullPath", fullPath);
-    res.status(404).sendFile
-    (path.join(__dirname, "404.html"));
+    // res.status(404).sendFile
+    // (path.join(__dirname, "404.html"));
+    res.status(404).json({
+        message: "404 page not found"
+    })
 })
 // app.get("/", function (req, res) {
 //     console.log("hello from home page")
