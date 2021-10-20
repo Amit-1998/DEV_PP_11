@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-let { PASSWORD } = require("../secrets");
+// let { PASSWORD } = process.env || require("../secrets");
+let { PASSWORD } = process.env
 const validator = require("email-validator");  
 
 let dbLink = `mongodb+srv://AmitfoodApp:${PASSWORD}@cluster0.lwgl1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;

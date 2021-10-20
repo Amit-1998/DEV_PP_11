@@ -1,7 +1,11 @@
 // dependies
 const express = require("express");
 const jwt = require('jsonwebtoken');
-const { JWT_SECRET } = require("../secrets");
+
+//deployed -> when our project will deployed than JWT_SECRET will get from process.env
+// require -> local file
+// const { JWT_SECRET } = process.env || require("../secrets");
+const { JWT_SECRET } = process.env
 const userModel = require("../models/userModel");
 const { bodyChecker } = require("./utilFns");
 

@@ -29,7 +29,7 @@ const app = express();
 // always use me
 //  express json -> req.body add
 // reserve a folder only from which client can acces the files 
-app.use(express.static("Frontend_folder")); // tha se saari files serve hoti hai
+app.use(express.static("Frontend_folder")); // yha se saari files serve hoti hai
 app.use(express.json());
 app.use(cookieParser());
 
@@ -238,7 +238,9 @@ app.use("/api/booking", bookingRouter);
 // function getUsers(req, res) {
 //     res.json({ message: content });
 // }
-app.listen(8081, function () {
+
+// heroku physical -> multiple server run
+app.listen(process.env.PORT||8081, function () {
     console.log("server started");
 })
 // app.post("/", function (req, res, next) {
