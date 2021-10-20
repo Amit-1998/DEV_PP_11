@@ -10,7 +10,6 @@ const userModel = require("../models/userModel");
 const { bodyChecker } = require("./utilFns");
 
 const emailSender = require("../helpers/emailSender");
-
 //router
 const authRouter = express.Router();
 
@@ -36,6 +35,9 @@ authRouter.route("/resetPassword")
 // routes -> functions
 async function signupUser(req, res) {
     try {
+        // let password = req.body.password;
+        // const salt = await bcrypt.genSalt(10); // random text dega-> more the value of salt ,more time it takes to encrypt the plaintext
+        // jab user pehli baar create hoga tab ham uska salt generate karenge before saving that user into DB
         let newUser = await userModel.create(req.body);
         res.status(200).json({
             "message": "user created successfully",
@@ -57,7 +59,9 @@ async function loginUser(req, res){
         console.log(user);
         if (user) {
             // password
-                if (user.password == password) {
+            // not need to check by if(user.password == password)
+            let areEqual = await bcrypt.compare(password, user.password); // here password is which user provides while login & user.password is hash hua BE mein saved password
+                if (areEqual){
                     let token = jwt.sign({ id: user["_id"] }, JWT_SECRET)
                     res.cookie("JWT", token);
                     res.status(200).json({
