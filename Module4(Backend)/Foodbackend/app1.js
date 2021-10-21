@@ -16,6 +16,7 @@ const bookingRouter = require("./Routers/bookingRouter");
 
 const rateLimit = require("express-rate-limit");
 const hpp = require("hpp");
+const helmet = require("helmet");
 
 // Server: // route  -> request -> response/file 
 // File system// path -> interact/type -> file /folder
@@ -41,6 +42,9 @@ app.use(rateLimit({
 app.use(hpp({
     whitelist:['select', 'page', 'sort', 'myquery']
 }))
+
+// to set http headers
+app.use(helmet());
 
 // inbuilt menthods of express has next already implmeneted
 // always use me
