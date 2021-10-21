@@ -17,6 +17,8 @@ const bookingRouter = require("./Routers/bookingRouter");
 const rateLimit = require("express-rate-limit");
 const hpp = require("hpp");
 const helmet = require("helmet");
+const xss = require("xss-clean");
+const mongoSanitize = require('express-mongo-sanitize');
 
 // Server: // route  -> request -> response/file 
 // File system// path -> interact/type -> file /folder
@@ -43,6 +45,7 @@ app.use(hpp({
     whitelist:['select', 'page', 'sort', 'myquery']
 }))
 
+
 // to set http headers
 app.use(helmet());
 
@@ -53,6 +56,11 @@ app.use(helmet());
 app.use(express.static("Frontend_folder")); // yha se saari files serve hoti hai
 app.use(express.json());
 app.use(cookieParser());
+
+// cross site scripting
+app.use(xss());
+// mongodb query sanitize
+app.use(mongoSanitize());
 
 // // function -> route  path
 // // frontend -> req -> /

@@ -10,3 +10,6 @@ HTTp parameter pollution
 https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/04-Testing_for_HTTP_Parameter_Pollution
 
 https://www.npmjs.com/package/hpp
+
+CrossSite Scripting attack (XSS)
+https://owasp.org/www-community/attacks/xss/
