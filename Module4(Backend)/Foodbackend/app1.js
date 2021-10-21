@@ -37,6 +37,7 @@ app.use(rateLimit({
     "Too many accounts created from this IP, please try again after an hour"
 }))
 
+// extra param na ho inke alawa
 app.use(hpp({
     whitelist:['select', 'page', 'sort', 'myquery']
 }))
