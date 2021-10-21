@@ -13,3 +13,9 @@ https://www.npmjs.com/package/hpp
 
 CrossSite Scripting attack (XSS)
 https://owasp.org/www-community/attacks/xss/
+
+Security :
+https://en.wikipedia.org/wiki/Bcrypt
+https://codahale.com/how-to-safely-store-a-password/ => Why is bcrypt imp
+https://speakerdeck.com/ckarande/top-overlooked-security-threats-to-node-dot-js-web-applications -> what is paramter pollution
+https://severalnines.com/database-blog/securing-mongodb-external-injection-attacks
