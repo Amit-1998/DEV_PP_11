@@ -9,8 +9,56 @@ module.exports.createProduct = async (req,res,next)=>{
     })
 }
 
-module.exports.getAllProducts = (req,res)=>{
+// module.exports.getAllProducts = (req,res)=>{
+//     res.status(200).json({
+//         message: "Route is working fine"
+//     })
+// }
+
+// Get all the products
+module.exports.getAllProducts = async(req,res)=>{
+    const products = await Product.find(); // gives all products
     res.status(200).json({
-        message: "Route is working fine"
+        success: true,
+        products
     })
+}
+
+// update the product -- admin
+module.exports.updateProduct = async(req,res,next)=>{
+      let product = await Product.findById(req.params.id);
+      if(!product){
+          return res.status(500).json({
+              success: false,
+              message:"Product not found"
+          })
+      }
+
+      product = await Product.findByIdAndUpdate(req.params.id,req.body,{
+          new:true,
+          runValidators:true,
+          useFindAndModify:false
+      });
+
+      res.status(200).json({
+          success: true,
+          product
+      })
+}
+
+// Delete Product -- admin
+module.exports.deleteProduct = async(req,res,next)=>{
+    const product = await Product.findById(req.params.id);
+    if(!product)
+    {  return res.status(500).json({
+           success:false,
+           message: "Product not found"
+       })
+    }
+
+    await product.remove();
+    res.status(200).json({
+        success:true,
+        message:"Product Deleted Successfully"
+    });
 }
