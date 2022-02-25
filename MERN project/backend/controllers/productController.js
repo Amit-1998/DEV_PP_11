@@ -1,14 +1,25 @@
 const Product = require("../models/productModel");
 const ErrorHandler = require("../utils/errorhandler");
+const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 
 // Create Product -- admin
-module.exports.createProduct = async (req,res,next)=>{
+// module.exports.createProduct = async(req,res,next)=>{
+//     const product = await Product.create(req.body);
+//     res.status(201).json({
+//         success: true,
+//         product
+//     })
+// }
+
+// Create Product -- admin
+module.exports.createProduct = catchAsyncErrors(async(req,res,next)=>{
     const product = await Product.create(req.body);
     res.status(201).json({
         success: true,
         product
     })
-}
+});
+
 
 // module.exports.getAllProducts = (req,res)=>{
 //     res.status(200).json({
@@ -17,17 +28,17 @@ module.exports.createProduct = async (req,res,next)=>{
 // }
 
 // Get all the products
-module.exports.getAllProducts = async(req,res)=>{
+module.exports.getAllProducts = catchAsyncErrors(async(req,res)=>{
     const products = await Product.find(); // gives all products
     res.status(200).json({
         success: true,
         products
     })
-}
+});
 
 //Get Single Product OR
 // Get product details
-module.exports.getProductDetails = async(req,res,next)=>{
+module.exports.getProductDetails = catchAsyncErrors(async(req,res,next)=>{
     const product = await Product.findById(req.params.id);
     if(!product){
         // return res.status(500).json({
@@ -41,10 +52,10 @@ module.exports.getProductDetails = async(req,res,next)=>{
         success:true,
         product,
     });
-}
+});
 
 // update the product -- admin
-module.exports.updateProduct = async(req,res,next)=>{
+module.exports.updateProduct = catchAsyncErrors(async(req,res,next)=>{
       let product = await Product.findById(req.params.id);
       if(!product){
         return next(new ErrorHandler("Product not found",404));
@@ -60,10 +71,10 @@ module.exports.updateProduct = async(req,res,next)=>{
           success: true,
           product
       })
-}
+});
 
 // Delete Product -- admin
-module.exports.deleteProduct = async(req,res,next)=>{
+module.exports.deleteProduct = catchAsyncErrors(async(req,res,next)=>{
     const product = await Product.findById(req.params.id);
     if(!product){
         return next(new ErrorHandler("Product not found",404));
@@ -74,4 +85,4 @@ module.exports.deleteProduct = async(req,res,next)=>{
         success:true,
         message:"Product Deleted Successfully"
     });
-}
+});
