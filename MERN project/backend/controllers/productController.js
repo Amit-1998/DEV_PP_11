@@ -30,8 +30,11 @@ module.exports.createProduct = catchAsyncErrors(async(req,res,next)=>{
 
 // Get all the products
 module.exports.getAllProducts = catchAsyncErrors(async(req,res)=>{
-    const apiFeature = new ApiFeatures(Product.find(),req.query);
-    const products = await Product.find(); // gives all products
+    const apiFeature = new ApiFeatures(Product.find(),req.query).search(); 
+    // const products = await Product.find(); // gives all products // now we will not use Product.find()
+    //Now after using apiFeature
+    const products = await apiFeature.query;
+
     res.status(200).json({
         success: true,
         products
