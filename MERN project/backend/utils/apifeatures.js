@@ -23,7 +23,7 @@ class ApiFeatures{
     
     // we are building filter for category
     filter(){
-        const queryCopy = { ...queryStr };
+        const queryCopy = { ...this.queryStr };
         // Removing some fields for category
         const removeFields = ["keyword", "page", "limit"];
 
@@ -37,6 +37,13 @@ class ApiFeatures{
         this.query = this.query.find(JSON.parse(queryStr));
         return this;
     }
+
+    pagination(resultPerPage){
+        const currentPage = Number(this.queryStr.page) || 1;
+        const skip = resultPerPage * (currentPage-1);
+        this.query = this.query.limit(resultPerPage).skip(skip);
+        return this;
+    }    
 }
 
 module.exports = ApiFeatures;

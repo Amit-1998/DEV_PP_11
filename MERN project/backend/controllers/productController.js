@@ -30,15 +30,18 @@ module.exports.createProduct = catchAsyncErrors(async(req,res,next)=>{
 
 // Get all the products
 module.exports.getAllProducts = catchAsyncErrors(async(req,res)=>{
-    const apiFeature = new ApiFeatures(Product.find(),req.query).search().filter(); 
+    let resultPerPage = 5;
+    const productCount = await Product.countDocuments();
+    const apiFeature = new ApiFeatures(Product.find(),req.query).search().filter().pagination(resultPerPage); 
     // const products = await Product.find(); // gives all products // now we will not use Product.find()
     //Now after using apiFeature
+    // console.log(apiFeature.query);
     const products = await apiFeature.query;
 
     res.status(200).json({
         success: true,
         products
-    })
+    });
 });
 
 //Get Single Product OR
@@ -56,6 +59,7 @@ module.exports.getProductDetails = catchAsyncErrors(async(req,res,next)=>{
     res.status(200).json({
         success:true,
         product,
+        productCount
     });
 });
 
