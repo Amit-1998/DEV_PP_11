@@ -4,6 +4,7 @@ import "./App.css"
 import List from "./List";
 import Input from "./Input";
 
+// App component ko hamne "class-Based Component" isliye bnaya kuki hame uske ander states ko rakhna the"
 class App extends React.Component {
 
     state = {

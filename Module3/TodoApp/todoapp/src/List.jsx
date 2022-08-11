@@ -1,5 +1,6 @@
 // List ke component ko ham functional component bnayenge
-// reason : List comp mein jo bhi data aayega vo uska Parent bhejega to there is no need ki iska khud ka data bnaya jaye i.e state to hame ise class Based Component Bnane ki jaroorat nahi padi
+// Reason : List comp mein jo bhi data aayega vo uska Parent bhejega to there is no need ki 
+           // iska khud ka data bnaya jaye i.e state, to hame ise class Based Component Bnane ki jaroorat nahi padi
 let List = (props)=>{
     
     return(
